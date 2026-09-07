@@ -29,18 +29,21 @@
   --shadow-neo-accent: 3px 3px 0px #FFAA00;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  background-color: #FFFFFF;
-  color: #123B53;
-  overflow-x: hidden;
-  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
-  font-weight: 500;
-  font-size: 0.9375rem;
-  line-height: 1.65;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+  }
+  
+  body {
+    background-color: #FFFFFF;
+    color: #123B53;
+    overflow-x: hidden;
+    font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.65;
+  }
 }
 
 /* Organic arch shape */
