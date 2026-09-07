@@ -30,9 +30,6 @@ export default {
           light: '#FFBC33',
         }
       },
-      fontFamily: {
-        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
-      },
       boxShadow: {
         'soft': '0 10px 30px -5px rgba(0, 184, 148, 0.08)',
         'card': '0 4px 20px 0 rgba(18, 59, 83, 0.05)',
