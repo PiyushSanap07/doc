@@ -8,17 +8,17 @@ import DotPattern from './DotPattern';
 
 const Clinic = () => {
   return (
-    <section id="contact" className="py-12 lg:py-16 bg-mint-light relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="py-8 lg:py-10 bg-mint-light relative overflow-hidden">
+      <div className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
           {/* LEFT: Clinic Image Frame */}
           <motion.div
             className="lg:col-span-5 relative flex justify-center"
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            initial={{ opacity: 0, x: -40, scale: 0.96 }}
+            whileInView={{ opacity: 1, x: 0, scale: 1 }}
+            viewport={{ once: false, amount: 0.2 }}
+            transition={{ type: "spring", stiffness: 90, damping: 14 }}
           >
             <div className="relative w-full max-w-[320px] sm:max-w-[350px]">
               {/* Decorative Orange Dots */}
@@ -28,7 +28,7 @@ const Clinic = () => {
               <div className="absolute -top-2 -right-2 w-10 h-10 rounded-full bg-accent z-0" />
 
               {/* Photo Box */}
-              <div className="relative z-10 w-full h-[300px] sm:h-[340px] bg-primary rounded-3xl overflow-hidden shadow-[5px_5px_0px_#123B53] border-2 border-navy p-1.5">
+              <div className="relative z-10 w-full h-[300px] sm:h-[340px] bg-primary rounded-3xl overflow-hidden shadow-[5px_5px_0px_#321427] border-2 border-navy p-1.5">
                 <div className="w-full h-full rounded-2xl overflow-hidden bg-white">
                   <img
                     src="/images/clinic.png"
@@ -48,10 +48,10 @@ const Clinic = () => {
           {/* RIGHT: Combined Clinic Details & Quick Action Bar */}
           <motion.div
             className="lg:col-span-7 space-y-4 text-left"
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            initial={{ opacity: 0, x: 40, scale: 0.96 }}
+            whileInView={{ opacity: 1, x: 0, scale: 1 }}
+            viewport={{ once: false, amount: 0.2 }}
+            transition={{ type: "spring", stiffness: 90, damping: 14, delay: 0.08 }}
           >
             <div className="space-y-1">
               <SectionLabel>VISIT MY CLINIC</SectionLabel>
@@ -62,7 +62,7 @@ const Clinic = () => {
             </div>
 
             {/* COMBINED CLINIC ADDRESS & HOURS CARD */}
-            <div className="bg-white p-5 rounded-2xl border-2 border-navy/15 shadow-[3px_3px_0px_#D0F4EB] space-y-4">
+            <div className="bg-white p-5 rounded-2xl border-2 border-navy/15 shadow-[3px_3px_0px_#F0D5E2] space-y-4">
               
               {/* Address Header & Location Details */}
               <div className="flex items-start gap-3.5">
@@ -92,7 +92,7 @@ const Clinic = () => {
             </div>
 
             {/* DIRECT CALL & DIRECTIONS ACTION BAR */}
-            <div className="bg-white p-4 rounded-2xl border-2 border-navy/15 shadow-[3px_3px_0px_#D0F4EB] flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="bg-white p-4 rounded-2xl border-2 border-navy/15 shadow-[3px_3px_0px_#F0D5E2] flex flex-col sm:flex-row items-center justify-between gap-4">
               
               {/* Phone info */}
               <div className="flex items-center gap-3">

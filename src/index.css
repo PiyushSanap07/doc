@@ -1,41 +1,42 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #00B894;
-  --color-primary-dark: #009F7A;
-  --color-primary-light: #33D1B1;
-  --color-mint: #E9FBF6;
-  --color-mint-light: #F5FFFC;
-  --color-mint-border: #D0F4EB;
-  --color-navy: #123B53;
-  --color-navy-dark: #0B2535;
-  --color-muted: #607D8B;
-  --color-muted-light: #90A4AE;
-  --color-accent: #FFAA00;
-  --color-accent-light: #FFBC33;
+  --color-primary: #8C486E;
+  --color-primary-dark: #703254;
+  --color-primary-light: #A86389;
+  --color-mint: #FBF2F6;
+  --color-mint-light: #FDF8FA;
+  --color-mint-border: #F0D5E2;
+  --color-navy: #321427;
+  --color-navy-dark: #210A18;
+  --color-muted: #7D6170;
+  --color-muted-light: #A68A99;
+  --color-accent: #C98664;
+  --color-accent-light: #E8B89E;
 
   --font-sans: 'Plus Jakarta Sans', 'Inter', sans-serif;
 
-  --shadow-soft: 0 10px 30px -5px rgba(0, 184, 148, 0.08);
-  --shadow-card: 0 4px 20px 0 rgba(18, 59, 83, 0.05);
-  --shadow-card-hover: 0 12px 35px -5px rgba(0, 184, 148, 0.15);
-  --shadow-floating: 0 15px 35px rgba(18, 59, 83, 0.1);
+  --shadow-soft: 0 10px 30px -5px rgba(140, 72, 110, 0.1);
+  --shadow-card: 0 4px 20px 0 rgba(50, 20, 39, 0.05);
+  --shadow-card-hover: 0 12px 35px -5px rgba(140, 72, 110, 0.2);
+  --shadow-floating: 0 15px 35px rgba(50, 20, 39, 0.12);
 
   /* Neo-brutalist hard shadows */
-  --shadow-neo: 4px 4px 0px #123B53;
-  --shadow-neo-sm: 3px 3px 0px #123B53;
-  --shadow-neo-green: 4px 4px 0px #009F7A;
-  --shadow-neo-accent: 3px 3px 0px #FFAA00;
+  --shadow-neo: 4px 4px 0px #321427;
+  --shadow-neo-sm: 3px 3px 0px #321427;
+  --shadow-neo-green: 4px 4px 0px #8C486E;
+  --shadow-neo-accent: 3px 3px 0px #C98664;
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
+    font-size: 17.5px; /* Slight global bump — scales all rem-based Tailwind text */
   }
   
   body {
     background-color: #FFFFFF;
-    color: #123B53;
+    color: #321427;
     overflow-x: hidden;
     font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
     font-weight: 500;
@@ -53,41 +54,41 @@
 
 /* Neo-brutalist utility classes */
 .neo-card {
-  border: 2px solid #123B53;
-  box-shadow: 4px 4px 0px #123B53;
+  border: 2px solid #321427;
+  box-shadow: 4px 4px 0px #321427;
   transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 .neo-card:hover {
-  box-shadow: 6px 6px 0px #123B53;
+  box-shadow: 6px 6px 0px #321427;
   transform: translate(-1px, -1px);
 }
 
 .neo-card-green {
-  border: 2px solid #009F7A;
-  box-shadow: 4px 4px 0px #009F7A;
+  border: 2px solid #8C486E;
+  box-shadow: 4px 4px 0px #8C486E;
   transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 .neo-card-green:hover {
-  box-shadow: 6px 6px 0px #009F7A;
+  box-shadow: 6px 6px 0px #8C486E;
   transform: translate(-1px, -1px);
 }
 
 .neo-btn {
-  border: 2px solid #123B53;
-  box-shadow: 3px 3px 0px #123B53;
+  border: 2px solid #321427;
+  box-shadow: 3px 3px 0px #321427;
   transition: box-shadow 0.15s ease, transform 0.15s ease;
 }
 
 .neo-btn:active {
-  box-shadow: 1px 1px 0px #123B53;
+  box-shadow: 1px 1px 0px #321427;
   transform: translate(2px, 2px);
 }
 
 .neo-badge {
-  border: 1.5px solid #123B53;
-  box-shadow: 2px 2px 0px #123B53;
+  border: 1.5px solid #321427;
+  box-shadow: 2px 2px 0px #321427;
 }
 
 /* ===== LOADER ANIMATIONS ===== */

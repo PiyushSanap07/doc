@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, useScroll } from 'framer-motion';
 import { Sparkles, Camera, Award, ShieldCheck, Heart, ArrowRight } from 'lucide-react';
 import SectionLabel from './SectionLabel';
 import PrimaryButton from './PrimaryButton';
@@ -69,12 +69,34 @@ const marqueeList = [...galleryPhotos, ...galleryPhotos];
 
 const Expertise = ({ onExploreClick }) => {
   const [hoveredId, setHoveredId] = useState(null);
+  const [scrollDirection, setScrollDirection] = useState('down');
+
+  useEffect(() => {
+    let lastY = window.scrollY;
+    const updateDirection = () => {
+      const currentY = window.scrollY;
+      if (currentY > lastY + 5) {
+        setScrollDirection('down');
+      } else if (currentY < lastY - 5) {
+        setScrollDirection('up');
+      }
+      lastY = currentY > 0 ? currentY : 0;
+    };
+    window.addEventListener('scroll', updateDirection, { passive: true });
+    return () => window.removeEventListener('scroll', updateDirection);
+  }, []);
 
   return (
-    <section id="expertise" className="py-10 lg:py-12 bg-mint-light/40 relative overflow-hidden">
+    <section id="expertise" className="py-8 lg:py-10 bg-mint-light/40 relative overflow-hidden">
       
       {/* HEADER CONTENT */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center space-y-3 mb-8">
+      <motion.div
+        className="max-w-4xl mx-auto px-4 sm:px-6 text-center space-y-3 mb-8"
+        initial={{ opacity: 0, y: 30, scale: 0.98 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        viewport={{ once: false, amount: 0.2 }}
+        transition={{ type: "spring", stiffness: 90, damping: 14 }}
+      >
         <div className="flex justify-center">
           <SectionLabel>DOCTOR GALLERY & CLINICAL MOMENTS</SectionLabel>
         </div>
@@ -86,13 +108,7 @@ const Expertise = ({ onExploreClick }) => {
         <p className="text-sm sm:text-base text-muted max-w-xl mx-auto leading-relaxed">
           Explore a visual showcase of Dr. Neha Shinde's clinical practice, specialized treatments, and modern aesthetic environment.
         </p>
-
-        <div className="pt-2 flex justify-center">
-          <PrimaryButton onClick={onExploreClick}>
-            Book Appointment <ArrowRight className="w-4 h-4 ml-1 inline" />
-          </PrimaryButton>
-        </div>
-      </div>
+      </motion.div>
 
       {/* 3D CURVED PERSPECTIVE ANIMATED MARQUEE GALLERY */}
       <div className="relative w-full py-8 overflow-hidden perspective-1000">
@@ -104,7 +120,7 @@ const Expertise = ({ onExploreClick }) => {
         {/* Animated Marquee Track */}
         <motion.div
           className="flex gap-4 sm:gap-6 items-center w-max cursor-grab active:cursor-grabbing"
-          animate={{ x: ['0%', '-50%'] }}
+          animate={{ x: scrollDirection === 'up' ? ['-50%', '0%'] : ['0%', '-50%'] }}
           transition={{
             repeat: Infinity,
             repeatType: 'loop',
@@ -133,7 +149,7 @@ const Expertise = ({ onExploreClick }) => {
                   zIndex: 30,
                   transition: { duration: 0.3, type: "spring", stiffness: 300 }
                 }}
-                className={`relative shrink-0 w-44 sm:w-56 md:w-64 ${item.aspect} rounded-[24px] sm:rounded-[32px] overflow-hidden bg-white border-2 border-navy/20 shadow-[4px_4px_0px_#123B53] transition-all duration-300 ${rotateClass}`}
+                className={`relative shrink-0 w-44 sm:w-56 md:w-64 ${item.aspect} rounded-[24px] sm:rounded-[32px] overflow-hidden bg-white border-2 border-navy/20 shadow-[4px_4px_0px_#321427] transition-all duration-300 ${rotateClass}`}
               >
                 {/* Photo Image */}
                 <img
@@ -161,8 +177,8 @@ const Expertise = ({ onExploreClick }) => {
       </div>
 
       {/* FOOTER TICKER INFORMATION STRIP */}
-      <div className="max-w-6xl mx-auto px-4 mt-8">
-        <div className="bg-white py-3 px-6 rounded-2xl border-2 border-navy/15 shadow-[3px_3px_0px_#D0F4EB] flex items-center justify-between gap-4 text-xs font-bold text-navy overflow-hidden">
+      <div className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12 mt-8">
+        <div className="bg-white py-3 px-6 rounded-2xl border-2 border-navy/15 shadow-[3px_3px_0px_#F0D5E2] flex items-center justify-between gap-4 text-xs font-bold text-navy overflow-hidden">
           <div className="flex items-center gap-2 text-primary shrink-0">
             <Camera className="w-4 h-4 text-accent" />
             <span>Clinical Gallery</span>

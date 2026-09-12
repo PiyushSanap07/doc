@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Calendar, Menu, X, Leaf } from 'lucide-react';
+import { Calendar, Menu, X } from 'lucide-react';
 import { doctorData } from '../data/portfolioData';
 import PrimaryButton from './PrimaryButton';
+import Logo from './Logo';
 
 const navLinks = [
   { name: 'Home', href: '#home' },
@@ -51,13 +52,13 @@ const Navbar = ({ onBookClick }) => {
           : 'bg-white/80 backdrop-blur-sm py-4'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12">
         <div className="flex items-center justify-between">
           
           {/* Logo & Branding */}
           <a href="#home" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-full bg-mint flex items-center justify-center text-primary transition-transform duration-300 group-hover:scale-105">
-              <Leaf className="w-5 h-5 fill-primary/20" />
+            <div className="transition-transform duration-300 group-hover:scale-105 drop-shadow-md">
+              <Logo className="w-11 h-11" />
             </div>
             <div>
               <span className="block text-base font-bold text-navy leading-tight group-hover:text-primary transition-colors">

@@ -1,6 +1,7 @@
 import React from 'react';
-import { Leaf, MapPin, Mail, Navigation, ExternalLink, Phone } from 'lucide-react';
+import { MapPin, Mail, Navigation, ExternalLink, Phone } from 'lucide-react';
 import { doctorData } from '../data/portfolioData';
+import Logo from './Logo';
 
 const footerNavLinks = [
   { name: 'Home', href: '#home' },
@@ -28,17 +29,17 @@ const YoutubeIcon = ({ className = "w-5 h-5" }) => (
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-b from-white via-mint-light/60 to-mint-light border-t-2 border-navy/15 pt-12 pb-8 text-navy relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer className="bg-mint-light/50 border-t-2 border-navy/15 pt-6 pb-5 text-navy relative overflow-hidden">
+      <div className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12">
         
         {/* HIGHLIGHTED QUICK LINKS BANNER */}
-        <div className="mb-10">
-          <div className="text-center max-w-xl mx-auto mb-5">
+        <div className="mb-5">
+          <div className="text-center max-w-xl mx-auto mb-3">
             <span className="inline-block text-[11px] font-black tracking-widest text-primary uppercase bg-mint px-3 py-1 rounded-full border border-mint-border mb-1.5">
-              CONNECT & FIND US
+              CONNECT &amp; FIND US
             </span>
             <h3 className="text-xl sm:text-2xl font-black text-navy">
-              Quick Links & Contact Highlights
+              Quick Links &amp; Contact Highlights
             </h3>
           </div>
 
@@ -49,7 +50,7 @@ const Footer = () => {
               href={doctorData.socials.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="group bg-white p-3.5 rounded-2xl border-2 border-navy/20 shadow-[4px_4px_0px_#123B53] hover:shadow-[6px_6px_0px_#00B894] hover:border-primary transition-all duration-300 flex items-center gap-3"
+              className="group bg-white p-3.5 rounded-2xl border-2 border-navy/20 shadow-[4px_4px_0px_#321427] hover:shadow-[6px_6px_0px_#8C486E] hover:border-primary transition-all duration-300 flex items-center gap-3"
             >
               <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white flex items-center justify-center shrink-0 shadow-xs group-hover:scale-110 transition-transform">
                 <InstagramIcon className="w-4 h-4" />
@@ -68,7 +69,7 @@ const Footer = () => {
               href={doctorData.socials.youtube}
               target="_blank"
               rel="noopener noreferrer"
-              className="group bg-white p-3.5 rounded-2xl border-2 border-navy/20 shadow-[4px_4px_0px_#123B53] hover:shadow-[6px_6px_0px_#FFAA00] hover:border-accent transition-all duration-300 flex items-center gap-3"
+              className="group bg-white p-3.5 rounded-2xl border-2 border-navy/20 shadow-[4px_4px_0px_#321427] hover:shadow-[6px_6px_0px_#C98664] hover:border-accent transition-all duration-300 flex items-center gap-3"
             >
               <div className="w-10 h-10 rounded-xl bg-red-600 text-white flex items-center justify-center shrink-0 shadow-xs group-hover:scale-110 transition-transform">
                 <YoutubeIcon className="w-4 h-4" />
@@ -87,7 +88,7 @@ const Footer = () => {
               href={doctorData.clinic.googleMapUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="group bg-white p-3.5 rounded-2xl border-2 border-navy/20 shadow-[4px_4px_0px_#123B53] hover:shadow-[6px_6px_0px_#00B894] hover:border-primary transition-all duration-300 flex items-center gap-3"
+              className="group bg-white p-3.5 rounded-2xl border-2 border-navy/20 shadow-[4px_4px_0px_#321427] hover:shadow-[6px_6px_0px_#8C486E] hover:border-primary transition-all duration-300 flex items-center gap-3"
             >
               <div className="w-10 h-10 rounded-xl bg-primary text-white flex items-center justify-center shrink-0 shadow-xs group-hover:scale-110 transition-transform">
                 <Navigation className="w-4 h-4" />
@@ -104,7 +105,7 @@ const Footer = () => {
             {/* 4. EMAIL HIGHLIGHT CARD */}
             <a
               href={`mailto:${doctorData.email}`}
-              className="group bg-white p-3.5 rounded-2xl border-2 border-navy/20 shadow-[4px_4px_0px_#123B53] hover:shadow-[6px_6px_0px_#FFAA00] hover:border-accent transition-all duration-300 flex items-center gap-3"
+              className="group bg-white p-3.5 rounded-2xl border-2 border-navy/20 shadow-[4px_4px_0px_#321427] hover:shadow-[6px_6px_0px_#C98664] hover:border-accent transition-all duration-300 flex items-center gap-3"
             >
               <div className="w-10 h-10 rounded-xl bg-navy text-white flex items-center justify-center shrink-0 shadow-xs group-hover:scale-110 transition-transform">
                 <Mail className="w-4 h-4" />
@@ -121,14 +122,14 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* MIDDLE FOOTER BLOCK - PERFECTLY EVEN & ALIGNED */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 pb-8 border-b border-navy/15 text-left items-start">
+        {/* MIDDLE FOOTER BLOCK */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 pb-5 border-b border-navy/15 text-left items-start">
           
           {/* Brand Info & Address */}
           <div className="lg:col-span-7 space-y-3">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-primary text-white flex items-center justify-center font-black border border-navy/20 shadow-xs">
-                <Leaf className="w-5 h-5" />
+              <div className="transition-transform duration-300 hover:scale-105">
+                <Logo className="w-11 h-11 drop-shadow-sm" />
               </div>
               <div>
                 <span className="block text-base font-extrabold text-navy leading-tight">
@@ -157,7 +158,7 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Quick Navigation Column - Perfectly Aligned */}
+          {/* Quick Navigation Column */}
           <div className="lg:col-span-5 space-y-2.5">
             <h4 className="text-xs font-black text-navy uppercase tracking-wider">
               Quick Navigation
@@ -178,8 +179,8 @@ const Footer = () => {
 
         </div>
 
-        {/* BOTTOM BAR - CENTERED ATTRITUBION */}
-        <div className="pt-6 text-center text-xs font-semibold text-muted border-t border-navy/10 mt-2">
+        {/* BOTTOM BAR */}
+        <div className="pt-4 text-center text-xs font-semibold text-muted">
           <p>
             © 2026 Developed by{' '}
             <a

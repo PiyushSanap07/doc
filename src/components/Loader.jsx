@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Leaf } from 'lucide-react';
+import Logo from './Logo';
 
 const Loader = ({ onFinish }) => {
   const [visible, setVisible] = useState(true);
@@ -28,7 +28,7 @@ const Loader = ({ onFinish }) => {
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-[15%] left-[10%] w-40 h-40 rounded-full bg-mint opacity-60 animate-pulse-ring" style={{ animationDelay: '0s' }} />
           <div className="absolute bottom-[20%] right-[8%] w-28 h-28 rounded-full bg-mint opacity-40 animate-pulse-ring" style={{ animationDelay: '0.5s' }} />
-          <div className="absolute top-[55%] left-[65%] w-20 h-20 rounded-full bg-accent/10 animate-pulse-ring" style={{ animationDelay: '1s' }} />
+          <div className="absolute top-[55%] left-[65%] w-20 h-20 rounded-full bg-accent/15 animate-pulse-ring" style={{ animationDelay: '1s' }} />
           <div className="absolute top-[10%] right-[20%] w-6 h-6 rounded-full bg-accent/40" />
           <div className="absolute bottom-[30%] left-[25%] w-4 h-4 rounded-full bg-primary/20" />
         </div>
@@ -37,15 +37,15 @@ const Loader = ({ onFinish }) => {
         <div className="relative z-10 flex flex-col items-center gap-6 animate-float-gentle">
           {/* Logo icon with pulsing ring */}
           <div className="relative">
-            <div className="absolute inset-0 w-24 h-24 rounded-full bg-primary/15 animate-pulse-ring" />
-            <div className="absolute -inset-3 w-30 h-30 rounded-full border-2 border-primary/10 animate-pulse-ring" style={{ animationDelay: '0.3s' }} />
+            <div className="absolute inset-0 w-28 h-28 rounded-full bg-primary/15 animate-pulse-ring" />
+            <div className="absolute -inset-3 w-34 h-34 rounded-full border-2 border-primary/15 animate-pulse-ring" style={{ animationDelay: '0.3s' }} />
             <motion.div
               initial={{ scale: 0, rotate: -180 }}
               animate={{ scale: 1, rotate: 0 }}
               transition={{ type: 'spring', stiffness: 200, damping: 15, delay: 0.2 }}
-              className="relative w-24 h-24 rounded-full bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center shadow-lg"
+              className="relative w-28 h-28 rounded-full flex items-center justify-center shadow-2xl"
             >
-              <Leaf className="w-12 h-12 text-white" />
+              <Logo className="w-28 h-28 drop-shadow-xl" />
             </motion.div>
           </div>
 
@@ -73,12 +73,12 @@ const Loader = ({ onFinish }) => {
           >
             <svg viewBox="0 0 200 40" className="w-full h-10">
               {/* Base line */}
-              <line x1="0" y1="20" x2="200" y2="20" stroke="#D0F4EB" strokeWidth="1.5" />
+              <line x1="0" y1="20" x2="200" y2="20" stroke="#F0D5E2" strokeWidth="1.5" />
               {/* Animated heartbeat */}
               <motion.polyline
                 points="0,20 40,20 55,20 65,5 75,35 85,8 95,28 105,20 140,20 200,20"
                 fill="none"
-                stroke="#00B894"
+                stroke="#8C486E"
                 strokeWidth="2.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -89,7 +89,7 @@ const Loader = ({ onFinish }) => {
               {/* Moving dot */}
               <motion.circle
                 r="4"
-                fill="#00B894"
+                fill="#C98664"
                 initial={{ cx: 0, cy: 20, opacity: 0 }}
                 animate={{
                   cx: [0, 40, 55, 65, 75, 85, 95, 105, 140, 200],

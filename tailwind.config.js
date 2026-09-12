@@ -8,26 +8,26 @@ export default {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#00B894',
-          dark: '#009F7A',
-          light: '#33D1B1',
+          DEFAULT: '#8C486E',
+          dark: '#703254',
+          light: '#A86389',
         },
         mint: {
-          DEFAULT: '#E9FBF6',
-          light: '#F5FFFC',
-          border: '#D0F4EB',
+          DEFAULT: '#FBF2F6',
+          light: '#FDF8FA',
+          border: '#F0D5E2',
         },
         navy: {
-          DEFAULT: '#123B53',
-          dark: '#0B2535',
+          DEFAULT: '#321427',
+          dark: '#210A18',
         },
         muted: {
-          DEFAULT: '#607D8B',
-          light: '#90A4AE',
+          DEFAULT: '#7D6170',
+          light: '#A68A99',
         },
         accent: {
-          DEFAULT: '#FFAA00',
-          light: '#FFBC33',
+          DEFAULT: '#C98664',
+          light: '#E8B89E',
         }
       },
       boxShadow: {

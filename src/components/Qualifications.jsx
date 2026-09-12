@@ -8,19 +8,19 @@ const iconMap = { GraduationCap, Stethoscope, Award, BadgeCheck };
 
 const Qualifications = () => {
   return (
-    <section id="qualifications" className="py-12 lg:py-16 bg-white relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="qualifications" className="py-8 lg:py-10 bg-white relative overflow-hidden">
+      <div className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12">
         
         {/* Header */}
         <motion.div
           className="text-left max-w-2xl mb-10"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          viewport={{ once: false, amount: 0.2 }}
+          transition={{ type: "spring", stiffness: 90, damping: 14 }}
         >
           <SectionLabel>QUALIFICATIONS & TIMELINE</SectionLabel>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-navy leading-tight">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-navy leading-tight whitespace-nowrap">
             Medical Education & Certification Timeline
           </h2>
         </motion.div>
@@ -37,21 +37,21 @@ const Qualifications = () => {
               return (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: false, amount: 0.15 }}
+                  transition={{ type: "spring", stiffness: 95, damping: 13, delay: index * 0.08 }}
                   className="flex flex-col items-start lg:items-center text-left lg:text-center group"
                 >
                   {/* Timeline Badge Node */}
                   <div className="flex items-center gap-2 mb-3 z-10">
-                    <div className="w-12 h-12 rounded-2xl bg-white group-hover:bg-primary border-2 border-navy text-primary group-hover:text-white shadow-[3px_3px_0px_#123B53] transition-all duration-300 flex items-center justify-center shrink-0">
+                    <div className="w-12 h-12 rounded-2xl bg-white group-hover:bg-primary border-2 border-navy text-primary group-hover:text-white shadow-[3px_3px_0px_#321427] transition-all duration-300 flex items-center justify-center shrink-0">
                       <IconComp className="w-6 h-6" />
                     </div>
                   </div>
 
                   {/* Qualification Detail Card */}
-                  <div className="w-full bg-white p-5 rounded-2xl border-2 border-navy/20 shadow-[4px_4px_0px_#D0F4EB] group-hover:shadow-[5px_5px_0px_#00B894] group-hover:border-primary/50 transition-all duration-300 flex flex-col justify-between h-full">
+                  <div className="w-full bg-white p-5 rounded-2xl border-2 border-navy/20 shadow-[4px_4px_0px_#F0D5E2] group-hover:shadow-[5px_5px_0px_#8C486E] group-hover:border-primary/50 transition-all duration-300 flex flex-col justify-between h-full">
                     <div>
                       <div className="flex items-center justify-between gap-2 mb-2">
                         <span className="text-[10px] font-black tracking-widest text-primary uppercase bg-mint px-2.5 py-0.5 rounded-md inline-block">
