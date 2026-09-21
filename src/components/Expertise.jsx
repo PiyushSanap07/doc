@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, useScroll } from 'framer-motion';
 import { Sparkles, Camera, Award, ShieldCheck, Heart, ArrowRight } from 'lucide-react';
 import SectionLabel from './SectionLabel';
@@ -101,13 +102,24 @@ const Expertise = ({ onExploreClick }) => {
           <SectionLabel>DOCTOR GALLERY & CLINICAL MOMENTS</SectionLabel>
         </div>
         
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-navy tracking-tight uppercase leading-tight">
+        <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-black text-navy tracking-tight uppercase leading-tight">
           DOCTOR IN <span className="text-primary">ACTION</span>
         </h2>
 
-        <p className="text-sm sm:text-base text-muted max-w-xl mx-auto leading-relaxed">
+        <p className="text-xs sm:text-base text-muted max-w-xl mx-auto leading-relaxed">
           Explore a visual showcase of Dr. Neha Shinde's clinical practice, specialized treatments, and modern aesthetic environment.
         </p>
+
+        <div className="pt-2">
+          <Link
+            to="/gallery"
+            className="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl bg-navy text-white text-xs font-bold uppercase tracking-wider hover:bg-primary transition-all duration-200 shadow-[3px_3px_0px_#8C486E] hover:shadow-none hover:translate-x-0.5 hover:translate-y-0.5"
+          >
+            <Camera className="w-4 h-4 text-accent shrink-0" />
+            <span className="hidden sm:inline">View Full Gallery (Clinic • Patient • Procedure) →</span>
+            <span className="sm:hidden">View Full Gallery →</span>
+          </Link>
+        </div>
       </motion.div>
 
       {/* 3D CURVED PERSPECTIVE ANIMATED MARQUEE GALLERY */}
@@ -149,12 +161,14 @@ const Expertise = ({ onExploreClick }) => {
                   zIndex: 30,
                   transition: { duration: 0.3, type: "spring", stiffness: 300 }
                 }}
-                className={`relative shrink-0 w-44 sm:w-56 md:w-64 ${item.aspect} rounded-[24px] sm:rounded-[32px] overflow-hidden bg-white border-2 border-navy/20 shadow-[4px_4px_0px_#321427] transition-all duration-300 ${rotateClass}`}
+                className={`relative shrink-0 w-40 xs:w-48 sm:w-56 md:w-64 ${item.aspect} rounded-[20px] sm:rounded-[32px] overflow-hidden bg-white border-2 border-navy/20 shadow-[4px_4px_0px_#321427] transition-all duration-300 ${rotateClass}`}
               >
                 {/* Photo Image */}
                 <img
                   src={item.image}
                   alt={item.title}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-110"
                 />
 
@@ -179,10 +193,10 @@ const Expertise = ({ onExploreClick }) => {
       {/* FOOTER TICKER INFORMATION STRIP */}
       <div className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12 mt-8">
         <div className="bg-white py-3 px-6 rounded-2xl border-2 border-navy/15 shadow-[3px_3px_0px_#F0D5E2] flex items-center justify-between gap-4 text-xs font-bold text-navy overflow-hidden">
-          <div className="flex items-center gap-2 text-primary shrink-0">
+          <Link to="/gallery" className="flex items-center gap-2 text-primary shrink-0 hover:underline">
             <Camera className="w-4 h-4 text-accent" />
-            <span>Clinical Gallery</span>
-          </div>
+            <span>Clinical Gallery →</span>
+          </Link>
 
           <div className="hidden sm:flex items-center gap-6 text-muted font-medium">
             <span className="flex items-center gap-1.5 text-navy">

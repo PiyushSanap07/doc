@@ -37,13 +37,13 @@ const Experience = () => {
                 whileInView={{ opacity: 1, scale: 1, y: 0 }}
                 viewport={{ once: false, amount: 0.2 }}
                 transition={{ type: "spring", stiffness: 100, damping: 13, delay: idx * 0.07 }}
-                className="bg-mint-light p-5 rounded-2xl border-2 border-navy/12 shadow-[3px_3px_0px_#F0D5E2] hover:shadow-[4px_4px_0px_#8C486E] flex flex-col items-start group hover:bg-mint transition-all duration-300"
+                className="bg-mint-light p-3.5 sm:p-5 rounded-2xl border-2 border-navy/12 shadow-[3px_3px_0px_#F0D5E2] hover:shadow-[4px_4px_0px_#8C486E] flex flex-col items-start group hover:bg-mint transition-all duration-300"
               >
-                <div className="w-9 h-9 rounded-xl bg-white text-primary flex items-center justify-center mb-2.5 shadow-xs group-hover:scale-110 transition-transform">
+                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-white text-primary flex items-center justify-center mb-2 sm:mb-2.5 shadow-xs group-hover:scale-110 transition-transform">
                   <IconComp className="w-4 h-4" />
                 </div>
-                <span className="text-3xl font-black text-primary leading-none">{stat.value}</span>
-                <span className="text-xs font-semibold text-navy mt-1.5">{stat.label}</span>
+                <span className="text-2xl sm:text-3xl font-black text-primary leading-none">{stat.value}</span>
+                <span className="text-[11px] sm:text-xs font-semibold text-navy mt-1 sm:mt-1.5">{stat.label}</span>
               </motion.div>
             );
           })}

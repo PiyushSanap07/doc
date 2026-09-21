@@ -37,13 +37,13 @@ const About = () => {
               LEFT — DOCTOR PHOTO
           ====================================================== */}
           <motion.div
-            className="lg:col-span-4 relative flex justify-start items-stretch h-full w-full"
+            className="lg:col-span-4 relative flex justify-center lg:justify-start items-stretch h-full w-full"
             initial={{ opacity: 0, x: -40, scale: 0.97 }}
             whileInView={{ opacity: 1, x: 0, scale: 1 }}
             viewport={{ once: false, amount: 0.2 }}
             transition={{ type: "spring", stiffness: 90, damping: 14 }}
           >
-            <div className="relative w-full max-w-[360px] sm:max-w-[380px] lg:max-w-none h-[400px] sm:h-[450px] lg:h-full">
+            <div className="relative w-full max-w-[320px] sm:max-w-[380px] lg:max-w-none h-[340px] xs:h-[400px] sm:h-[450px] lg:h-full mx-auto lg:mx-0">
               {/* Orange Dots */}
               <div className="absolute -top-4 -right-3 z-0">
                 <DotPattern rows={4} cols={4} />
@@ -64,7 +64,7 @@ const About = () => {
               </div>
 
               {/* Floating Heart */}
-              <div className="absolute top-1/2 -right-4 z-20 -translate-y-1/2 bg-white p-2.5 rounded-xl shadow-floating border border-mint-border text-primary">
+              <div className="absolute top-1/2 right-2 sm:-right-4 z-20 -translate-y-1/2 bg-white p-2.5 rounded-xl shadow-floating border border-mint-border text-primary">
                 <HeartPulse className="w-5 h-5" />
               </div>
             </div>
@@ -84,7 +84,7 @@ const About = () => {
             <div className="space-y-2">
               <SectionLabel>ABOUT THE DOCTOR</SectionLabel>
 
-              <h2 className="text-3xl sm:text-4xl lg:text-[2.45rem] xl:text-[2.7rem] font-extrabold text-navy leading-[1.05] tracking-tight">
+              <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-[2.45rem] xl:text-[2.7rem] font-extrabold text-navy leading-[1.05] tracking-tight">
                 Medicine with knowledge.
                 <br />
                 <span className="text-primary">Care with purpose.</span>

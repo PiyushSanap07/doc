@@ -7,23 +7,25 @@
   --color-mint: #FBF2F6;
   --color-mint-light: #FDF8FA;
   --color-mint-border: #F0D5E2;
-  --color-navy: #321427;
-  --color-navy-dark: #210A18;
-  --color-muted: #7D6170;
-  --color-muted-light: #A68A99;
+  --color-navy: #160F14;
+  --color-navy-dark: #0A0609;
+  --color-muted: #2E252C;
+  --color-muted-light: #4A3E47;
   --color-accent: #C98664;
   --color-accent-light: #E8B89E;
 
   --font-sans: 'Plus Jakarta Sans', 'Inter', sans-serif;
 
+  --breakpoint-xs: 24rem;
+
   --shadow-soft: 0 10px 30px -5px rgba(140, 72, 110, 0.1);
-  --shadow-card: 0 4px 20px 0 rgba(50, 20, 39, 0.05);
+  --shadow-card: 0 4px 20px 0 rgba(22, 15, 20, 0.05);
   --shadow-card-hover: 0 12px 35px -5px rgba(140, 72, 110, 0.2);
-  --shadow-floating: 0 15px 35px rgba(50, 20, 39, 0.12);
+  --shadow-floating: 0 15px 35px rgba(22, 15, 20, 0.12);
 
   /* Neo-brutalist hard shadows */
-  --shadow-neo: 4px 4px 0px #321427;
-  --shadow-neo-sm: 3px 3px 0px #321427;
+  --shadow-neo: 4px 4px 0px #160F14;
+  --shadow-neo-sm: 3px 3px 0px #160F14;
   --shadow-neo-green: 4px 4px 0px #8C486E;
   --shadow-neo-accent: 3px 3px 0px #C98664;
 }
@@ -31,16 +33,22 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    font-size: 17.5px; /* Slight global bump — scales all rem-based Tailwind text */
+    /* Responsive root font-size: 15px at 320px → 17.5px at 1280px+ */
+    font-size: clamp(15px, 14px + 0.26vw, 17.5px);
   }
   
   body {
     background-color: #FFFFFF;
-    color: #321427;
+    color: #160F14;
     overflow-x: hidden;
     font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
     font-weight: 500;
     line-height: 1.65;
+  }
+
+  /* Prevent any child from causing horizontal overflow */
+  #root {
+    overflow-x: clip;
   }
 }
 

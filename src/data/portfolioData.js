@@ -1,10 +1,10 @@
 export const doctorData = {
-  name: "Dr. Neha Ande-Shinde",
+  name: "Dr. Neha Shinde",
   role: "Dermatologist & Aesthetic Physician",
   eyebrow: "SKIN • HAIR • AESTHETICS • WELLNESS",
   tagline: "Healthy skin isn’t just about appearance, it’s about confidence, comfort and well-being. I’m here to help you achieve all three.",
   aboutTagline: "Medicine with knowledge. Care with purpose.",
-  aboutText: "I am Dr. Neha Ande-Shinde, a Dermatologist and Aesthetic Physician in Nashik with a passion for helping people feel confident in their skin. My approach is based on evidence-based medicine, personalized treatment plans and compassionate care.",
+  aboutText: "I am Dr. Neha Shinde, a Dermatologist and Aesthetic Physician in Nashik with a passion for helping people feel confident in their skin. My approach is based on evidence-based medicine, personalized treatment plans and compassionate care.",
   
   email: "drnehashinde@gmail.com",
 
@@ -132,7 +132,7 @@ export const doctorData = {
   ],
 
   clinic: {
-    name: "Dr Neha Ande-Shinde Skin Clinic",
+    name: "Dr Neha Shinde Skin Clinic",
     subtitle: "Best Dermatologist & Aesthetic Physician in Nashik",
     address: "'Harit' Building, Meri - Rasbihari Link Rd, near Balimandir-Rasbihari School, next to Pramod Mahajan Garden, Chakradhar Nagar, Saraswati Nagar, Balram Nagar, Nashik, Maharashtra 422003",
     city: "Nashik, Maharashtra",
