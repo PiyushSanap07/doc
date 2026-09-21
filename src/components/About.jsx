@@ -1,143 +1,160 @@
 import React from 'react';
-import {
-  HeartPulse,
-  Sparkles,
-  Sun,
-  Feather,
-  Flower2,
-  Clock,
-  ShieldAlert
-} from 'lucide-react';
 import { motion } from 'framer-motion';
 import { doctorData } from '../data/portfolioData';
 import SectionLabel from './SectionLabel';
-import DotPattern from './DotPattern';
-
-const iconMap = {
-  Sparkles,
-  Sun,
-  Feather,
-  Flower2,
-  Clock,
-  ShieldAlert,
-};
 
 const About = () => {
   return (
-    <section
-      id="about"
-      className="py-8 lg:py-10 bg-white relative overflow-hidden"
-    >
-      <div className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12">
+    <section id="about" className="pt-14 sm:pt-18 lg:pt-20 pb-10 sm:pb-14 bg-white">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12">
 
-        {/* MAIN LAYOUT */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
+        {/* Top Row — Bold statement with UI gradient heading + intro text */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8 lg:gap-14 items-start mb-8 sm:mb-10">
 
-          {/* =====================================================
-              LEFT — DOCTOR PHOTO
-          ====================================================== */}
           <motion.div
-            className="lg:col-span-4 relative flex justify-center lg:justify-start items-stretch h-full w-full"
-            initial={{ opacity: 0, x: -40, scale: 0.97 }}
-            whileInView={{ opacity: 1, x: 0, scale: 1 }}
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.2 }}
-            transition={{ type: "spring", stiffness: 90, damping: 14 }}
+            transition={{ duration: 0.35 }}
           >
-            <div className="relative w-full max-w-[320px] sm:max-w-[380px] lg:max-w-none h-[340px] xs:h-[400px] sm:h-[450px] lg:h-full mx-auto lg:mx-0">
-              {/* Orange Dots */}
-              <div className="absolute -top-4 -right-3 z-0">
-                <DotPattern rows={4} cols={4} />
-              </div>
+            <SectionLabel>ABOUT THE DOCTOR</SectionLabel>
 
-              {/* Orange Circle */}
-              <div className="absolute -bottom-3 -left-3 w-10 h-10 rounded-full bg-accent z-0" />
+            <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-[2.5rem] font-extrabold text-black leading-tight mt-0.5">
+              Dr. Neha Shinde is dedicated to provide the{' '}
+              <span className="bg-gradient-to-r from-[#8C486E] via-[#A86389] to-[#C98664] bg-clip-text text-transparent">
+                best dermatological care.
+              </span>
+            </h2>
+          </motion.div>
 
-              {/* PHOTO FRAME */}
-              <div className="relative z-10 w-full h-full bg-primary rounded-3xl overflow-hidden shadow-[5px_5px_0px_#321427] border-2 border-navy p-1.5">
-                <div className="w-full h-full rounded-2xl overflow-hidden bg-white">
-                  <img
-                    src="/images/doctor-about.png"
-                    alt="Dr. Neha Shinde Consultation"
-                    className="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-105"
-                  />
-                </div>
-              </div>
+          <motion.div
+            className="lg:pt-6"
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.2 }}
+            transition={{ duration: 0.35, delay: 0.1 }}
+          >
+            <p className="text-sm sm:text-base text-black font-normal leading-relaxed mb-3">
+              {doctorData.aboutText}
+            </p>
 
-              {/* Floating Heart */}
-              <div className="absolute top-1/2 right-2 sm:-right-4 z-20 -translate-y-1/2 bg-white p-2.5 rounded-xl shadow-floating border border-mint-border text-primary">
-                <HeartPulse className="w-5 h-5" />
+            <p className="text-sm sm:text-base text-black font-normal leading-relaxed">
+              With an MD in Dermatology and a Fellowship in Aesthetic Medicine, Dr. Shinde combines
+              evidence-based clinical science with a compassionate approach — ensuring every patient
+              receives a personalised treatment plan that truly fits their unique skin needs.
+            </p>
+          </motion.div>
+        </div>
+
+        {/* Middle Row — Doctor photo + Key info */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-stretch">
+
+          {/* Doctor Photo */}
+          <motion.div
+            className="lg:col-span-4 h-full"
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.2 }}
+            transition={{ duration: 0.35 }}
+          >
+            <div className="w-full h-[300px] xs:h-[350px] sm:h-[400px] lg:h-full min-h-0 lg:min-h-[440px] rounded-2xl overflow-hidden bg-white p-2 border border-gray-200/80 shadow-sm relative group">
+              <div className="w-full h-full rounded-xl overflow-hidden">
+                <img
+                  src="/images/doctor-about.png"
+                  alt="Dr. Neha Shinde Consultation"
+                  className="w-full h-full object-cover object-center group-hover:scale-102 transition-transform duration-500"
+                />
               </div>
             </div>
           </motion.div>
 
-          {/* =====================================================
-              RIGHT — ABOUT INFORMATION
-          ====================================================== */}
+          {/* Right Information Section */}
           <motion.div
-            className="lg:col-span-8 lg:pl-9 text-left flex flex-col justify-between h-full"
-            initial={{ opacity: 0, x: 40, scale: 0.97 }}
-            whileInView={{ opacity: 1, x: 0, scale: 1 }}
+            className="lg:col-span-8 flex flex-col gap-4 sm:gap-5"
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.2 }}
-            transition={{ type: "spring", stiffness: 90, damping: 14, delay: 0.05 }}
+            transition={{ duration: 0.35, delay: 0.1 }}
           >
-            {/* ABOUT HEADER */}
-            <div className="space-y-2">
-              <SectionLabel>ABOUT THE DOCTOR</SectionLabel>
 
-              <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-[2.45rem] xl:text-[2.7rem] font-extrabold text-navy leading-[1.05] tracking-tight">
-                Medicine with knowledge.
-                <br />
-                <span className="text-primary">Care with purpose.</span>
-              </h2>
+            {/* Stats Row */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3.5">
+              {[
+                { value: '5+', label: 'Years of Practice' },
+                { value: 'MD', label: 'Dermatology' },
+                { value: '5000+', label: 'Patients Treated' },
+                { value: '20+', label: 'Publications' },
+              ].map((s) => (
+                <div
+                  key={s.label}
+                  className="bg-white p-3 sm:p-3.5 rounded-xl border border-gray-200/80 shadow-2xs relative overflow-hidden"
+                >
+                  <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-[#8C486E] to-[#C98664]" />
+                  <p className="text-xl sm:text-2xl font-extrabold bg-gradient-to-r from-[#8C486E] to-[#C98664] bg-clip-text text-transparent leading-none">
+                    {s.value}
+                  </p>
+                  <p className="text-[11px] sm:text-xs font-semibold text-black mt-1">
+                    {s.label}
+                  </p>
+                </div>
+              ))}
+            </div>
 
-              <p className="text-[15px] sm:text-[16px] lg:text-[16px] text-muted leading-[1.4] max-w-none">
-                {doctorData.aboutText}
+            {/* Expertise Text Blocks */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 pt-0.5">
+              {[
+                {
+                  title: 'Acne & Acne Scars',
+                  desc: 'Customised medical treatments, chemical peels and laser scar resurfacing for lasting clear skin.'
+                },
+                {
+                  title: 'Pigmentation & Skin Tone',
+                  desc: 'Targeted therapy for melasma, sun spots, hyperpigmentation and uneven skin tone correction.'
+                },
+                {
+                  title: 'Hair & Scalp Disorders',
+                  desc: 'PRP therapy, hair fall control, scalp rejuvenation and expert alopecia management.'
+                },
+                {
+                  title: 'Cosmetic Dermatology',
+                  desc: 'Skin glow therapies, Botox, fillers, micro-needling and advanced skin tightening treatments.'
+                },
+                {
+                  title: 'Anti-Aging Treatments',
+                  desc: 'Collagen-boosting treatments, fine line reduction and holistic youth restoration protocols.'
+                },
+                {
+                  title: 'Skin Allergies & Eczema',
+                  desc: 'Comprehensive allergy diagnostics, eczema control and soothing restorative therapies.'
+                },
+              ].map((item) => (
+                <div
+                  key={item.title}
+                  className="p-3.5 sm:p-4 rounded-xl bg-white border border-gray-100 hover:border-[#8C486E]/30 transition-all shadow-2xs group"
+                >
+                  <h4 className="text-sm sm:text-base font-bold text-black mb-1 group-hover:text-primary transition-colors">
+                    {item.title}
+                  </h4>
+                  <p className="text-xs sm:text-sm text-black leading-relaxed font-normal">
+                    {item.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            {/* Professional Memberships */}
+            <div className="bg-white rounded-xl p-3.5 sm:p-4 border border-gray-200/80 shadow-2xs relative overflow-hidden">
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#8C486E] via-[#A86389] to-[#C98664]" />
+              <p className="text-sm font-bold text-black mb-1 mt-0.5">
+                Professional Memberships
+              </p>
+              <p className="text-xs sm:text-sm text-black leading-relaxed font-normal">
+                Active member of the Indian Association of Dermatologists, Venereologists &amp; Leprologists (IADVL)
+                and the Association of Cutaneous Surgeons of India (ACSI). Guest speaker and workshop trainer
+                at national aesthetic medicine conferences.
               </p>
             </div>
 
-            {/* EXPERTISE */}
-            <div className="mt-4 pt-3 border-t border-gray-100">
-              {/* Expertise Heading */}
-              <div className="flex items-center gap-2 mb-2">
-                <Sparkles className="w-5 h-5 text-accent shrink-0" />
-                <h3 className="text-lg sm:text-xl font-extrabold text-navy">
-                  Areas of Expertise & Specializations
-                </h3>
-              </div>
-
-              {/* EXPERTISE CARDS */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                {doctorData.expertise.map((item) => {
-                  const IconComponent = iconMap[item.iconName] || Sparkles;
-
-                  return (
-                    <motion.div
-                      key={item.id}
-                      whileHover={{
-                        y: -2,
-                        scale: 1.01
-                      }}
-                      className="bg-mint-light/70 px-3 py-2 rounded-xl border-2 border-navy/12 shadow-[2px_2px_0px_#F0D5E2] hover:shadow-[3px_3px_0px_#8C486E] hover:border-primary/40 transition-all flex items-center gap-3 min-h-[64px] group"
-                    >
-                      {/* ICON */}
-                      <div className="w-8 h-8 rounded-lg bg-white border border-navy/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors shrink-0 shadow-xs">
-                        <IconComponent className="w-4 h-4" />
-                      </div>
-
-                      {/* CARD CONTENT */}
-                      <div className="min-w-0">
-                        <h4 className="text-[13px] sm:text-[14px] font-bold text-navy group-hover:text-primary transition-colors leading-tight">
-                          {item.title}
-                        </h4>
-                        <p className="text-[10px] sm:text-[11px] text-muted leading-tight mt-0.5">
-                          {item.description}
-                        </p>
-                      </div>
-                    </motion.div>
-                  );
-                })}
-              </div>
-            </div>
           </motion.div>
 
         </div>

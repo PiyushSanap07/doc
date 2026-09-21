@@ -1,221 +1,87 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { motion, useScroll } from 'framer-motion';
-import { Sparkles, Camera, Award, ShieldCheck, Heart, ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Camera } from 'lucide-react';
 import SectionLabel from './SectionLabel';
-import PrimaryButton from './PrimaryButton';
 
-// Gallery photos using existing local photos in duplicates
+// Gallery photos using existing local photos
 const galleryPhotos = [
-  {
-    id: 1,
-    image: "/images/doctor-hero.png",
-    title: "Clinical Consultation",
-    badge: "Patient First",
-    aspect: "aspect-[3/4]"
-  },
-  {
-    id: 2,
-    image: "/images/doctor-about.png",
-    title: "Dermatological Procedures",
-    badge: "Laser Therapy",
-    aspect: "aspect-[3/4]"
-  },
-  {
-    id: 3,
-    image: "/images/clinic.png",
-    title: "Pune Aesthetic Clinic",
-    badge: "Modern Facility",
-    aspect: "aspect-[3/4]"
-  },
-  {
-    id: 4,
-    image: "/images/doctor-about.png",
-    title: "Hair & Scalp Rejuvenation",
-    badge: "Specialized Therapy",
-    aspect: "aspect-[3/4]"
-  },
-  {
-    id: 5,
-    image: "/images/doctor-hero.png",
-    title: "Aesthetic Skin Glow",
-    badge: "Anti-Aging Care",
-    aspect: "aspect-[3/4]"
-  },
-  {
-    id: 6,
-    image: "/images/clinic.png",
-    title: "Sterilized Procedure Suite",
-    badge: "Hygiene Standard",
-    aspect: "aspect-[3/4]"
-  },
-  {
-    id: 7,
-    image: "/images/doctor-hero.png",
-    title: "Patient Care Protocol",
-    badge: "Evidence Based",
-    aspect: "aspect-[3/4]"
-  },
-  {
-    id: 8,
-    image: "/images/doctor-about.png",
-    title: "Cosmetic Dermatology",
-    badge: "Expert Care",
-    aspect: "aspect-[3/4]"
-  }
+  { id: 1, image: '/images/doctor-hero.png', title: 'Clinical Consultation', badge: 'Patient First' },
+  { id: 2, image: '/images/doctor-about.png', title: 'Dermatological Procedures', badge: 'Laser Therapy' },
+  { id: 3, image: '/images/clinic.png', title: 'Pune Aesthetic Clinic', badge: 'Modern Facility' },
+  { id: 4, image: '/images/doctor-about.png', title: 'Hair & Scalp Rejuvenation', badge: 'Specialized Therapy' },
+  { id: 5, image: '/images/doctor-hero.png', title: 'Aesthetic Skin Glow', badge: 'Anti-Aging Care' },
+  { id: 6, image: '/images/clinic.png', title: 'Sterilized Procedure Suite', badge: 'Hygiene Standard' },
+  { id: 7, image: '/images/doctor-hero.png', title: 'Patient Care Protocol', badge: 'Evidence Based' },
+  { id: 8, image: '/images/doctor-about.png', title: 'Cosmetic Dermatology', badge: 'Expert Care' },
 ];
 
-// Duplicate gallery array for seamless infinite marquee loop
 const marqueeList = [...galleryPhotos, ...galleryPhotos];
 
-const Expertise = ({ onExploreClick }) => {
-  const [hoveredId, setHoveredId] = useState(null);
-  const [scrollDirection, setScrollDirection] = useState('down');
-
-  useEffect(() => {
-    let lastY = window.scrollY;
-    const updateDirection = () => {
-      const currentY = window.scrollY;
-      if (currentY > lastY + 5) {
-        setScrollDirection('down');
-      } else if (currentY < lastY - 5) {
-        setScrollDirection('up');
-      }
-      lastY = currentY > 0 ? currentY : 0;
-    };
-    window.addEventListener('scroll', updateDirection, { passive: true });
-    return () => window.removeEventListener('scroll', updateDirection);
-  }, []);
-
+const Expertise = () => {
   return (
-    <section id="expertise" className="py-8 lg:py-10 bg-mint-light/40 relative overflow-hidden">
-      
-      {/* HEADER CONTENT */}
+    <section id="expertise" className="py-10 sm:py-14 bg-white border-t border-gray-100">
+
+      {/* Header */}
       <motion.div
-        className="max-w-4xl mx-auto px-4 sm:px-6 text-center space-y-3 mb-8"
-        initial={{ opacity: 0, y: 30, scale: 0.98 }}
-        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        className="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12 text-center space-y-2.5 mb-6 sm:mb-8"
+        initial={{ opacity: 0, y: 15 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: false, amount: 0.2 }}
-        transition={{ type: "spring", stiffness: 90, damping: 14 }}
+        transition={{ duration: 0.35 }}
       >
         <div className="flex justify-center">
-          <SectionLabel>DOCTOR GALLERY & CLINICAL MOMENTS</SectionLabel>
+          <SectionLabel>DOCTOR GALLERY &amp; CLINICAL MOMENTS</SectionLabel>
         </div>
-        
-        <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-black text-navy tracking-tight uppercase leading-tight">
-          DOCTOR IN <span className="text-primary">ACTION</span>
+        <h2 className="text-2xl xs:text-3xl sm:text-4xl font-extrabold text-black tracking-tight">
+          Doctor in{' '}
+          <span className="bg-gradient-to-r from-[#8C486E] via-[#A86389] to-[#C98664] bg-clip-text text-transparent">
+            Action
+          </span>
         </h2>
-
-        <p className="text-xs sm:text-base text-muted max-w-xl mx-auto leading-relaxed">
+        <p className="text-sm sm:text-base text-black max-w-xl mx-auto leading-relaxed font-normal">
           Explore a visual showcase of Dr. Neha Shinde's clinical practice, specialized treatments, and modern aesthetic environment.
         </p>
-
-        <div className="pt-2">
+        <div className="pt-1.5">
           <Link
             to="/gallery"
-            className="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl bg-navy text-white text-xs font-bold uppercase tracking-wider hover:bg-primary transition-all duration-200 shadow-[3px_3px_0px_#8C486E] hover:shadow-none hover:translate-x-0.5 hover:translate-y-0.5"
+            className="inline-flex items-center gap-2 px-5 sm:px-6 py-2 sm:py-2.5 rounded-md bg-primary text-white text-xs sm:text-sm font-bold hover:bg-primary-dark transition-all shadow-sm active:scale-95"
           >
-            <Camera className="w-4 h-4 text-accent shrink-0" />
-            <span className="hidden sm:inline">View Full Gallery (Clinic • Patient • Procedure) →</span>
-            <span className="sm:hidden">View Full Gallery →</span>
+            <Camera className="w-4 h-4" />
+            View Full Gallery →
           </Link>
         </div>
       </motion.div>
 
-      {/* 3D CURVED PERSPECTIVE ANIMATED MARQUEE GALLERY */}
-      <div className="relative w-full py-8 overflow-hidden perspective-1000">
-        
-        {/* Subtle Side Vignette Gradients */}
-        <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-r from-mint-light/90 to-transparent z-20 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-l from-mint-light/90 to-transparent z-20 pointer-events-none" />
-
-        {/* Animated Marquee Track */}
+      {/* Marquee Gallery - responsive card widths */}
+      <div className="relative w-full py-2 sm:py-3 overflow-hidden">
+        <div className="absolute left-0 top-0 bottom-0 w-10 sm:w-28 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-10 sm:w-28 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
         <motion.div
-          className="flex gap-4 sm:gap-6 items-center w-max cursor-grab active:cursor-grabbing"
-          animate={{ x: scrollDirection === 'up' ? ['-50%', '0%'] : ['0%', '-50%'] }}
-          transition={{
-            repeat: Infinity,
-            repeatType: 'loop',
-            duration: 35,
-            ease: 'linear'
-          }}
+          className="flex gap-3.5 sm:gap-5 items-center w-max"
+          animate={{ x: ['0%', '-50%'] }}
+          transition={{ repeat: Infinity, repeatType: 'loop', duration: 35, ease: 'linear' }}
         >
-          {marqueeList.map((item, index) => {
-            // Apply subtle perspective arch transforms to simulate 3D arc wall effect
-            const positionInGroup = index % 8;
-            let rotateClass = "rotate-0";
-            if (positionInGroup === 0 || positionInGroup === 7) rotateClass = "-rotate-3 translate-y-3 sm:translate-y-4";
-            else if (positionInGroup === 1 || positionInGroup === 6) rotateClass = "-rotate-1 translate-y-1 sm:translate-y-2";
-            else if (positionInGroup === 2 || positionInGroup === 5) rotateClass = "rotate-1 translate-y-0";
-            else if (positionInGroup === 3 || positionInGroup === 4) rotateClass = "rotate-3 translate-y-2 sm:translate-y-3";
-
-            return (
-              <motion.div
-                key={`${item.id}-${index}`}
-                onHoverStart={() => setHoveredId(`${item.id}-${index}`)}
-                onHoverEnd={() => setHoveredId(null)}
-                whileHover={{
-                  scale: 1.08,
-                  rotate: 0,
-                  y: -10,
-                  zIndex: 30,
-                  transition: { duration: 0.3, type: "spring", stiffness: 300 }
-                }}
-                className={`relative shrink-0 w-40 xs:w-48 sm:w-56 md:w-64 ${item.aspect} rounded-[20px] sm:rounded-[32px] overflow-hidden bg-white border-2 border-navy/20 shadow-[4px_4px_0px_#321427] transition-all duration-300 ${rotateClass}`}
-              >
-                {/* Photo Image */}
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-110"
-                />
-
-                {/* Gradient Overlay & Captions */}
-                <div className="absolute inset-0 bg-gradient-to-t from-navy/85 via-navy/20 to-transparent flex flex-col justify-end p-4 text-left">
-                  <span className="inline-block px-2.5 py-0.5 rounded-full bg-accent text-navy text-[10px] font-black uppercase tracking-wider mb-1.5 self-start shadow-xs">
-                    {item.badge}
-                  </span>
-                  <h3 className="text-xs sm:text-sm font-extrabold text-white leading-snug drop-shadow-xs">
-                    {item.title}
-                  </h3>
-                </div>
-
-                {/* Subtle Neo Brutalist Accent Frame on hover */}
-                <div className="absolute inset-0 border-2 border-transparent hover:border-primary rounded-[24px] sm:rounded-[32px] pointer-events-none transition-colors duration-300" />
-              </motion.div>
-            );
-          })}
+          {marqueeList.map((item, index) => (
+            <div
+              key={`${item.id}-${index}`}
+              className="relative shrink-0 w-36 xs:w-40 sm:w-56 aspect-[3/4] rounded-xl sm:rounded-2xl overflow-hidden bg-white border border-gray-200/80 shadow-sm group"
+            >
+              <img
+                src={item.image}
+                alt={item.title}
+                loading="lazy"
+                className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent flex flex-col justify-end p-3 sm:p-4">
+                <span className="inline-block px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-md bg-white text-primary text-[10px] sm:text-[11px] font-bold mb-1 sm:mb-1.5 self-start">
+                  {item.badge}
+                </span>
+                <h3 className="text-xs sm:text-sm font-bold text-white leading-snug">{item.title}</h3>
+              </div>
+            </div>
+          ))}
         </motion.div>
-      </div>
-
-      {/* FOOTER TICKER INFORMATION STRIP */}
-      <div className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12 mt-8">
-        <div className="bg-white py-3 px-6 rounded-2xl border-2 border-navy/15 shadow-[3px_3px_0px_#F0D5E2] flex items-center justify-between gap-4 text-xs font-bold text-navy overflow-hidden">
-          <Link to="/gallery" className="flex items-center gap-2 text-primary shrink-0 hover:underline">
-            <Camera className="w-4 h-4 text-accent" />
-            <span>Clinical Gallery →</span>
-          </Link>
-
-          <div className="hidden sm:flex items-center gap-6 text-muted font-medium">
-            <span className="flex items-center gap-1.5 text-navy">
-              <Award className="w-3.5 h-3.5 text-primary" /> Certified Dermatologist
-            </span>
-            <span>•</span>
-            <span className="flex items-center gap-1.5 text-navy">
-              <ShieldCheck className="w-3.5 h-3.5 text-accent" /> Sterile Environment
-            </span>
-            <span>•</span>
-            <span className="flex items-center gap-1.5 text-navy">
-              <Heart className="w-3.5 h-3.5 text-primary" /> 5000+ Happy Patients
-            </span>
-          </div>
-
-          <span className="text-primary font-bold text-xs shrink-0 cursor-pointer hover:underline" onClick={onExploreClick}>
-            Book Visit →
-          </span>
-        </div>
       </div>
 
     </section>

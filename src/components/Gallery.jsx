@@ -1,42 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  ArrowLeft, 
-  Camera, 
-  X,
-  ChevronLeft,
-  ChevronRight
-} from 'lucide-react';
+import { ArrowLeft, Camera, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { galleryCategories } from '../data/galleryData';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import ScrollProgress from './ScrollProgress';
 import GalleryPhotoCard from './GalleryPhotoCard';
+import SectionLabel from './SectionLabel';
 
 const Gallery = () => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
 
-  const handleBookClick = () => {
-    window.location.href = "tel:+917498314453";
-  };
+  const handleBookClick = () => { window.location.href = 'tel:+917498314453'; };
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  useEffect(() => { window.scrollTo(0, 0); }, []);
 
-  // Display all photos across all categories
-  const displayPhotos = galleryCategories.flatMap(cat => 
-    cat.photos.map(photo => ({ 
-      ...photo, 
-      category: cat.title, 
-      categorySlug: cat.slug, 
-      color: cat.color 
-    }))
+  const displayPhotos = galleryCategories.flatMap(cat =>
+    cat.photos.map(photo => ({ ...photo, category: cat.title, categorySlug: cat.slug, color: cat.color }))
   );
 
-  // Lightbox keyboard navigation & adjacent photo preloading
   useEffect(() => {
     if (!lightboxOpen) return;
     const handleKey = (e) => {
@@ -45,73 +29,48 @@ const Gallery = () => {
       if (e.key === 'ArrowLeft') setLightboxIndex(prev => (prev - 1 + displayPhotos.length) % displayPhotos.length);
     };
     window.addEventListener('keydown', handleKey);
-
-    // Preload next and previous images for instant navigation
-    if (displayPhotos.length > 1) {
-      const nextIdx = (lightboxIndex + 1) % displayPhotos.length;
-      const prevIdx = (lightboxIndex - 1 + displayPhotos.length) % displayPhotos.length;
-      const imgNext = new Image();
-      imgNext.src = displayPhotos[nextIdx].image;
-      const imgPrev = new Image();
-      imgPrev.src = displayPhotos[prevIdx].image;
-    }
-
     return () => window.removeEventListener('keydown', handleKey);
   }, [lightboxOpen, lightboxIndex, displayPhotos]);
 
-  const openLightbox = (index) => {
-    setLightboxIndex(index);
-    setLightboxOpen(true);
-  };
+  const openLightbox = (index) => { setLightboxIndex(index); setLightboxOpen(true); };
 
   return (
-    <div className="min-h-screen bg-white text-navy font-sans antialiased selection:bg-mint selection:text-primary-dark flex flex-col">
+    <div className="min-h-screen bg-white text-black font-sans antialiased flex flex-col">
       <ScrollProgress />
       <Navbar onBookClick={handleBookClick} />
 
-      <main className="pt-24 pb-16 md:pt-28 md:pb-20 flex-1">
-        <div className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12">
+      <main className="pt-20 sm:pt-24 pb-16 flex-1">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12">
 
-          {/* Back Navigation */}
-          <motion.div
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.25 }}
-            className="mb-4"
-          >
-            <Link
-              to="/"
-              className="inline-flex items-center gap-2 text-sm font-bold text-navy hover:text-primary transition-colors group"
-            >
-              <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-              <span>Back to Home</span>
+          {/* Breadcrumb */}
+          <div className="pt-4 mb-4">
+            <Link to="/" className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-black hover:text-primary transition-colors">
+              <ArrowLeft className="w-3.5 h-3.5" />
+              Back to Home
             </Link>
-          </motion.div>
+          </div>
 
           {/* Page Header */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="text-center mb-10"
+            transition={{ duration: 0.35 }}
+            className="mb-10 pb-6 border-b border-gray-100"
           >
-            <div className="flex justify-center mb-3">
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest bg-primary/10 text-primary border border-primary/20">
-                <Camera className="w-3.5 h-3.5" />
-                Visual Portfolio & Clinical Moments
+            <SectionLabel>VISUAL JOURNEY &amp; PRACTICE</SectionLabel>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-black mt-1 mb-2">
+              Clinic &amp; Treatment{' '}
+              <span className="bg-gradient-to-r from-[#8C486E] via-[#A86389] to-[#C98664] bg-clip-text text-transparent">
+                Gallery
               </span>
-            </div>
-            <h1 className="text-2xl xs:text-3xl sm:text-5xl lg:text-6xl font-black text-navy uppercase tracking-tight leading-tight mb-3">
-              Doctor <span className="text-primary">Gallery</span>
             </h1>
-            <p className="text-sm sm:text-base text-muted max-w-2xl mx-auto leading-relaxed">
-              Explore our visual portfolio showcasing Dr. Neha Shinde's modern clinic facility, real patient transformations, 
-              and advanced dermatological procedures.
+            <p className="text-sm sm:text-base text-black max-w-lg font-normal leading-relaxed">
+              Explore our state-of-the-art clinic, expert procedures, and remarkable patient transformations.
             </p>
           </motion.div>
 
-          {/* Constant, Optimized Photo Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+          {/* Photo Grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-5">
             <AnimatePresence mode="popLayout">
               {displayPhotos.map((photo, index) => (
                 <GalleryPhotoCard
@@ -130,7 +89,7 @@ const Gallery = () => {
 
       <Footer />
 
-      {/* Fullscreen Lightbox Modal */}
+      {/* Lightbox */}
       <AnimatePresence>
         {lightboxOpen && displayPhotos.length > 0 && (
           <motion.div
@@ -138,47 +97,32 @@ const Gallery = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[100] bg-navy/95 backdrop-blur-md flex items-center justify-center"
+            className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-sm flex items-center justify-center"
             onClick={() => setLightboxOpen(false)}
           >
-            {/* Close button */}
             <button
               onClick={() => setLightboxOpen(false)}
-              className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors z-10 cursor-pointer"
+              className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center cursor-pointer transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
-
-            {/* Prev button */}
             <button
-              onClick={(e) => {
-                e.stopPropagation();
-                setLightboxIndex(prev => (prev - 1 + displayPhotos.length) % displayPhotos.length);
-              }}
-              aria-label="Previous image"
-              className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-12 sm:h-12 rounded-full bg-white/20 hover:bg-white/30 text-white flex items-center justify-center transition-colors z-20 cursor-pointer"
+              onClick={(e) => { e.stopPropagation(); setLightboxIndex(prev => (prev - 1 + displayPhotos.length) % displayPhotos.length); }}
+              className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 text-white flex items-center justify-center cursor-pointer transition-colors"
             >
-              <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+              <ChevronLeft className="w-5 h-5" />
             </button>
-
-            {/* Next button */}
             <button
-              onClick={(e) => {
-                e.stopPropagation();
-                setLightboxIndex(prev => (prev + 1) % displayPhotos.length);
-              }}
-              aria-label="Next image"
-              className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-12 sm:h-12 rounded-full bg-white/20 hover:bg-white/30 text-white flex items-center justify-center transition-colors z-20 cursor-pointer"
+              onClick={(e) => { e.stopPropagation(); setLightboxIndex(prev => (prev + 1) % displayPhotos.length); }}
+              className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 text-white flex items-center justify-center cursor-pointer transition-colors"
             >
-              <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+              <ChevronRight className="w-5 h-5" />
             </button>
-
-            {/* Image Preview */}
             <motion.div
               key={lightboxIndex}
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.92 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
+              exit={{ opacity: 0, scale: 0.92 }}
               transition={{ duration: 0.2 }}
               className="relative max-w-4xl max-h-[80vh] mx-4"
               onClick={(e) => e.stopPropagation()}
@@ -186,26 +130,12 @@ const Gallery = () => {
               <img
                 src={displayPhotos[lightboxIndex].image}
                 alt={displayPhotos[lightboxIndex].title}
-                decoding="async"
-                className="max-w-full max-h-[80vh] object-contain rounded-2xl shadow-2xl"
+                className="max-w-full max-h-[80vh] object-contain rounded-xl shadow-2xl"
               />
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-navy/95 via-navy/70 to-transparent rounded-b-2xl p-3 sm:p-5">
-                <div className="flex items-center gap-2 mb-1">
-                  <span className={`px-2 py-0.5 rounded-full text-[10px] font-black uppercase ${
-                    displayPhotos[lightboxIndex].color === 'accent' ? 'bg-accent text-navy' : 'bg-primary text-white'
-                  }`}>
-                    {displayPhotos[lightboxIndex].category}
-                  </span>
-                  <span className="text-[11px] sm:text-xs text-white/50 font-bold">
-                    {lightboxIndex + 1} / {displayPhotos.length}
-                  </span>
-                </div>
-                <h3 className="text-sm sm:text-lg font-black text-white leading-tight">
-                  {displayPhotos[lightboxIndex].title}
-                </h3>
-                <p className="text-xs sm:text-sm text-white/70 font-medium line-clamp-2 sm:line-clamp-none mt-0.5">
-                  {displayPhotos[lightboxIndex].caption}
-                </p>
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent rounded-b-xl p-4 sm:p-5">
+                <span className="text-[10px] text-white/60 font-semibold block mb-1">{lightboxIndex + 1} / {displayPhotos.length}</span>
+                <h3 className="text-sm sm:text-base font-bold text-white">{displayPhotos[lightboxIndex].title}</h3>
+                <p className="text-xs sm:text-sm text-white/80 mt-0.5">{displayPhotos[lightboxIndex].caption}</p>
               </div>
             </motion.div>
           </motion.div>

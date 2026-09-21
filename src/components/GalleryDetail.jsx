@@ -16,6 +16,7 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import ScrollProgress from './ScrollProgress';
 import GalleryPhotoCard from './GalleryPhotoCard';
+import SectionLabel from './SectionLabel';
 
 const iconMap = {
   Building2: Building2,
@@ -47,7 +48,6 @@ const GalleryDetail = () => {
     };
     window.addEventListener('keydown', handleKey);
 
-    // Preload next and previous images for instant navigation
     if (category.photos.length > 1) {
       const nextIdx = (lightboxIndex + 1) % category.photos.length;
       const prevIdx = (lightboxIndex - 1 + category.photos.length) % category.photos.length;
@@ -63,20 +63,20 @@ const GalleryDetail = () => {
   // 404 fallback
   if (!category) {
     return (
-      <div className="min-h-screen bg-white text-navy font-sans antialiased selection:bg-mint selection:text-primary-dark flex flex-col">
+      <div className="min-h-screen bg-white text-black font-sans antialiased flex flex-col">
         <ScrollProgress />
         <Navbar onBookClick={handleBookClick} />
         <div className="pt-32 pb-24 text-center max-w-xl mx-auto px-4 flex-1">
-          <div className="w-16 h-16 rounded-full bg-primary/10 text-primary flex items-center justify-center mx-auto mb-4">
+          <div className="w-16 h-16 rounded-2xl bg-[#FAF0F5] text-primary flex items-center justify-center mx-auto mb-4">
             <Camera className="w-8 h-8" />
           </div>
-          <h1 className="text-2xl sm:text-3xl font-black text-navy mb-3">Gallery Not Found</h1>
-          <p className="text-muted mb-6 text-sm sm:text-base leading-relaxed">
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-black mb-3">Gallery Not Found</h1>
+          <p className="text-black mb-6 text-sm sm:text-base leading-relaxed font-normal">
             The gallery category you are looking for doesn't exist.
           </p>
           <Link
             to="/gallery"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white font-bold text-sm rounded-xl hover:bg-primary-dark transition-all duration-200"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white font-bold text-sm rounded-md hover:bg-primary-dark transition-all shadow-sm"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Gallery
@@ -96,23 +96,23 @@ const GalleryDetail = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white text-navy font-sans antialiased selection:bg-mint selection:text-primary-dark flex flex-col">
+    <div className="min-h-screen bg-white text-black font-sans antialiased flex flex-col">
       <ScrollProgress />
       <Navbar onBookClick={handleBookClick} />
 
-      <main className="pt-24 pb-16 md:pt-28 md:pb-20 flex-1">
-        <div className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12">
+      <main className="pt-20 sm:pt-24 pb-16 flex-1">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12">
 
           {/* Back Navigation */}
           <motion.div
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.25 }}
-            className="mb-3"
+            className="pt-4 mb-4"
           >
             <Link
               to="/gallery"
-              className="inline-flex items-center gap-2 text-sm font-bold text-navy hover:text-primary transition-colors group"
+              className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-black hover:text-primary transition-colors group"
             >
               <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
               <span>Back to All Gallery Photos</span>
@@ -124,30 +124,27 @@ const GalleryDetail = () => {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35 }}
-            className="mb-10"
+            className="mb-10 pb-6 border-b border-gray-100"
           >
-            <div className="flex flex-wrap items-center gap-4 mb-3 pb-3 border-b border-navy/10">
-              <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 shadow-xs ${
-                category.color === 'accent'
-                  ? 'bg-accent/15 text-accent border-2 border-accent/20'
-                  : 'bg-primary/10 text-primary border-2 border-primary/20'
-              }`}>
-                <IconComp className="w-6 h-6" />
-              </div>
-              <div>
-                <h1 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-black text-navy uppercase tracking-tight leading-tight">
-                  {category.title} <span className="text-primary">Gallery</span>
-                </h1>
-                <p className="text-sm text-muted font-medium mt-0.5">{category.photos.length} Photos • {category.subtitle}</p>
-              </div>
+            <SectionLabel>{category.subtitle}</SectionLabel>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mt-1 mb-2">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-black tracking-tight">
+                {category.title}{' '}
+                <span className="bg-gradient-to-r from-[#8C486E] via-[#A86389] to-[#C98664] bg-clip-text text-transparent">
+                  Gallery
+                </span>
+              </h1>
+              <span className="text-xs sm:text-sm font-bold text-primary bg-[#FAF0F5] px-3 py-1 rounded-md self-start sm:self-auto">
+                {category.photos.length} Photos
+              </span>
             </div>
-            <p className="text-sm sm:text-base text-navy font-medium leading-relaxed max-w-3xl">
+            <p className="text-sm sm:text-base text-black font-normal leading-relaxed max-w-3xl mt-2">
               {category.description}
             </p>
           </motion.div>
 
-          {/* Constant, Optimized Photo Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+          {/* Photo Grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-5">
             <AnimatePresence mode="popLayout">
               {category.photos.map((photo, index) => (
                 <GalleryPhotoCard
@@ -167,17 +164,17 @@ const GalleryDetail = () => {
             </AnimatePresence>
           </div>
 
-          {/* Explore Other Categories at Bottom */}
+          {/* Explore Other Categories */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
-            className="mt-16 pt-8 border-t border-navy/10"
+            className="mt-16 pt-8 border-t border-gray-100"
           >
-            <h2 className="text-xl font-black text-navy uppercase tracking-tight mb-5 flex items-center gap-2">
+            <h2 className="text-xl sm:text-2xl font-extrabold text-black tracking-tight mb-6 flex items-center gap-2">
               <span className="w-1.5 h-5 bg-primary rounded-full" />
-              Explore Other Categories
+              Explore Other Galleries
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               {otherCategories.map((cat) => {
@@ -188,39 +185,19 @@ const GalleryDetail = () => {
                     to={`/gallery/${cat.slug}`}
                     className="group"
                   >
-                    <div className="relative bg-white rounded-2xl border-2 border-navy/10 overflow-hidden shadow-[3px_3px_0px_#160F14] hover:shadow-[5px_5px_0px_#8C486E] hover:border-primary transition-all duration-300 hover:-translate-y-1">
-                      {/* Preview strip of 3 photos */}
-                      <div className="flex h-32 overflow-hidden">
-                        {cat.photos.slice(0, 3).map((photo) => (
-                          <div key={photo.id} className="flex-1 overflow-hidden">
-                            <img
-                              src={photo.image}
-                              alt={photo.title}
-                              loading="lazy"
-                              decoding="async"
-                              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                            />
-                          </div>
-                        ))}
+                    <div className="bg-white rounded-2xl border border-gray-200/80 shadow-2xs hover:shadow-md transition-all overflow-hidden p-4 flex items-center gap-4">
+                      <div className="w-12 h-12 rounded-xl bg-[#FAF0F5] text-primary flex items-center justify-center shrink-0">
+                        <CatIcon className="w-6 h-6" />
                       </div>
-                      <div className="p-4 flex items-center gap-3">
-                        <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${
-                          cat.color === 'accent'
-                            ? 'bg-accent/15 text-accent'
-                            : 'bg-primary/10 text-primary'
-                        }`}>
-                          <CatIcon className="w-4 h-4" />
-                        </div>
-                        <div className="flex-1">
-                          <h3 className="text-base font-black text-navy uppercase group-hover:text-primary transition-colors">
-                            {cat.title} Gallery
-                          </h3>
-                          <p className="text-xs text-muted font-medium">{cat.photos.length} Photos</p>
-                        </div>
-                        <span className="text-sm font-bold text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-                          View →
-                        </span>
+                      <div className="flex-1">
+                        <h3 className="text-base font-bold text-black group-hover:text-primary transition-colors">
+                          {cat.title} Gallery
+                        </h3>
+                        <p className="text-xs text-gray-500 font-semibold mt-0.5">{cat.photos.length} Photos</p>
                       </div>
+                      <span className="text-sm font-bold text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+                        View →
+                      </span>
                     </div>
                   </Link>
                 );
@@ -241,10 +218,9 @@ const GalleryDetail = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-[100] bg-navy/95 backdrop-blur-md flex items-center justify-center"
+            className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-md flex items-center justify-center"
             onClick={() => setLightboxOpen(false)}
           >
-            {/* Close button */}
             <button
               onClick={() => setLightboxOpen(false)}
               className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors z-10 cursor-pointer"
@@ -252,14 +228,13 @@ const GalleryDetail = () => {
               <X className="w-5 h-5" />
             </button>
 
-            {/* Navigation arrows */}
             <button
               onClick={(e) => {
                 e.stopPropagation();
                 setLightboxIndex(prev => (prev - 1 + category.photos.length) % category.photos.length);
               }}
               aria-label="Previous image"
-              className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-12 sm:h-12 rounded-full bg-white/20 hover:bg-white/30 text-white flex items-center justify-center transition-colors z-20 cursor-pointer"
+              className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/20 hover:bg-white/30 text-white flex items-center justify-center transition-colors z-20 cursor-pointer"
             >
               <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
@@ -270,12 +245,11 @@ const GalleryDetail = () => {
                 setLightboxIndex(prev => (prev + 1) % category.photos.length);
               }}
               aria-label="Next image"
-              className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-12 sm:h-12 rounded-full bg-white/20 hover:bg-white/30 text-white flex items-center justify-center transition-colors z-20 cursor-pointer"
+              className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/20 hover:bg-white/30 text-white flex items-center justify-center transition-colors z-20 cursor-pointer"
             >
               <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
 
-            {/* Image */}
             <motion.div
               key={lightboxIndex}
               initial={{ opacity: 0, scale: 0.9 }}
@@ -288,17 +262,16 @@ const GalleryDetail = () => {
               <img
                 src={category.photos[lightboxIndex].image}
                 alt={category.photos[lightboxIndex].title}
-                decoding="async"
                 className="max-w-full max-h-[80vh] object-contain rounded-2xl shadow-2xl"
               />
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-navy/95 via-navy/70 to-transparent rounded-b-2xl p-3 sm:p-5">
-                <h3 className="text-sm sm:text-lg font-black text-white leading-tight">
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent rounded-b-2xl p-4 sm:p-5">
+                <h3 className="text-sm sm:text-base font-bold text-white leading-tight">
                   {category.photos[lightboxIndex].title}
                 </h3>
-                <p className="text-xs sm:text-sm text-white/70 font-medium line-clamp-2 sm:line-clamp-none mt-0.5">
+                <p className="text-xs sm:text-sm text-white/80 font-normal mt-0.5">
                   {category.photos[lightboxIndex].caption}
                 </p>
-                <span className="text-[11px] sm:text-xs text-white/50 font-bold mt-1 block">
+                <span className="text-[11px] text-white/50 font-semibold mt-1 block">
                   {lightboxIndex + 1} / {category.photos.length}
                 </span>
               </div>

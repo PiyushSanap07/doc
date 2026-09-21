@@ -10,7 +10,7 @@ export const doctorData = {
 
   socials: {
     instagram: "https://www.instagram.com/dr.nehashinde_dermacare/",
-    youtube: "https://www.youtube.com/",
+    youtube: "https://www.youtube.com/@DrNehaShinde",
     email: "mailto:drnehashinde@gmail.com",
     directions: "https://maps.google.com/?q=Harit+Building+Meri+Rasbihari+Link+Rd+Nashik+Maharashtra+422003"
   },

@@ -15,6 +15,7 @@ import Services from './components/Services';
 import ServiceDetail from './components/ServiceDetail';
 import Gallery from './components/Gallery';
 import GalleryDetail from './components/GalleryDetail';
+import FloatingCTA from './components/FloatingCTA';
 
 // Home page content extracted as its own component
 function HomePage({ onBookClick }) {
@@ -30,10 +31,10 @@ function HomePage({ onBookClick }) {
       <main>
         <Hero onBookClick={onBookClick} />
         <About />
-        <Expertise onExploreClick={onBookClick} />
+        <Expertise />
         <Qualifications />
         <Experience />
-        <Clinic onBookClick={onBookClick} />
+        <Clinic />
       </main>
 
       {/* Footer */}
@@ -44,7 +45,11 @@ function HomePage({ onBookClick }) {
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  
+  // Only play the loader once per browser session
+  const [isLoading, setIsLoading] = useState(() => {
+    return !sessionStorage.getItem('has_loaded_once');
+  });
 
   const handleOpenModal = () => {
     window.location.href = "tel:+917498314453";
@@ -55,12 +60,13 @@ function App() {
   };
 
   const handleLoaderFinish = () => {
+    sessionStorage.setItem('has_loaded_once', 'true');
     setIsLoading(false);
   };
 
   return (
     <>
-      {/* Splash Loader */}
+      {/* Splash Loader: only runs once on initial site visit */}
       {isLoading && <Loader onFinish={handleLoaderFinish} />}
 
       <Routes>
@@ -70,6 +76,9 @@ function App() {
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/gallery/:slug" element={<GalleryDetail />} />
       </Routes>
+
+      {/* Floating Call, WhatsApp & Social Buttons - Persistent Across Every Page */}
+      <FloatingCTA />
 
       {/* Interactive Booking Dialog Modal */}
       <AppointmentModal isOpen={isModalOpen} onClose={handleCloseModal} />

@@ -5,12 +5,12 @@
   --color-primary-dark: #703254;
   --color-primary-light: #A86389;
   --color-mint: #FBF2F6;
-  --color-mint-light: #FDF8FA;
-  --color-mint-border: #F0D5E2;
-  --color-navy: #160F14;
+  --color-mint-light: #FDF9FB;
+  --color-mint-border: #EDD5E3;
+  --color-navy: #1A1218;
   --color-navy-dark: #0A0609;
-  --color-muted: #2E252C;
-  --color-muted-light: #4A3E47;
+  --color-muted: #7A6872;
+  --color-muted-light: #9B8A94;
   --color-accent: #C98664;
   --color-accent-light: #E8B89E;
 
@@ -18,37 +18,35 @@
 
   --breakpoint-xs: 24rem;
 
-  --shadow-soft: 0 10px 30px -5px rgba(140, 72, 110, 0.1);
-  --shadow-card: 0 4px 20px 0 rgba(22, 15, 20, 0.05);
-  --shadow-card-hover: 0 12px 35px -5px rgba(140, 72, 110, 0.2);
-  --shadow-floating: 0 15px 35px rgba(22, 15, 20, 0.12);
-
-  /* Neo-brutalist hard shadows */
-  --shadow-neo: 4px 4px 0px #160F14;
-  --shadow-neo-sm: 3px 3px 0px #160F14;
-  --shadow-neo-green: 4px 4px 0px #8C486E;
-  --shadow-neo-accent: 3px 3px 0px #C98664;
+  --shadow-soft: 0 4px 16px -2px rgba(140, 72, 110, 0.06);
+  --shadow-card: 0 1px 4px rgba(22, 15, 20, 0.05);
+  --shadow-card-hover: 0 6px 20px -4px rgba(140, 72, 110, 0.09);
+  --shadow-floating: 0 8px 24px -4px rgba(22, 15, 20, 0.07);
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
-    /* Responsive root font-size: 15px at 320px → 17.5px at 1280px+ */
-    font-size: clamp(15px, 14px + 0.26vw, 17.5px);
+    font-size: clamp(16px, 15px + 0.25vw, 17.5px);
   }
   
   body {
     background-color: #FFFFFF;
-    color: #160F14;
+    color: #000000;
     overflow-x: hidden;
     font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
-    font-weight: 500;
-    line-height: 1.65;
+    font-weight: 400;
+    line-height: 1.78;
   }
 
-  /* Prevent any child from causing horizontal overflow */
   #root {
     overflow-x: clip;
+  }
+
+  h1, h2, h3, h4 {
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    line-height: 1.18;
   }
 }
 
@@ -60,43 +58,31 @@
   border-bottom-right-radius: 2.5rem;
 }
 
-/* Neo-brutalist utility classes */
-.neo-card {
-  border: 2px solid #321427;
-  box-shadow: 4px 4px 0px #321427;
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
+/* Minimal clean card */
+.sleek-card {
+  background-color: #FFFFFF;
+  border: 1px solid #EDD5E3;
+  border-radius: 0.625rem;
+  box-shadow: 0 1px 3px rgba(22, 15, 20, 0.04);
+  transition: all 0.2s ease;
 }
 
-.neo-card:hover {
-  box-shadow: 6px 6px 0px #321427;
-  transform: translate(-1px, -1px);
+.sleek-card:hover {
+  border-color: rgba(140, 72, 110, 0.22);
+  box-shadow: 0 4px 14px -2px rgba(140, 72, 110, 0.07);
 }
 
-.neo-card-green {
-  border: 2px solid #8C486E;
-  box-shadow: 4px 4px 0px #8C486E;
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
-}
-
-.neo-card-green:hover {
-  box-shadow: 6px 6px 0px #8C486E;
-  transform: translate(-1px, -1px);
-}
-
-.neo-btn {
-  border: 2px solid #321427;
-  box-shadow: 3px 3px 0px #321427;
-  transition: box-shadow 0.15s ease, transform 0.15s ease;
-}
-
-.neo-btn:active {
-  box-shadow: 1px 1px 0px #321427;
-  transform: translate(2px, 2px);
-}
-
-.neo-badge {
-  border: 1.5px solid #321427;
-  box-shadow: 2px 2px 0px #321427;
+/* Inline section label with bottom underline — humanized */
+.section-label {
+  display: inline-block;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: #8C486E;
+  padding-bottom: 0.3rem;
+  border-bottom: 1.5px solid currentColor;
+  margin-bottom: 0.875rem;
 }
 
 /* ===== LOADER ANIMATIONS ===== */

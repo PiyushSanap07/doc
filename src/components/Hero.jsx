@@ -1,178 +1,90 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import {
-  GraduationCap,
-  Stethoscope,
-  Briefcase,
-  Heart,
-  Smile
-} from 'lucide-react';
+import { Phone, Users } from 'lucide-react';
 import { doctorData } from '../data/portfolioData';
-import SecondaryButton from './SecondaryButton';
-import DotPattern from './DotPattern';
-import FloatingBadge from './FloatingBadge';
 
 const Hero = ({ onBookClick }) => {
   return (
     <section
       id="home"
-      className="relative pt-20 pb-10 lg:pt-24 lg:pb-14 bg-gradient-to-b from-mint-light via-white to-white overflow-hidden"
+      className="relative bg-gradient-to-br from-[#FDF6F9] via-[#FAF0F5] to-[#F5E6EE] overflow-hidden pt-16 sm:pt-20 lg:pt-16 pb-0"
     >
-      <div className="w-full px-4 sm:px-8 lg:px-12 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-0 items-center">
+      <div className="max-w-[1360px] mx-auto px-4 sm:px-8 lg:px-12 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-end">
 
-          {/* LEFT COLUMN */}
+          {/* LEFT: Text Content - 7 cols */}
           <motion.div
-            className="space-y-5 lg:space-y-6 text-left py-6 lg:py-0"
-            initial={{ opacity: 0, x: -60, scale: 0.96 }}
-            whileInView={{ opacity: 1, x: 0, scale: 1 }}
-            viewport={{ once: false, amount: 0.2 }}
-            transition={{
-              type: "spring",
-              stiffness: 90,
-              damping: 14
-            }}
+            className="lg:col-span-7 space-y-4 sm:space-y-5 pt-2 pb-5 sm:pb-8 lg:py-12 z-10"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: 'easeOut' }}
           >
-            {/* Eyebrow */}
-            <div>
-              <span className="inline-block text-[11px] sm:text-xs font-bold tracking-widest text-primary uppercase bg-mint px-4 py-2 rounded-full border border-mint-border">
-                {doctorData.eyebrow}
-              </span>
-            </div>
+            {/* Small Label */}
+            <p className="text-xs sm:text-sm font-bold tracking-wide text-primary">
+              Welcome to Dr. Neha Shinde's Clinic
+            </p>
 
-            {/* Name & Title */}
-            <div className="space-y-2">
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-[3.2rem] font-extrabold text-navy tracking-tight leading-[1.08] break-words sm:whitespace-nowrap">
-                {doctorData.name}
-              </h1>
-
-              <p className="text-xl sm:text-2xl font-bold text-primary">
-                {doctorData.role}
-              </p>
-            </div>
+            {/* Main Headline */}
+            <h1 className="text-3xl xs:text-4xl sm:text-5xl lg:text-[3.2rem] xl:text-[3.5rem] font-extrabold text-black leading-[1.15] tracking-tight">
+              The care that nurtures your{' '}
+              <span className="text-primary">skin, hair</span>{' '}
+              &amp; confidence
+            </h1>
 
             {/* Tagline */}
-            <p className="text-base sm:text-lg text-muted leading-relaxed max-w-xl">
+            <p className="text-sm sm:text-base lg:text-lg text-black font-normal leading-relaxed max-w-xl">
               {doctorData.tagline}
             </p>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-wrap items-center gap-4 pt-2">
-              <SecondaryButton href="#about">
-                Learn More
-              </SecondaryButton>
-            </div>
+            {/* CTA & Phone Row */}
+            <div className="flex flex-col xs:flex-row items-stretch xs:items-center gap-4 sm:gap-6 pt-1">
+              <button
+                onClick={onBookClick}
+                className="w-full xs:w-auto text-center px-7 py-3 bg-primary text-white text-sm font-bold rounded-md hover:bg-primary-dark transition-all shadow-sm active:scale-95"
+              >
+                Book Appointment
+              </button>
 
-            {/* Credential Strip */}
-            <div className="pt-5 grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3 lg:gap-4 border-t border-slate-100">
-              {[
-                {
-                  Icon: GraduationCap,
-                  title: 'MBBS',
-                  sub: 'B.P. Koirala Inst.'
-                },
-                {
-                  Icon: Stethoscope,
-                  title: 'MD',
-                  sub: 'Dermatology'
-                },
-                {
-                  Icon: Briefcase,
-                  title: '5+ Years',
-                  sub: 'Experience'
-                }
-              ].map((cred) => (
-                <div
-                  key={cred.title}
-                  className="flex items-center gap-2.5 bg-white p-2.5 sm:p-3 rounded-xl border-2 border-navy/20 shadow-[2px_2px_0px_#F0D5E2] hover:shadow-[3px_3px_0px_#8C486E] hover:border-primary/40 transition-all"
+              <div className="flex items-center gap-3 xs:block text-sm pt-1 xs:pt-0">
+                <p className="text-gray-500 uppercase text-[10px] font-bold tracking-widest xs:mb-0.5">
+                  FOR APPOINTMENT:
+                </p>
+                <a
+                  href={`tel:${doctorData.clinic.phone.replace(/[^0-9+]/g, '')}`}
+                  className="flex items-center gap-2 font-bold text-black hover:text-primary transition-colors text-base"
                 >
-                  <div className="w-9 h-9 rounded-lg bg-mint flex items-center justify-center text-primary shrink-0">
-                    <cred.Icon className="w-5 h-5" />
-                  </div>
-
-                  <div className="min-w-0">
-                    <span className="block text-sm font-bold text-navy leading-tight">
-                      {cred.title}
-                    </span>
-
-                    <span className="block text-[11px] font-medium text-muted truncate">
-                      {cred.sub}
-                    </span>
-                  </div>
-                </div>
-              ))}
+                  <Phone className="w-4 h-4 text-primary shrink-0" />
+                  {doctorData.clinic.phone}
+                </a>
+              </div>
             </div>
           </motion.div>
 
-          {/* RIGHT COLUMN: DOCTOR IMAGE */}
+          {/* RIGHT: Doctor Transparent Sticker Only */}
           <motion.div
-            className="relative flex justify-center lg:justify-center items-center py-6 lg:py-0 lg:-translate-x-0.5"
-            initial={{ opacity: 0, x: 60, scale: 0.96 }}
-            whileInView={{ opacity: 1, x: 0, scale: 1 }}
-            viewport={{ once: false, amount: 0.2 }}
-            transition={{
-              type: "spring",
-              stiffness: 90,
-              damping: 14,
-              delay: 0.1
-            }}
+            className="lg:col-span-5 relative flex justify-center lg:justify-end items-end self-end mt-2 lg:mt-0"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: 'easeOut', delay: 0.1 }}
           >
-            <div className="relative flex justify-center">
-
-              {/* Decorative Orange Dots */}
-              <div className="absolute -top-4 -left-4 z-0">
-                <DotPattern rows={5} cols={5} />
+            {/* Floating Patient Stat Badge */}
+            <div className="absolute top-2 sm:top-4 left-2 sm:-left-4 z-20 bg-white/95 backdrop-blur-xs rounded-xl px-3.5 py-2 sm:px-4 sm:py-2.5 shadow-md border border-gray-100 flex items-center gap-2.5 sm:gap-3">
+              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                <Users className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               </div>
+              <div className="leading-tight">
+                <p className="text-[9px] sm:text-[10px] text-gray-500 font-semibold uppercase tracking-wider">Treated</p>
+                <p className="text-xs sm:text-sm font-extrabold text-black">5000+ Patients</p>
+              </div>
+            </div>
 
-              {/* Orange Circle Top */}
-              <div
-                className="absolute top-6 left-12 w-12 h-12 rounded-full bg-accent z-0 shadow-md animate-pulse"
-                style={{ animationDuration: '4s' }}
+            {/* Pure isolated doctor sticker */}
+            <div className="w-full max-w-[280px] xs:max-w-[320px] sm:max-w-[380px] lg:max-w-[430px]">
+              <img
+                src="/images/doctor-sticker.png"
+                alt="Dr. Neha Shinde — Dermatologist & Aesthetic Physician"
+                className="w-full h-auto object-contain block select-none pointer-events-none"
               />
-
-              {/* Orange Circle Bottom Right */}
-              <div className="absolute -bottom-3 right-2 w-14 h-14 rounded-full bg-accent z-0 shadow-lg" />
-
-              {/* Green Arch Image Frame */}
-              <div
-                className="
-                  relative z-10
-                  w-[240px] xs:w-[270px] sm:w-[290px] md:w-[340px] lg:w-[380px] xl:w-[410px]
-                  h-[320px] xs:h-[360px] sm:h-[380px] md:h-[430px] lg:h-[475px] xl:h-[510px]
-                  bg-primary organic-arch
-                  overflow-hidden
-                  shadow-2xl
-                  flex items-end justify-center
-                "
-              >
-                <img
-                  src="/images/doctor-hero.png"
-                  alt="Dr. Neha Shinde - Dermatologist & Aesthetic Physician"
-                  className="w-full h-full object-cover object-top transition-transform duration-700 hover:scale-105"
-                />
-              </div>
-
-              {/* Floating Badge: Healthy Skin / Happy You - Positioned at bottom-right on mobile to keep doctor's face completely clear */}
-              <div className="absolute bottom-5 -right-1 xs:-right-2 sm:bottom-auto sm:top-10 sm:-right-8 z-20 scale-85 xs:scale-95 sm:scale-100 origin-bottom-right sm:origin-top-right">
-                <FloatingBadge
-                  icon={Heart}
-                  title="Healthy Skin"
-                  subtitle="Happy You"
-                />
-              </div>
-
-              {/* Floating Smile Icon - Positioned at top-left curve on mobile, vertically centered on desktop */}
-              <div className="absolute top-8 -left-2 sm:top-1/2 sm:-left-10 z-20 sm:-translate-y-1/2 scale-85 xs:scale-90 sm:scale-100 origin-left">
-                <div className="bg-white p-2 sm:p-3 rounded-xl shadow-floating border border-mint-border text-primary">
-                  <Smile className="w-5 h-5 sm:w-6 sm:h-6" />
-                </div>
-              </div>
-
-              {/* Bottom Dots */}
-              <div className="absolute -bottom-6 left-4 z-0">
-                <DotPattern rows={3} cols={5} />
-              </div>
-
             </div>
           </motion.div>
 

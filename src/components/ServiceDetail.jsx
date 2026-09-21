@@ -8,22 +8,19 @@ import {
   Target, 
   AlertTriangle, 
   Camera, 
-  Sparkles,
   CheckCircle2,
-  ShieldCheck
+  ShieldCheck,
+  Phone
 } from 'lucide-react';
 import { getServiceBySlug } from '../data/servicesData';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import ScrollProgress from './ScrollProgress';
+import SectionLabel from './SectionLabel';
 
 const ServiceDetail = () => {
   const { slug } = useParams();
   const service = getServiceBySlug(slug);
-
-  const handleBookClick = () => {
-    window.location.href = "tel:+917498314453";
-  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -32,226 +29,216 @@ const ServiceDetail = () => {
   // 404 fallback
   if (!service) {
     return (
-      <div className="min-h-screen bg-white text-navy font-sans antialiased selection:bg-mint selection:text-primary-dark flex flex-col justify-between">
+      <div className="min-h-screen bg-white text-black font-sans antialiased flex flex-col justify-between">
         <ScrollProgress />
-        <Navbar onBookClick={handleBookClick} />
-        <div className="pt-32 pb-24 text-center max-w-xl mx-auto px-4 flex-1">
-          <div className="w-16 h-16 rounded-full bg-primary/10 text-primary flex items-center justify-center mx-auto mb-4">
-            <AlertTriangle className="w-8 h-8" />
+        <Navbar />
+        <div className="pt-28 pb-16 text-center max-w-md mx-auto px-4 flex-1">
+          <div className="w-14 h-14 rounded-2xl bg-[#FAF0F5] text-primary flex items-center justify-center mx-auto mb-3">
+            <AlertTriangle className="w-7 h-7" />
           </div>
-          <h1 className="text-2xl sm:text-3xl font-black text-navy mb-3">Service Not Found</h1>
-          <p className="text-muted mb-6 text-sm sm:text-base leading-relaxed">
+          <h1 className="text-2xl font-extrabold text-black mb-2">Service Not Found</h1>
+          <p className="text-black mb-5 text-sm leading-relaxed font-normal">
             The treatment you are looking for doesn't exist or has been updated.
           </p>
           <Link
             to="/services"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white font-bold text-sm rounded-xl hover:bg-primary-dark transition-all duration-200"
+            className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-white font-bold text-xs rounded-md hover:bg-primary-dark transition-all shadow-sm"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to All Services
           </Link>
         </div>
+        <Footer />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-white text-navy font-sans antialiased selection:bg-mint selection:text-primary-dark flex flex-col">
+    <div className="min-h-screen bg-white text-black font-sans antialiased flex flex-col">
       <ScrollProgress />
-      <Navbar onBookClick={handleBookClick} />
+      <Navbar />
 
-      {/* Main Content Area */}
-      <main className="pt-24 pb-12 md:pt-28 flex-1">
-        <div className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12 flex flex-col">
+      {/* Main Content Area: Focused on clinical facts, no redundant book appointment CTA */}
+      <main className="pt-20 sm:pt-22 pb-14 flex-1">
+        <div className="max-w-[1360px] mx-auto px-4 sm:px-8 lg:px-12 flex flex-col">
           
-          {/* Back to All Services link */}
-          <motion.div
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.25 }}
-            className="mb-1 shrink-0"
-          >
+          {/* Top Breadcrumb */}
+          <div className="mb-4">
             <Link
               to="/services"
-              className="inline-flex items-center gap-2 text-sm font-bold text-navy hover:text-primary transition-colors group"
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-black hover:text-primary transition-colors group"
             >
-              <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-              <span>Back to All Services</span>
+              <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-0.5 transition-transform" />
+              <span>Back to Services</span>
             </Link>
-          </motion.div>
+          </div>
 
-          {/* Service Title & Department Badge */}
+          {/* Service Title Strip */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3 }}
-            className="flex flex-wrap items-center gap-3 mb-3 pb-2 border-b border-navy/10 shrink-0"
+            className="mb-6 pb-4 border-b border-gray-100 flex flex-col sm:flex-row sm:items-end justify-between gap-3"
           >
-            <h1 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-black text-navy uppercase tracking-tight leading-tight">
-              {service.name}
-            </h1>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-primary/10 text-primary border border-primary/20">
-              <Sparkles className="w-3 h-3" />
-              {service.category}
+            <div>
+              <SectionLabel className="!mb-1">{service.category}</SectionLabel>
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-black tracking-tight leading-tight">
+                {service.name}
+              </h1>
+            </div>
+
+            <span className="text-xs font-bold text-primary bg-[#FAF0F5] px-3 py-1 rounded-md self-start sm:self-auto">
+              Clinical Treatment
             </span>
           </motion.div>
 
-          {/* 2-Column Responsive Layout */}
+          {/* Compact 2-Column Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             
-            {/* Left Column (4 Cols) - Portrait Treatment Image + Quick Info */}
+            {/* LEFT COLUMN (4 Cols): Prominent Duration & Sessions Metric Cards + Image + Ideal For */}
             <motion.div
-              className="lg:col-span-4 flex flex-col gap-5"
-              initial={{ opacity: 0, y: 15 }}
+              className="lg:col-span-4 flex flex-col gap-4"
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.35 }}
             >
-              {/* Portrait Image Frame */}
-              <div className="w-full aspect-[4/3] sm:aspect-[16/10] lg:aspect-[4/5] rounded-2xl overflow-hidden border-2 border-navy/10 bg-gradient-to-br from-mint-light/50 via-white to-mint/30 shadow-[4px_4px_0px_#160F14] flex items-center justify-center relative">
+              {/* Primary Factors: Duration & Sessions Highlight Cards */}
+              <div className="grid grid-cols-2 gap-3">
+                <div className="p-4 bg-white rounded-2xl border-2 border-primary/20 shadow-2xs relative overflow-hidden">
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#8C486E] to-[#C98664]" />
+                  <div className="flex items-center gap-1.5 text-primary text-xs font-bold mb-1">
+                    <Clock className="w-4 h-4 text-primary" />
+                    <span>Duration</span>
+                  </div>
+                  <span className="text-base sm:text-lg font-extrabold text-black block leading-tight">
+                    {service.duration}
+                  </span>
+                  <span className="text-[10px] text-gray-500 font-medium mt-0.5 block">Per Session</span>
+                </div>
+
+                <div className="p-4 bg-white rounded-2xl border-2 border-primary/20 shadow-2xs relative overflow-hidden">
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#C98664] to-[#8C486E]" />
+                  <div className="flex items-center gap-1.5 text-primary text-xs font-bold mb-1">
+                    <Layers className="w-4 h-4 text-primary" />
+                    <span>Sessions</span>
+                  </div>
+                  <span className="text-base sm:text-lg font-extrabold text-black block leading-tight">
+                    {service.sessions}
+                  </span>
+                  <span className="text-[10px] text-gray-500 font-medium mt-0.5 block">Recommended</span>
+                </div>
+              </div>
+
+              {/* Image Frame */}
+              <div className="w-full aspect-[16/10] lg:aspect-[4/3] rounded-2xl overflow-hidden border border-gray-200/80 bg-white p-1.5 shadow-2xs">
                 {service.image ? (
                   <img
                     src={service.image}
                     alt={service.name}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover rounded-xl"
                   />
                 ) : (
-                  <div className="p-6 text-center flex flex-col items-center justify-center relative z-10">
-                    <div className="w-14 h-14 rounded-2xl bg-white border border-navy/10 flex items-center justify-center mb-3 shadow-xs">
-                      <Camera className="w-7 h-7 text-primary" />
+                  <div className="w-full h-full rounded-xl bg-gradient-to-br from-[#FDF6F9] to-[#F5E6EE] p-4 text-center flex flex-col items-center justify-center">
+                    <div className="w-10 h-10 rounded-xl bg-white border border-gray-100 flex items-center justify-center mb-2 shadow-xs">
+                      <Camera className="w-5 h-5 text-primary" />
                     </div>
-                    <span className="text-xs font-black uppercase tracking-wider text-primary bg-primary/10 px-3.5 py-1 rounded-full mb-1.5">
-                      Portrait Visual Reference
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-primary bg-white px-2.5 py-0.5 rounded shadow-2xs mb-1">
+                      {service.category}
                     </span>
-                    <h4 className="text-base font-black text-navy mb-1">
+                    <h4 className="text-sm font-bold text-black line-clamp-1">
                       {service.name}
                     </h4>
-                    <p className="text-xs text-muted font-semibold max-w-[220px] leading-relaxed">
-                      Clinical treatment photo slot (3:4 portrait view)
-                    </p>
                   </div>
                 )}
               </div>
 
-              {/* Quick Information Card - compact, always visible */}
-              <div className="w-full bg-white rounded-2xl border-2 border-navy/10 p-4 shadow-[4px_4px_0px_#160F14] space-y-3 shrink-0">
-                <div className="flex items-center justify-between pb-2 border-b border-navy/10">
-                  <h2 className="text-base font-black text-navy uppercase tracking-wider flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-primary" />
-                    Quick Information
-                  </h2>
-                  <span className="text-xs font-bold text-primary">In-Clinic Session</span>
+              {/* Ideal For Box */}
+              <div className="bg-white rounded-2xl border border-gray-200/80 p-4 shadow-2xs">
+                <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-black mb-2.5">
+                  <Target className="w-4 h-4 text-primary" />
+                  <span>Ideal For</span>
                 </div>
-
-                {/* Duration & Sessions Strip */}
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="p-2.5 bg-mint-light/40 rounded-xl border border-navy/10">
-                    <div className="flex items-center gap-1.5 text-muted text-xs font-bold mb-0.5">
-                      <Clock className="w-3.5 h-3.5 text-primary" />
-                      <span>Duration</span>
-                    </div>
-                    <span className="text-sm sm:text-base font-black text-navy block">{service.duration}</span>
-                  </div>
-
-                  <div className="p-2.5 bg-mint-light/40 rounded-xl border border-navy/10">
-                    <div className="flex items-center gap-1.5 text-muted text-xs font-bold mb-0.5">
-                      <Layers className="w-3.5 h-3.5 text-primary" />
-                      <span>Sessions</span>
-                    </div>
-                    <span className="text-sm sm:text-base font-black text-navy block">{service.sessions}</span>
-                  </div>
-                </div>
-
-                {/* Ideal For Tags */}
-                <div>
-                  <div className="flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-muted mb-1.5">
-                    <Target className="w-3.5 h-3.5 text-primary" />
-                    <span>Ideal For</span>
-                  </div>
-                  <div className="flex flex-wrap gap-1.5">
-                    {service.idealFor.map((tag, i) => (
-                      <span
-                        key={i}
-                        className="px-3 py-1 text-xs font-bold rounded-xl bg-primary/10 text-primary border border-primary/20"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+                <div className="flex flex-wrap gap-1.5">
+                  {service.idealFor.map((tag, i) => (
+                    <span
+                      key={i}
+                      className="px-2.5 py-1 text-xs font-medium rounded-md bg-[#FAF0F5] text-black border border-primary/15"
+                    >
+                      {tag}
+                    </span>
+                  ))}
                 </div>
               </div>
             </motion.div>
 
-            {/* Right Column (8 Cols) - Description, Key Benefits & After Care, Side Effects */}
+            {/* RIGHT COLUMN (8 Cols): Treatment Overview, Benefits, Aftercare & Expectations */}
             <motion.div
-              className="lg:col-span-8 flex flex-col gap-5"
-              initial={{ opacity: 0, y: 15 }}
+              className="lg:col-span-8 flex flex-col gap-4"
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.35, delay: 0.05 }}
             >
-              
-              {/* Description Card */}
-              <div className="bg-white rounded-2xl border-2 border-navy/10 p-5 shadow-[4px_4px_0px_#160F14]">
-                <h2 className="text-base sm:text-lg font-black text-navy uppercase tracking-wider mb-2.5 flex items-center gap-2">
-                  <span className="w-1.5 h-4 bg-primary rounded-full" />
-                  Description
+              {/* Treatment Overview Card */}
+              <div className="bg-white rounded-2xl border border-gray-200/80 p-5 shadow-2xs relative overflow-hidden">
+                <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-gradient-to-b from-[#8C486E] to-[#C98664]" />
+                <h2 className="text-sm font-bold text-black uppercase tracking-wider mb-2">
+                  Treatment Overview
                 </h2>
-                <p className="text-sm sm:text-base text-navy/90 font-medium leading-relaxed">
+                <p className="text-sm text-black font-normal leading-relaxed">
                   {service.description}
                 </p>
               </div>
 
-              {/* Key Benefits & After Care - Responsive Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                
-                {/* Key Benefits Card */}
-                <div className="bg-white rounded-2xl border-2 border-navy/10 p-5 shadow-[4px_4px_0px_#160F14] flex flex-col">
-                  <h2 className="text-base sm:text-lg font-black text-navy uppercase tracking-wider mb-3 flex items-center gap-2">
-                    <span className="w-1.5 h-4 bg-primary rounded-full" />
+              {/* Side-by-Side: Benefits and Aftercare Guidelines */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {/* Benefits */}
+                <div className="bg-white rounded-2xl border border-gray-200/80 p-5 shadow-2xs">
+                  <h2 className="text-xs font-bold text-black uppercase tracking-wider mb-3 flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary" />
                     Key Benefits
                   </h2>
-                  <ul className="space-y-2">
+                  <ul className="space-y-2.5">
                     {service.keyBenefits.map((benefit, i) => (
-                      <li key={i} className="flex items-start gap-2 text-sm font-semibold text-navy leading-snug">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                      <li key={i} className="flex items-start gap-2 text-xs sm:text-sm text-black font-normal leading-snug">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
                         <span>{benefit}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                {/* After Care Card */}
-                <div className="bg-white rounded-2xl border-2 border-navy/10 p-5 shadow-[4px_4px_0px_#160F14] flex flex-col">
-                  <h2 className="text-base sm:text-lg font-black text-navy uppercase tracking-wider mb-3 flex items-center gap-2">
-                    <span className="w-1.5 h-4 bg-primary rounded-full" />
+                {/* Aftercare */}
+                <div className="bg-white rounded-2xl border border-gray-200/80 p-5 shadow-2xs">
+                  <h2 className="text-xs font-bold text-black uppercase tracking-wider mb-3 flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary" />
                     After Care Guidelines
                   </h2>
                   <ul className="space-y-2.5">
                     {service.afterCare.map((care, i) => (
-                      <li key={i} className="flex items-start gap-2 text-sm font-semibold text-navy leading-snug">
-                        <ShieldCheck className="w-4 h-4 text-sky-600 shrink-0 mt-0.5" />
+                      <li key={i} className="flex items-start gap-2 text-xs sm:text-sm text-black font-normal leading-snug">
+                        <ShieldCheck className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
                         <span>{care}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
-
               </div>
 
-              {/* What To Expect (Side Effects) Box */}
-              <div className="rounded-2xl border-2 border-red-200 bg-red-50/70 p-5 shadow-[4px_4px_0px_#160F14]">
-                <h3 className="text-base font-black text-red-600 mb-3 flex items-center gap-2">
-                  <AlertTriangle className="w-4 h-4 text-red-500 shrink-0" />
+              {/* What To Expect (Side Effects) Compact Tag Strip */}
+              <div className="bg-white rounded-2xl border border-gray-200/80 p-4 shadow-2xs">
+                <h3 className="text-xs font-bold text-black uppercase tracking-wider mb-2.5 flex items-center gap-1.5">
+                  <AlertTriangle className="w-3.5 h-3.5 text-amber-500 shrink-0" />
                   What to Expect (Side Effects)
                 </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <div className="flex flex-wrap gap-2">
                   {service.sideEffects.map((effect, i) => (
-                    <div
+                    <span
                       key={i}
-                      className="flex items-center gap-2.5 p-2 rounded-xl bg-white/75 border border-red-200 text-xs sm:text-sm font-bold text-red-900"
+                      className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-gray-50 border border-gray-200 text-xs font-medium text-black"
                     >
-                      <span className="w-1.5 h-1.5 rounded-full bg-red-400 shrink-0" />
-                      <span>{effect}</span>
-                    </div>
+                      <span className="w-1 h-1 rounded-full bg-primary shrink-0" />
+                      {effect}
+                    </span>
                   ))}
                 </div>
               </div>
@@ -269,4 +256,3 @@ const ServiceDetail = () => {
 };
 
 export default ServiceDetail;
-
