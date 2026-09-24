@@ -24,6 +24,20 @@ const ServiceDetail = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+
+    const svc = getServiceBySlug(slug);
+    const image = svc?.image;
+    if (image) {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'image';
+      link.href = image;
+      link.fetchPriority = 'high';
+      document.head.appendChild(link);
+      return () => {
+        document.head.removeChild(link);
+      };
+    }
   }, [slug]);
 
   // 404 fallback
@@ -135,6 +149,9 @@ const ServiceDetail = () => {
                   <img
                     src={service.image}
                     alt={service.name}
+                    loading="eager"
+                    decoding="async"
+                    fetchPriority="high"
                     className="w-full h-full object-cover rounded-xl"
                   />
                 ) : (
