@@ -29,6 +29,17 @@ const Gallery = () => {
       if (e.key === 'ArrowLeft') setLightboxIndex(prev => (prev - 1 + displayPhotos.length) % displayPhotos.length);
     };
     window.addEventListener('keydown', handleKey);
+
+    // Preload next and previous images for instant lightbox transitions
+    if (displayPhotos.length > 1) {
+      const nextIdx = (lightboxIndex + 1) % displayPhotos.length;
+      const prevIdx = (lightboxIndex - 1 + displayPhotos.length) % displayPhotos.length;
+      const imgNext = new Image();
+      imgNext.src = displayPhotos[nextIdx].image;
+      const imgPrev = new Image();
+      imgPrev.src = displayPhotos[prevIdx].image;
+    }
+
     return () => window.removeEventListener('keydown', handleKey);
   }, [lightboxOpen, lightboxIndex, displayPhotos]);
 
@@ -55,16 +66,16 @@ const Gallery = () => {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35 }}
-            className="mb-10 pb-6 border-b border-gray-100"
+            className="mb-6 sm:mb-10 pb-4 sm:pb-6 border-b border-gray-100"
           >
             <SectionLabel>VISUAL JOURNEY &amp; PRACTICE</SectionLabel>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-black mt-1 mb-2">
+            <h1 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-extrabold text-black mt-0.5 sm:mt-1 mb-2">
               Clinic &amp; Treatment{' '}
               <span className="bg-gradient-to-r from-[#8C486E] via-[#A86389] to-[#C98664] bg-clip-text text-transparent">
                 Gallery
               </span>
             </h1>
-            <p className="text-sm sm:text-base text-black max-w-lg font-normal leading-relaxed">
+            <p className="text-xs sm:text-base text-black max-w-lg font-normal leading-relaxed">
               Explore our state-of-the-art clinic, expert procedures, and remarkable patient transformations.
             </p>
           </motion.div>
@@ -129,14 +140,9 @@ const Gallery = () => {
             >
               <img
                 src={displayPhotos[lightboxIndex].image}
-                alt={displayPhotos[lightboxIndex].title}
+                alt={`Gallery image ${lightboxIndex + 1}`}
                 className="max-w-full max-h-[80vh] object-contain rounded-xl shadow-2xl"
               />
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent rounded-b-xl p-4 sm:p-5">
-                <span className="text-[10px] text-white/60 font-semibold block mb-1">{lightboxIndex + 1} / {displayPhotos.length}</span>
-                <h3 className="text-sm sm:text-base font-bold text-white">{displayPhotos[lightboxIndex].title}</h3>
-                <p className="text-xs sm:text-sm text-white/80 mt-0.5">{displayPhotos[lightboxIndex].caption}</p>
-              </div>
             </motion.div>
           </motion.div>
         )}

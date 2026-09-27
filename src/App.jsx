@@ -16,6 +16,7 @@ import ServiceDetail from './components/ServiceDetail';
 import Gallery from './components/Gallery';
 import GalleryDetail from './components/GalleryDetail';
 import FloatingCTA from './components/FloatingCTA';
+import Contact from './components/Contact';
 
 // Home page content extracted as its own component
 function HomePage({ onBookClick }) {
@@ -75,6 +76,7 @@ function App() {
         <Route path="/services/:slug" element={<ServiceDetail />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/gallery/:slug" element={<GalleryDetail />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
 
       {/* Floating Call, WhatsApp & Social Buttons - Persistent Across Every Page */}

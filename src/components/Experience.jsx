@@ -56,14 +56,14 @@ const infiniteTestimonials = [...testimonials, ...testimonials];
 
 const Experience = () => {
   return (
-    <section id="experience" className="py-10 sm:py-14 bg-white border-t border-gray-100 overflow-hidden">
+    <section id="experience" className="py-8 sm:py-14 bg-white border-t border-gray-100 overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12">
 
         {/* Section Header */}
-        <div className="mb-6 sm:mb-8 flex flex-col md:flex-row md:items-end justify-between gap-3">
+        <div className="mb-5 sm:mb-8 flex flex-col md:flex-row md:items-end justify-between gap-3">
           <div>
             <SectionLabel>EXPERIENCE &amp; PATIENT TRUST</SectionLabel>
-            <h2 className="text-2xl xs:text-3xl sm:text-4xl font-extrabold text-black leading-tight mt-0.5">
+            <h2 className="text-xl xs:text-2xl sm:text-4xl font-extrabold text-black leading-tight mt-0.5">
               Trusted Experience.{' '}
               <span className="bg-gradient-to-r from-[#8C486E] via-[#A86389] to-[#C98664] bg-clip-text text-transparent">
                 Proven Results.
@@ -71,7 +71,7 @@ const Experience = () => {
             </h2>
           </div>
 
-          <div className="flex items-center gap-2 text-xs font-bold text-black self-start md:self-auto bg-[#FAF0F5] px-3 py-1.5 rounded-lg border border-primary/10">
+          <div className="flex items-center gap-2 text-[11px] sm:text-xs font-bold text-black self-start md:self-auto bg-[#FAF0F5] px-3 py-1.5 rounded-lg border border-primary/10">
             <div className="flex text-amber-500">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="w-3.5 h-3.5 fill-amber-400 stroke-amber-400" />

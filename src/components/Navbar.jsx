@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Menu, X, ChevronDown, Phone, Building2, Users, Stethoscope } from 'lucide-react';
+import { Menu, X, Phone } from 'lucide-react';
 import { doctorData } from '../data/portfolioData';
 import Logo from './Logo';
 
@@ -10,13 +10,7 @@ const navLinks = [
   { name: 'About', href: '#about', type: 'anchor' },
   { name: 'Services', href: '/services', type: 'route' },
   { name: 'Gallery', href: '/gallery', type: 'route' },
-  { name: 'Contact', href: '#contact', type: 'anchor' },
-];
-
-const gallerySubmenu = [
-  { name: 'Clinic', href: '/gallery/clinic', icon: Building2 },
-  { name: 'Patient', href: '/gallery/patient', icon: Users },
-  { name: 'Procedure', href: '/gallery/procedure', icon: Stethoscope },
+  { name: 'Contact', href: '/contact', type: 'route' },
 ];
 
 const Navbar = ({ onBookClick }) => {
@@ -24,7 +18,6 @@ const Navbar = ({ onBookClick }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [galleryDropdownOpen, setGalleryDropdownOpen] = useState(false);
   const location = useLocation();
   const isHomePage = location.pathname === '/';
 
@@ -84,50 +77,6 @@ const Navbar = ({ onBookClick }) => {
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-7">
             {navLinks.map((link) => {
-              if (link.name === 'Gallery') {
-                const isGalleryActive = location.pathname.startsWith('/gallery');
-                return (
-                  <div
-                    key="Gallery"
-                    className="relative"
-                    onMouseEnter={() => setGalleryDropdownOpen(true)}
-                    onMouseLeave={() => setGalleryDropdownOpen(false)}
-                  >
-                    <div className="flex items-center gap-0.5 cursor-pointer">
-                      <Link
-                        to="/gallery"
-                        className={`text-sm font-semibold transition-colors ${isGalleryActive ? 'text-primary' : 'text-black/80 hover:text-black'}`}
-                      >
-                        Gallery
-                      </Link>
-                      <ChevronDown className={`w-3.5 h-3.5 text-black/60 transition-transform duration-200 ${galleryDropdownOpen ? 'rotate-180' : ''}`} />
-                    </div>
-                    <AnimatePresence>
-                      {galleryDropdownOpen && (
-                        <motion.div
-                          initial={{ opacity: 0, y: 6 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: 6 }}
-                          transition={{ duration: 0.15 }}
-                          className="absolute left-0 top-full mt-2 w-40 bg-white rounded-lg border border-gray-100 shadow-md overflow-hidden py-1 z-50"
-                        >
-                          {gallerySubmenu.map((sub) => (
-                            <Link
-                              key={sub.name}
-                              to={sub.href}
-                              onClick={() => setGalleryDropdownOpen(false)}
-                              className={`block px-4 py-2 text-sm transition-colors ${location.pathname === sub.href ? 'text-primary font-bold bg-[#FAF0F5]' : 'text-black/80 hover:bg-gray-50 hover:text-black'}`}
-                            >
-                              {sub.name}
-                            </Link>
-                          ))}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                );
-              }
-
               const isActive = link.type === 'route'
                 ? location.pathname.startsWith(link.href)
                 : (isHomePage && activeSection === link.href.substring(1));
@@ -203,41 +152,16 @@ const Navbar = ({ onBookClick }) => {
                   ? location.pathname.startsWith(link.href)
                   : (isHomePage && activeSection === link.href.substring(1));
 
-                if (link.name === 'Gallery') {
-                  return (
-                    <div key="Gallery" className="border-b border-gray-50 py-1">
-                      <Link
-                        to="/gallery"
-                        onClick={() => setMobileMenuOpen(false)}
-                        className={`block py-2 text-base font-bold ${location.pathname.startsWith('/gallery') ? 'text-primary' : 'text-black'}`}
-                      >
-                        Gallery
-                      </Link>
-                      <div className="pl-3 flex flex-col gap-1 pb-1">
-                        {gallerySubmenu.map(sub => (
-                          <Link
-                            key={sub.name}
-                            to={sub.href}
-                            onClick={() => setMobileMenuOpen(false)}
-                            className="py-1.5 text-sm text-black/80 hover:text-primary transition-colors font-medium"
-                          >
-                            — {sub.name}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  );
-                }
-
                 if (link.type === 'route') {
                   return (
                     <Link
                       key={link.name}
                       to={link.href}
                       onClick={() => setMobileMenuOpen(false)}
-                      className={`py-2.5 text-base font-bold border-b border-gray-50 ${isActive ? 'text-primary' : 'text-black'}`}
+                      className={`py-3 px-1 text-base font-bold border-b border-gray-50 flex items-center justify-between active:bg-[#FAF0F5] rounded-md transition-colors ${isActive ? 'text-primary' : 'text-black'}`}
                     >
-                      {link.name}
+                      <span>{link.name}</span>
+                      <span className="text-xs text-gray-400 font-normal">→</span>
                     </Link>
                   );
                 }
@@ -248,16 +172,17 @@ const Navbar = ({ onBookClick }) => {
                     key={link.name}
                     href={anchorHref}
                     onClick={() => setMobileMenuOpen(false)}
-                    className={`py-2.5 text-base font-bold border-b border-gray-50 ${isActive ? 'text-primary' : 'text-black'}`}
+                    className={`py-3 px-1 text-base font-bold border-b border-gray-50 flex items-center justify-between active:bg-[#FAF0F5] rounded-md transition-colors ${isActive ? 'text-primary' : 'text-black'}`}
                   >
-                    {link.name}
+                    <span>{link.name}</span>
+                    <span className="text-xs text-gray-400 font-normal">→</span>
                   </a>
                 );
               })}
               <div className="pt-4">
                 <button
                   onClick={() => { setMobileMenuOpen(false); onBookClick(); }}
-                  className="w-full py-3 bg-primary text-white text-sm font-bold rounded-md active:scale-98 shadow-sm"
+                  className="w-full py-3.5 bg-primary text-white text-base font-bold rounded-lg active:scale-98 shadow-sm flex items-center justify-center min-h-[48px] cursor-pointer"
                 >
                   Book Appointment
                 </button>

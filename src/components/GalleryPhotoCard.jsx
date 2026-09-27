@@ -38,7 +38,8 @@ const GalleryPhotoCard = React.memo(({
         <img
           src={photo.image}
           alt={photo.title || 'Gallery image'}
-          loading="lazy"
+          loading={index < 4 ? 'eager' : 'lazy'}
+          fetchPriority={index < 4 ? 'high' : 'auto'}
           decoding="async"
           onLoad={() => setIsLoaded(true)}
           onError={() => { setHasError(true); setIsLoaded(true); }}
@@ -50,12 +51,6 @@ const GalleryPhotoCard = React.memo(({
           <span className="text-xs text-muted">Image preview</span>
         </div>
       )}
-
-      {/* Hover Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-navy/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-3">
-        <h3 className="text-xs sm:text-sm font-semibold text-white leading-snug">{photo.title}</h3>
-        {photo.caption && <p className="text-[11px] text-white/70 mt-0.5 line-clamp-1">{photo.caption}</p>}
-      </div>
     </motion.div>
   );
 });

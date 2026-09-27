@@ -27,7 +27,11 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    font-size: clamp(16px, 15px + 0.25vw, 17.5px);
+    font-size: 16px;
+
+    @media (min-width: 1280px) {
+      font-size: 17px;
+    }
   }
   
   body {

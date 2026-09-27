@@ -3,25 +3,28 @@ import { motion } from 'framer-motion';
 import { MapPin, Clock, Phone, ExternalLink } from 'lucide-react';
 import { doctorData } from '../data/portfolioData';
 import SectionLabel from './SectionLabel';
+import clinicImg from '../assets/images/Clinic.jpeg';
 
 const Clinic = () => {
   return (
-    <section id="contact" className="py-10 sm:py-14 bg-white border-t border-gray-100">
+    <section id="contact" className="py-8 sm:py-14 bg-white border-t border-gray-100">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-8 lg:gap-12 items-center">
 
           {/* LEFT: Clinic Image */}
           <motion.div
             className="lg:col-span-5"
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.35 }}
           >
-            <div className="w-full h-[220px] xs:h-[260px] sm:h-[320px] rounded-2xl overflow-hidden bg-white p-2 border border-gray-200/80 shadow-sm">
+            <div className="w-full h-[200px] xs:h-[240px] sm:h-[320px] rounded-2xl overflow-hidden bg-white p-2 border border-gray-200/80 shadow-sm">
               <img
-                src="/images/clinic.png"
+                src={clinicImg}
                 alt="Dr Neha Shinde Skin Clinic"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover object-center rounded-xl"
               />
             </div>
@@ -29,15 +32,15 @@ const Clinic = () => {
 
           {/* RIGHT: Clinic Details */}
           <motion.div
-            className="lg:col-span-7 space-y-4 sm:space-y-5"
+            className="lg:col-span-7 space-y-3.5 sm:space-y-5"
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.35, delay: 0.1 }}
           >
             <div>
               <SectionLabel>VISIT MY CLINIC</SectionLabel>
-              <h2 className="text-2xl xs:text-3xl sm:text-4xl font-extrabold text-black leading-tight mt-0.5">
+              <h2 className="text-xl xs:text-2xl sm:text-4xl font-extrabold text-black leading-tight mt-0.5">
                 Let's Take Care of Your{' '}
                 <span className="bg-gradient-to-r from-[#8C486E] via-[#A86389] to-[#C98664] bg-clip-text text-transparent">
                   Skin &amp; Health
@@ -82,10 +85,10 @@ const Clinic = () => {
                   </a>
                 </div>
               </div>
-              <div className="flex flex-col xs:flex-row items-stretch gap-2 sm:gap-2.5 w-full sm:w-auto">
+              <div className="flex flex-col xs:flex-row items-stretch gap-2.5 sm:gap-2.5 w-full sm:w-auto">
                 <a
                   href={`tel:${doctorData.clinic.phone.replace(/[^0-9+]/g, '')}`}
-                  className="text-center px-5 py-2.5 bg-primary text-white text-xs sm:text-sm font-bold rounded-md hover:bg-primary-dark transition-all shadow-sm active:scale-95"
+                  className="text-center px-5 py-3 sm:py-2.5 bg-primary text-white text-xs sm:text-sm font-bold rounded-lg sm:rounded-md hover:bg-primary-dark transition-all shadow-sm active:scale-98 min-h-[44px] flex items-center justify-center"
                 >
                   Call for Appointment
                 </a>
@@ -93,7 +96,7 @@ const Clinic = () => {
                   href={doctorData.clinic.googleMapUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-1.5 px-4 py-2.5 border border-gray-300 rounded-md text-xs sm:text-sm font-bold text-black hover:border-primary hover:text-primary transition-colors active:scale-95"
+                  className="flex items-center justify-center gap-1.5 px-4 py-3 sm:py-2.5 border border-gray-300 rounded-lg sm:rounded-md text-xs sm:text-sm font-bold text-black hover:border-primary hover:text-primary transition-colors active:scale-98 min-h-[44px]"
                 >
                   Get Directions
                   <ExternalLink className="w-3.5 h-3.5" />

@@ -38,7 +38,7 @@ const FloatingCTA = () => {
   return (
     <aside 
       aria-label="Quick contact options"
-      className="fixed right-3 sm:right-5 bottom-6 z-40 flex flex-col items-center gap-3 select-none"
+      className="fixed right-2.5 sm:right-5 bottom-4 sm:bottom-6 z-40 flex flex-col items-center gap-2 sm:gap-3 select-none"
     >
       {/* YouTube Button */}
       <a
@@ -46,9 +46,9 @@ const FloatingCTA = () => {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Watch Dr. Neha Shinde on YouTube"
-        className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#FF0000] text-white flex items-center justify-center shadow-lg hover:scale-110 active:scale-95 transition-transform"
+        className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#FF0000] text-white flex items-center justify-center shadow-md sm:shadow-lg hover:scale-110 active:scale-95 transition-transform"
       >
-        <YoutubeIcon className="w-5 h-5 sm:w-6 sm:h-6" />
+        <YoutubeIcon className="w-4.5 h-4.5 sm:w-6 sm:h-6" />
       </a>
 
       {/* Instagram Button */}
@@ -57,9 +57,9 @@ const FloatingCTA = () => {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Visit Instagram Profile"
-        className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#E1306C] text-white flex items-center justify-center shadow-lg hover:scale-110 active:scale-95 transition-transform"
+        className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#E1306C] text-white flex items-center justify-center shadow-md sm:shadow-lg hover:scale-110 active:scale-95 transition-transform"
       >
-        <InstagramIcon className="w-5 h-5 sm:w-6 sm:h-6" />
+        <InstagramIcon className="w-4.5 h-4.5 sm:w-6 sm:h-6" />
       </a>
 
       {/* WhatsApp Button */}
@@ -68,18 +68,18 @@ const FloatingCTA = () => {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"
-        className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-lg hover:scale-110 active:scale-95 transition-transform"
+        className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-md sm:shadow-lg hover:scale-110 active:scale-95 transition-transform"
       >
-        <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6 fill-white stroke-none" />
+        <MessageCircle className="w-4.5 h-4.5 sm:w-6 sm:h-6 fill-white stroke-none" />
       </a>
 
       {/* Phone Call Button */}
       <a
         href={callUrl}
         aria-label="Direct Call to Clinic"
-        className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#3B5998] text-white flex items-center justify-center shadow-lg hover:scale-110 active:scale-95 transition-transform"
+        className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#3B5998] text-white flex items-center justify-center shadow-md sm:shadow-lg hover:scale-110 active:scale-95 transition-transform"
       >
-        <Phone className="w-5 h-5 sm:w-6 sm:h-6" />
+        <Phone className="w-4.5 h-4.5 sm:w-6 sm:h-6" />
       </a>
     </aside>
   );

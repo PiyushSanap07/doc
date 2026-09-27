@@ -1,6 +1,21 @@
-// ─── Gallery Data ────────────────────────────────────────────
-// All gallery images organized by category for the Doctor Gallery section.
-// Uses existing images from the codebase, duplicated across categories.
+// Import images from assets/galleryimages
+import img1 from '../assets/galleryimages/gallery(1).jpeg';
+import img2 from '../assets/galleryimages/gallery(2).jpeg';
+import img3 from '../assets/galleryimages/gallery(3).jpeg';
+import img4 from '../assets/galleryimages/gallery(4).jpeg';
+import img5 from '../assets/galleryimages/gallery(5).jpeg';
+import img6 from '../assets/galleryimages/gallery(6).jpeg';
+import img7 from '../assets/galleryimages/gallery(7).jpeg';
+import img8 from '../assets/galleryimages/gallery(8).jpeg';
+import img9 from '../assets/galleryimages/gallery(9).jpeg';
+import img10 from '../assets/galleryimages/gallery(10).jpeg';
+import img11 from '../assets/galleryimages/gallery(11).jpeg';
+import img12 from '../assets/galleryimages/gallery(12).jpeg';
+import img13 from '../assets/galleryimages/gallery(13).jpeg';
+import img14 from '../assets/galleryimages/gallery(14).jpeg';
+import img15 from '../assets/galleryimages/gallery(15).jpeg';
+import img16 from '../assets/galleryimages/gallery(16).jpeg';
+import img17 from '../assets/galleryimages/gallery(17).jpeg';
 
 export const galleryCategories = [
   {
@@ -11,53 +26,43 @@ export const galleryCategories = [
     icon: 'Building2',
     color: 'primary',
     photos: [
-      { id: 'c1', image: '/images/clinic.png', title: 'Reception Area', caption: 'Welcoming entrance with modern aesthetics' },
-      { id: 'c2', image: '/images/clinic.png', title: 'Treatment Room', caption: 'Fully equipped procedure suite' },
-      { id: 'c3', image: '/images/doctor-about.png', title: 'Consultation Chamber', caption: 'Private consultation with advanced tools' },
-      { id: 'c4', image: '/images/clinic.png', title: 'Laser Suite', caption: 'Dedicated laser treatment facility' },
-      { id: 'c5', image: '/images/doctor-hero.png', title: 'Waiting Lounge', caption: 'Comfortable patient waiting area' },
-      { id: 'c6', image: '/images/clinic.png', title: 'Sterilization Zone', caption: 'Hospital-grade hygiene standards' },
-      { id: 'c7', image: '/images/doctor-about.png', title: 'Equipment Gallery', caption: 'Latest dermatology instruments' },
-      { id: 'c8', image: '/images/clinic.png', title: 'Exterior View', caption: 'Prime location in Nashik' },
-      { id: 'c9', image: '/images/doctor-hero.png', title: 'Recovery Area', caption: 'Post-procedure comfort zone' },
-    ],
-  },
-  {
-    slug: 'patient',
-    title: 'Patient',
-    subtitle: 'Patient Transformations',
-    description: 'Real results from real patients. Browse through our collection of before-and-after transformations that showcase the effectiveness of our personalized treatment plans and advanced dermatological procedures.',
-    icon: 'Users',
-    color: 'accent',
-    photos: [
-      { id: 'p1', image: '/images/doctor-about.png', title: 'Acne Treatment Results', caption: 'Clear skin after 6 sessions' },
-      { id: 'p2', image: '/images/doctor-hero.png', title: 'Skin Brightening', caption: 'Visible glow improvement' },
-      { id: 'p3', image: '/images/doctor-about.png', title: 'Pigmentation Correction', caption: 'Even tone restoration' },
-      { id: 'p4', image: '/images/clinic.png', title: 'Hair Restoration', caption: 'PRP therapy results' },
-      { id: 'p5', image: '/images/doctor-hero.png', title: 'Anti-Aging Results', caption: 'Youthful skin restoration' },
-      { id: 'p6', image: '/images/doctor-about.png', title: 'Scar Reduction', caption: 'Micro-needling outcomes' },
-      { id: 'p7', image: '/images/clinic.png', title: 'Skin Rejuvenation', caption: 'Chemical peel results' },
-      { id: 'p8', image: '/images/doctor-hero.png', title: 'Laser Hair Removal', caption: 'Smooth, hair-free skin' },
-      { id: 'p9', image: '/images/doctor-about.png', title: 'Botox Results', caption: 'Natural wrinkle reduction' },
+      { id: 'c1', image: img1, title: 'Reception Area', caption: 'Welcoming entrance with modern aesthetics' },
+      { id: 'c2', image: img2, title: 'Consultation Chamber', caption: 'Private consultation with advanced diagnostic tools' },
+      { id: 'c3', image: img3, title: 'Treatment Room', caption: 'Fully equipped procedure suite' },
+      { id: 'c4', image: img4, title: 'Laser Suite', caption: 'Dedicated laser therapy and skincare facility' },
+      { id: 'c5', image: img5, title: 'Sterilization Zone', caption: 'Hospital-grade hygiene and safety standards' },
+      { id: 'c6', image: img6, title: 'Waiting Lounge', caption: 'Comfortable and calming patient waiting area' },
     ],
   },
   {
     slug: 'procedure',
     title: 'Procedure',
     subtitle: 'Clinical Procedures',
-    description: 'Witness our advanced dermatological procedures in action. From laser treatments to chemical peels, our gallery showcases the precision, care, and expertise that goes into every treatment session.',
+    description: 'Witness our advanced dermatological procedures in action. From laser treatments to clinical skincare, our gallery showcases the precision, care, and expertise that goes into every treatment session.',
     icon: 'Stethoscope',
     color: 'primary',
     photos: [
-      { id: 'pr1', image: '/images/doctor-hero.png', title: 'Laser Treatment Session', caption: 'Precision laser therapy in action' },
-      { id: 'pr2', image: '/images/doctor-about.png', title: 'Chemical Peel Application', caption: 'Professional chemical exfoliation' },
-      { id: 'pr3', image: '/images/clinic.png', title: 'PRP Hair Therapy', caption: 'Platelet-rich plasma procedure' },
-      { id: 'pr4', image: '/images/doctor-hero.png', title: 'Microdermabrasion', caption: 'Skin resurfacing technique' },
-      { id: 'pr5', image: '/images/doctor-about.png', title: 'Botox Injection', caption: 'Precise anti-wrinkle treatment' },
-      { id: 'pr6', image: '/images/clinic.png', title: 'Derma Roller Therapy', caption: 'Micro-needling for skin renewal' },
-      { id: 'pr7', image: '/images/doctor-hero.png', title: 'LED Light Therapy', caption: 'Photodynamic skin treatment' },
-      { id: 'pr8', image: '/images/doctor-about.png', title: 'Skin Biopsy', caption: 'Diagnostic procedure' },
-      { id: 'pr9', image: '/images/clinic.png', title: 'Cryotherapy Session', caption: 'Targeted cold therapy treatment' },
+      { id: 'pr1', image: img7, title: 'Clinical Treatment Session', caption: 'Advanced clinical care in progress' },
+      { id: 'pr2', image: img8, title: 'Specialized Procedure', caption: 'Personalized dermatological treatment' },
+      { id: 'pr3', image: img9, title: 'Aesthetic Skin Therapy', caption: 'Targeted skin health procedure' },
+      { id: 'pr4', image: img10, title: 'Laser & Light Therapy', caption: 'State-of-the-art technology in action' },
+      { id: 'pr5', image: img11, title: 'Advanced Care Protocol', caption: 'Safe and guided clinical procedure' },
+      { id: 'pr6', image: img12, title: 'Dermatology Session', caption: 'Precision diagnosis and clinical management' },
+    ],
+  },
+  {
+    slug: 'patient',
+    title: 'Patient',
+    subtitle: 'Patient Transformations',
+    description: 'Real results from real patients. Browse through our collection showcasing the effectiveness of our personalized treatment plans and advanced dermatological care.',
+    icon: 'Users',
+    color: 'accent',
+    photos: [
+      { id: 'p1', image: img13, title: 'Clinical Result 1', caption: 'Visible skin health improvement' },
+      { id: 'p2', image: img14, title: 'Clinical Result 2', caption: 'Personalized treatment outcome' },
+      { id: 'p3', image: img15, title: 'Clinical Result 3', caption: 'Restored glow and skin texture' },
+      { id: 'p4', image: img16, title: 'Clinical Result 4', caption: 'Comprehensive dermatological care' },
+      { id: 'p5', image: img17, title: 'Clinical Result 5', caption: 'Long-term healthy skin results' },
     ],
   },
 ];

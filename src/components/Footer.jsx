@@ -7,12 +7,12 @@ const footerNavLinks = [
   { name: 'About us', href: '#about', type: 'anchor' },
   { name: 'Services', href: '/services', type: 'route' },
   { name: 'Gallery', href: '/gallery', type: 'route' },
-  { name: 'Contact us', href: '#contact', type: 'anchor' },
+  { name: 'Contact us', href: '/contact', type: 'route' },
 ];
 
 const Footer = () => {
   return (
-    <footer className="bg-[#FAF8F7] border-t border-gray-200/70 pt-10 sm:pt-12 pb-6 text-[#1A1A1A]">
+    <footer className="bg-[#FAF8F7] border-t border-gray-200/70 pt-10 sm:pt-12 pb-6 text-black">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12">
 
         {/* 3 Columns matching DermaSuite reference screenshot */}
@@ -21,32 +21,32 @@ const Footer = () => {
           {/* Col 1: Clinic / Doctor Brand & Contact details */}
           <div className="md:col-span-5 lg:col-span-4 space-y-3.5 sm:space-y-4">
             <div>
-              <h3 className="font-serif text-xl sm:text-2xl font-normal text-black tracking-normal">
+              <h3 className="font-serif text-xl sm:text-2xl font-bold text-black tracking-normal">
                 {doctorData.name}
               </h3>
               {/* Clean underline accent */}
               <div className="w-12 h-[2px] bg-[#C98664] mt-1.5 mb-2.5 sm:mb-3" />
-              <p className="text-[13px] sm:text-[14px] text-gray-700 leading-relaxed max-w-sm">
+              <p className="text-[13px] sm:text-[14px] text-black leading-relaxed max-w-sm font-medium">
                 Advanced dermatology clinic for skin, hair &amp; aesthetic treatments using modern technology and personalized care.
               </p>
             </div>
 
-            <ul className="space-y-2.5 pt-0.5 text-[13px] sm:text-[14px] text-gray-800">
+            <ul className="space-y-2.5 pt-0.5 text-[13px] sm:text-[14px] text-black">
               <li className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-[#C98664] shrink-0" />
-                <a href={`tel:${doctorData.clinic.phone.replace(/[^0-9+]/g, '')}`} className="hover:text-primary transition-colors font-medium">
+                <a href={`tel:${doctorData.clinic.phone.replace(/[^0-9+]/g, '')}`} className="hover:text-primary transition-colors font-semibold text-black">
                   {doctorData.clinic.phone}
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-[#C98664] shrink-0" />
-                <a href={`mailto:${doctorData.email}`} className="hover:text-primary transition-colors break-all">
+                <a href={`mailto:${doctorData.email}`} className="hover:text-primary transition-colors break-all font-semibold text-black">
                   {doctorData.email}
                 </a>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-[#C98664] shrink-0 mt-1" />
-                <span className="leading-relaxed text-gray-700">{doctorData.clinic.address}</span>
+                <span className="leading-relaxed text-black font-medium">{doctorData.clinic.address}</span>
               </li>
             </ul>
           </div>
@@ -54,20 +54,20 @@ const Footer = () => {
           {/* Col 2: Quick Links */}
           <div className="md:col-span-3 lg:col-span-3 space-y-3.5 sm:space-y-4 md:pl-4">
             <div>
-              <h3 className="font-serif text-xl sm:text-2xl font-normal text-black tracking-normal">
+              <h3 className="font-serif text-xl sm:text-2xl font-bold text-black tracking-normal">
                 Quick Links
               </h3>
               {/* Clean underline accent */}
               <div className="w-12 h-[2px] bg-[#C98664] mt-1.5 mb-2.5 sm:mb-3" />
             </div>
 
-            <nav className="flex flex-col space-y-2 sm:space-y-2.5 text-[13px] sm:text-[14px]">
+            <nav className="flex flex-col space-y-1 sm:space-y-2.5 text-[13px] sm:text-[14px]">
               {footerNavLinks.map((link) =>
                 link.type === 'route' ? (
                   <Link
                     key={link.name}
                     to={link.href}
-                    className="text-gray-700 hover:text-black transition-colors py-0.5"
+                    className="text-black font-semibold hover:text-primary transition-colors py-1.5 sm:py-0.5 inline-block"
                   >
                     {link.name}
                   </Link>
@@ -75,7 +75,7 @@ const Footer = () => {
                   <a
                     key={link.name}
                     href={link.href}
-                    className="text-gray-700 hover:text-black transition-colors py-0.5"
+                    className="text-black font-semibold hover:text-primary transition-colors py-1.5 sm:py-0.5 inline-block"
                   >
                     {link.name}
                   </a>
@@ -86,7 +86,7 @@ const Footer = () => {
 
           {/* Col 3: Map Box */}
           <div className="md:col-span-4 lg:col-span-5 space-y-2">
-            <div className="w-full h-[180px] sm:h-[200px] rounded-sm overflow-hidden border border-gray-300 shadow-sm relative bg-gray-100">
+            <div className="relative aspect-[16/10] min-h-[170px] w-full overflow-hidden rounded-sm border border-gray-300 bg-gray-100 shadow-sm sm:aspect-auto sm:h-[200px]">
               <iframe
                 title="Clinic Location Map"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3748.2857830975207!2d73.77205427601853!3d20.002437081358555!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bddeb12d22d07d9%3A0x31d7e9c2b0f3a78!2sHarit%20Building%2C%20Nashik%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
@@ -102,7 +102,7 @@ const Footer = () => {
               href={doctorData.clinic.googleMapUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs text-primary font-semibold hover:underline pt-0.5"
+              className="inline-flex items-center gap-1.5 text-xs text-primary font-bold hover:underline pt-0.5"
             >
               Open in Google Maps <ExternalLink className="w-3.5 h-3.5" />
             </a>
@@ -139,15 +139,15 @@ const Footer = () => {
         </div>
 
         {/* Bottom copyright note */}
-        <div className="pt-3 text-center text-xs text-gray-500 space-y-0.5">
+        <div className="pt-3 text-center text-sm sm:text-base text-black font-bold tracking-normal space-y-1 font-['Outfit',sans-serif]">
           <p>© 2026 {doctorData.name} • All Rights Reserved</p>
-          <p>
+          <p className="font-semibold text-black">
             Developed by{' '}
             <a
               href="https://www.blendigitals.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium text-gray-800 hover:text-primary transition-colors"
+              className="font-extrabold text-black underline underline-offset-4 decoration-2 hover:text-primary transition-colors inline-block"
             >
               Blen Digital
             </a>

@@ -20,7 +20,7 @@ const Services = () => {
 
       <main className="flex-1 pt-20 sm:pt-24 pb-16">
         {/* Header */}
-        <section className="py-10 sm:py-12 border-b border-gray-100">
+        <section className="py-7 sm:py-12 border-b border-gray-100">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12 text-center">
             <motion.div
               initial={{ opacity: 0, y: 12 }}
@@ -28,13 +28,13 @@ const Services = () => {
               transition={{ duration: 0.35 }}
             >
               <SectionLabel>OUR CLINICAL OFFERINGS</SectionLabel>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-black tracking-tight mt-1">
+              <h1 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-extrabold text-black tracking-tight mt-0.5 sm:mt-1">
                 Explore Our{' '}
                 <span className="bg-gradient-to-r from-[#8C486E] via-[#A86389] to-[#C98664] bg-clip-text text-transparent">
                   Specialized Services
                 </span>
               </h1>
-              <p className="mt-3 text-sm sm:text-base text-black max-w-xl mx-auto font-normal leading-relaxed">
+              <p className="mt-2 sm:mt-3 text-xs sm:text-base text-black max-w-xl mx-auto font-normal leading-relaxed">
                 Where advanced clinical dermatology meets personalized skin and hair care.
               </p>
             </motion.div>
@@ -48,15 +48,15 @@ const Services = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.4 }}
-              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-5 items-start"
+              className="grid grid-cols-1 items-start gap-5 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6"
             >
               {serviceCategories.map((category) => (
                 <div
                   key={category.id}
-                  className="bg-white rounded-2xl border border-gray-200/80 shadow-2xs hover:shadow-md transition-all overflow-hidden"
+                  className="overflow-hidden rounded-2xl border border-gray-200/80 bg-white shadow-2xs transition-all hover:shadow-md"
                 >
                   {/* Category Header */}
-                  <div className="px-4 py-3.5 border-b border-gray-100 bg-[#FAF0F5]">
+                  <div className="flex min-h-[62px] items-center border-b border-gray-100 bg-[#FAF0F5] px-4 py-3.5">
                     <h2 className="text-xs font-bold uppercase tracking-wider text-primary">
                       {category.title}
                     </h2>

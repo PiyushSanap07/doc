@@ -124,11 +124,11 @@ const GalleryDetail = () => {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35 }}
-            className="mb-10 pb-6 border-b border-gray-100"
+            className="mb-6 sm:mb-10 pb-4 sm:pb-6 border-b border-gray-100"
           >
             <SectionLabel>{category.subtitle}</SectionLabel>
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mt-1 mb-2">
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-black tracking-tight">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4 mt-0.5 sm:mt-1 mb-2">
+              <h1 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-extrabold text-black tracking-tight">
                 {category.title}{' '}
                 <span className="bg-gradient-to-r from-[#8C486E] via-[#A86389] to-[#C98664] bg-clip-text text-transparent">
                   Gallery
@@ -138,7 +138,7 @@ const GalleryDetail = () => {
                 {category.photos.length} Photos
               </span>
             </div>
-            <p className="text-sm sm:text-base text-black font-normal leading-relaxed max-w-3xl mt-2">
+            <p className="text-xs sm:text-base text-black font-normal leading-relaxed max-w-3xl mt-1.5 sm:mt-2">
               {category.description}
             </p>
           </motion.div>
@@ -261,20 +261,9 @@ const GalleryDetail = () => {
             >
               <img
                 src={category.photos[lightboxIndex].image}
-                alt={category.photos[lightboxIndex].title}
+                alt={`Gallery image ${lightboxIndex + 1}`}
                 className="max-w-full max-h-[80vh] object-contain rounded-2xl shadow-2xl"
               />
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent rounded-b-2xl p-4 sm:p-5">
-                <h3 className="text-sm sm:text-base font-bold text-white leading-tight">
-                  {category.photos[lightboxIndex].title}
-                </h3>
-                <p className="text-xs sm:text-sm text-white/80 font-normal mt-0.5">
-                  {category.photos[lightboxIndex].caption}
-                </p>
-                <span className="text-[11px] text-white/50 font-semibold mt-1 block">
-                  {lightboxIndex + 1} / {category.photos.length}
-                </span>
-              </div>
             </motion.div>
           </motion.div>
         )}

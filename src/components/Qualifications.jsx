@@ -8,13 +8,13 @@ const iconMap = { GraduationCap, Stethoscope, Award, BadgeCheck };
 
 const Qualifications = () => {
   return (
-    <section id="qualifications" className="py-10 sm:py-14 bg-white">
+    <section id="qualifications" className="py-8 sm:py-14 bg-white">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12">
 
         {/* Header */}
-        <div className="mb-6 sm:mb-8">
+        <div className="mb-5 sm:mb-8">
           <SectionLabel>QUALIFICATIONS &amp; TIMELINE</SectionLabel>
-          <h2 className="text-2xl xs:text-3xl sm:text-4xl font-extrabold text-black leading-tight mt-0.5">
+          <h2 className="text-xl xs:text-2xl sm:text-4xl font-extrabold text-black leading-tight mt-0.5">
             Medical Education &amp;{' '}
             <span className="bg-gradient-to-r from-[#8C486E] via-[#A86389] to-[#C98664] bg-clip-text text-transparent">
               Certification Timeline
