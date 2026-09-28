@@ -1,147 +1,101 @@
 import React from 'react';
-import {
-  HeartPulse,
-  Sparkles,
-  Sun,
-  Feather,
-  Flower2,
-  Clock,
-  ShieldAlert
-} from 'lucide-react';
 import { motion } from 'framer-motion';
 import { doctorData } from '../data/portfolioData';
 import SectionLabel from './SectionLabel';
-import DotPattern from './DotPattern';
+import doctorAboutImg from '../assets/images/doctor_about.jpeg';
 
-const iconMap = {
-  Sparkles,
-  Sun,
-  Feather,
-  Flower2,
-  Clock,
-  ShieldAlert,
-};
+const ABOUT_STATS = [
+  { value: '5+', label: 'Years of Practice' },
+  { value: 'MD', label: 'Dermatology' },
+  { value: '5000+', label: 'Patients Treated' },
+  { value: '20+', label: 'Publications' },
+];
+
+const EXPERTISE = [
+  {
+    title: 'Acne & Acne Scars',
+    desc: 'Customised medical treatments, chemical peels and laser scar resurfacing for lasting clear skin.',
+  },
+  {
+    title: 'Pigmentation & Skin Tone',
+    desc: 'Targeted therapy for melasma, sun spots, hyperpigmentation and uneven skin tone correction.',
+  },
+  {
+    title: 'Hair & Scalp Disorders',
+    desc: 'PRP therapy, hair fall control, scalp rejuvenation and expert alopecia management.',
+  },
+  {
+    title: 'Cosmetic Dermatology',
+    desc: 'Skin glow therapies, Botox, fillers, micro-needling and advanced skin tightening treatments.',
+  },
+  {
+    title: 'Anti-Aging Treatments',
+    desc: 'Collagen-boosting treatments, fine line reduction and holistic youth restoration protocols.',
+  },
+  {
+    title: 'Skin Allergies & Eczema',
+    desc: 'Comprehensive allergy diagnostics, eczema control and soothing restorative therapies.',
+  },
+];
 
 const About = () => {
   return (
-    <section
-      id="about"
-      className="py-8 lg:py-10 bg-white relative overflow-hidden"
-    >
-      <div className="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12">
-
-        {/* MAIN LAYOUT */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
-
-          {/* =====================================================
-              LEFT — DOCTOR PHOTO
-          ====================================================== */}
-          <motion.div
-            className="lg:col-span-4 relative flex justify-center lg:justify-start items-stretch h-full w-full"
-            initial={{ opacity: 0, x: -40, scale: 0.97 }}
-            whileInView={{ opacity: 1, x: 0, scale: 1 }}
-            viewport={{ once: false, amount: 0.2 }}
-            transition={{ type: "spring", stiffness: 90, damping: 14 }}
-          >
-            <div className="relative w-full max-w-[320px] sm:max-w-[380px] lg:max-w-none h-[340px] xs:h-[400px] sm:h-[450px] lg:h-full mx-auto lg:mx-0">
-              {/* Orange Dots */}
-              <div className="absolute -top-4 -right-3 z-0">
-                <DotPattern rows={4} cols={4} />
-              </div>
-
-              {/* Orange Circle */}
-              <div className="absolute -bottom-3 -left-3 w-10 h-10 rounded-full bg-accent z-0" />
-
-              {/* PHOTO FRAME */}
-              <div className="relative z-10 w-full h-full bg-primary rounded-3xl overflow-hidden shadow-[5px_5px_0px_#321427] border-2 border-navy p-1.5">
-                <div className="w-full h-full rounded-2xl overflow-hidden bg-white">
-                  <img
-                    src="/images/doctor-about.png"
-                    alt="Dr. Neha Shinde Consultation"
-                    className="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-105"
-                  />
-                </div>
-              </div>
-
-              {/* Floating Heart */}
-              <div className="absolute top-1/2 right-2 sm:-right-4 z-20 -translate-y-1/2 bg-white p-2.5 rounded-xl shadow-floating border border-mint-border text-primary">
-                <HeartPulse className="w-5 h-5" />
-              </div>
-            </div>
+    <section id="about" className="pt-10 sm:pt-16 lg:pt-20 pb-8 sm:pb-12 bg-white">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-6 lg:gap-14 items-start mb-6 sm:mb-8">
+          <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.15 }} transition={{ duration: 0.35 }}>
+            <SectionLabel>ABOUT THE DOCTOR</SectionLabel>
+            <h2 className="text-xl xs:text-2xl sm:text-3xl lg:text-[2.5rem] font-extrabold text-black leading-tight sm:leading-snug mt-0.5">
+              Dr. Neha Shinde is dedicated to providing the{' '}
+              <span className="bg-gradient-to-r from-[#8C486E] via-[#A86389] to-[#C98664] bg-clip-text text-transparent">best dermatological care.</span>
+            </h2>
           </motion.div>
 
-          {/* =====================================================
-              RIGHT — ABOUT INFORMATION
-          ====================================================== */}
-          <motion.div
-            className="lg:col-span-8 lg:pl-9 text-left flex flex-col justify-between h-full"
-            initial={{ opacity: 0, x: 40, scale: 0.97 }}
-            whileInView={{ opacity: 1, x: 0, scale: 1 }}
-            viewport={{ once: false, amount: 0.2 }}
-            transition={{ type: "spring", stiffness: 90, damping: 14, delay: 0.05 }}
-          >
-            {/* ABOUT HEADER */}
-            <div className="space-y-2">
-              <SectionLabel>ABOUT THE DOCTOR</SectionLabel>
-
-              <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-[2.45rem] xl:text-[2.7rem] font-extrabold text-navy leading-[1.05] tracking-tight">
-                Medicine with knowledge.
-                <br />
-                <span className="text-primary">Care with purpose.</span>
-              </h2>
-
-              <p className="text-[15px] sm:text-[16px] lg:text-[16px] text-muted leading-[1.4] max-w-none">
-                {doctorData.aboutText}
-              </p>
-            </div>
-
-            {/* EXPERTISE */}
-            <div className="mt-4 pt-3 border-t border-gray-100">
-              {/* Expertise Heading */}
-              <div className="flex items-center gap-2 mb-2">
-                <Sparkles className="w-5 h-5 text-accent shrink-0" />
-                <h3 className="text-lg sm:text-xl font-extrabold text-navy">
-                  Areas of Expertise & Specializations
-                </h3>
-              </div>
-
-              {/* EXPERTISE CARDS */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                {doctorData.expertise.map((item) => {
-                  const IconComponent = iconMap[item.iconName] || Sparkles;
-
-                  return (
-                    <motion.div
-                      key={item.id}
-                      whileHover={{
-                        y: -2,
-                        scale: 1.01
-                      }}
-                      className="bg-mint-light/70 px-3 py-2 rounded-xl border-2 border-navy/12 shadow-[2px_2px_0px_#F0D5E2] hover:shadow-[3px_3px_0px_#8C486E] hover:border-primary/40 transition-all flex items-center gap-3 min-h-[64px] group"
-                    >
-                      {/* ICON */}
-                      <div className="w-8 h-8 rounded-lg bg-white border border-navy/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors shrink-0 shadow-xs">
-                        <IconComponent className="w-4 h-4" />
-                      </div>
-
-                      {/* CARD CONTENT */}
-                      <div className="min-w-0">
-                        <h4 className="text-[13px] sm:text-[14px] font-bold text-navy group-hover:text-primary transition-colors leading-tight">
-                          {item.title}
-                        </h4>
-                        <p className="text-[10px] sm:text-[11px] text-muted leading-tight mt-0.5">
-                          {item.description}
-                        </p>
-                      </div>
-                    </motion.div>
-                  );
-                })}
-              </div>
-            </div>
+          <motion.div className="lg:pt-6" initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.15 }} transition={{ duration: 0.35, delay: 0.1 }}>
+            <p className="text-sm sm:text-base text-black font-normal leading-relaxed mb-2.5 sm:mb-3">{doctorData.aboutText}</p>
+            <p className="text-sm sm:text-base text-black font-normal leading-relaxed">
+              With an MD in Dermatology and a Fellowship in Aesthetic Medicine, Dr. Shinde combines evidence-based clinical science with a compassionate approach — ensuring every patient receives a personalised treatment plan that truly fits their unique skin needs.
+            </p>
           </motion.div>
-
         </div>
 
+        <div className="grid grid-cols-1 items-start gap-5 sm:gap-6 lg:grid-cols-12 lg:gap-10">
+          <motion.div className="lg:col-span-4" initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.15 }} transition={{ duration: 0.35 }}>
+            <div className="w-full h-[260px] xs:h-[300px] sm:h-[380px] lg:aspect-[4/5] lg:h-auto rounded-2xl overflow-hidden bg-white p-2 border border-gray-200/80 shadow-sm relative group">
+              <div className="w-full h-full rounded-xl overflow-hidden">
+                <img src={doctorAboutImg} alt="Dr. Neha Shinde Consultation" loading="lazy" decoding="async" className="w-full h-full object-cover object-center group-hover:scale-102 transition-transform duration-500" />
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div className="lg:col-span-8 min-h-[360px] pt-2 sm:min-h-[520px] sm:pt-4" initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.35, delay: 0.1 }}>
+            <div className="flex items-end justify-between gap-4 border-b border-mint-border pb-4">
+              <div>
+                <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-primary">Clinical focus</p>
+                <h3 className="mt-1 text-xl font-extrabold text-navy sm:text-2xl">Personalised care, grounded in science.</h3>
+              </div>
+              <span className="hidden text-xs font-bold text-primary sm:block">{doctorData.role}</span>
+            </div>
+
+            <div className="mt-4 grid grid-cols-2 gap-2.5 sm:grid-cols-4 sm:gap-3">
+              {ABOUT_STATS.map((stat) => (
+                <div key={stat.label} className="border-b border-mint-border py-3 sm:py-4">
+                  <p className="text-xl font-extrabold leading-none text-primary sm:text-2xl">{stat.value}</p>
+                  <p className="mt-1 text-[11px] font-semibold text-gray-600 sm:text-xs">{stat.label}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-4 grid grid-cols-1 gap-2.5 sm:grid-cols-2 sm:gap-3">
+              {EXPERTISE.slice(0, 4).map((item) => (
+                <div key={item.title} className="border-b border-mint-border py-4 transition-colors hover:border-primary sm:py-5 group">
+                  <h4 className="text-sm font-bold text-black transition-colors group-hover:text-primary sm:text-base">{item.title}</h4>
+                  <p className="mt-1 text-xs font-normal leading-relaxed text-gray-600 sm:text-sm">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

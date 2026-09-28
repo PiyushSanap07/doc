@@ -1,0 +1,12 @@
+# Robots.txt for Dr. Neha Shinde - Dermatologist & Aesthetic Physician, Nashik
+# Website: https://drnehashinde.com
+
+User-agent: *
+Allow: /
+
+# Prevent crawling of build assets or dev files
+Disallow: /build/
+Disallow: /static/
+
+# Sitemap location
+Sitemap: https://drnehashinde.com/sitemap.xml

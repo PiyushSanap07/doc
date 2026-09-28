@@ -3,6 +3,51 @@
 // Each service includes detail-page content: description, benefits,
 // aftercare, side effects, duration, sessions, and ideal-for tags.
 
+import acnePeel from '../assets/images/acne-peel.webp';
+import glowPeel from '../assets/images/glow-peel.webp';
+import partyPeel from '../assets/images/party-peel.webp';
+import yellowPeel from '../assets/images/yellow-peel.webp';
+import antiagingPeel from '../assets/images/antiaging-peel.webp';
+import dermaplaning from '../assets/images/dermaplaning.webp';
+import phenolPeel from '../assets/images/phenol-peel.webp';
+import scalpPeel from '../assets/images/scalp-peel.webp';
+import bodyPeel from '../assets/images/body-peel.webp';
+import cleanup from '../assets/images/cleanup.webp';
+import hydrafacial from '../assets/images/hydrafacial.webp';
+import medifacial from '../assets/images/medifacial.webp';
+import oxygenoFacial from '../assets/images/oxygeno-facial.webp';
+import vampirePrpFacial from '../assets/images/vampire-prp-facial.webp';
+import fireIceFacials from '../assets/images/fire-ice-facials.webp';
+import hairTransplant from '../assets/images/hair-transplant.webp';
+import prpInjectionHair from '../assets/images/prp-injection-hair.webp';
+import gfcInjection from '../assets/images/gfc-injection.webp';
+import hairBotox from '../assets/images/hair-botox.webp';
+import micropigmentationScalp from '../assets/images/micropigmentation-scalp.webp';
+import mesoHair from '../assets/images/meso-hair.webp';
+import qSwitchLaser from '../assets/images/q-switch-laser.webp';
+import laserHairReduction from '../assets/images/laser-hair-reduction.webp';
+import rfCautery from '../assets/images/rf-cautery.webp';
+import dermaroller from '../assets/images/dermaroller.webp';
+import fractionalCo2Laser from '../assets/images/fractional-co2-laser.webp';
+import hifu from '../assets/images/hifu.webp';
+import lipolysis from '../assets/images/lipolysis.webp';
+import ivGlutathione from '../assets/images/iv-glutathione.webp';
+import botox from '../assets/images/botox.webp';
+import mesobotox from '../assets/images/mesobotox.webp';
+import fillers from '../assets/images/fillers.webp';
+import profhilo from '../assets/images/profhilo.webp';
+import prpInjectable from '../assets/images/prp-injectable.webp';
+import skinBoosters from '../assets/images/skin-boosters.webp';
+import pdoThreadLift from '../assets/images/pdo-thread-lift.webp';
+import dermapenMicroneedling from '../assets/images/dermapen-microneedling.webp';
+import nailSurgery from '../assets/images/nail-surgery.webp';
+import dermatosurgery from '../assets/images/dermatosurgery.webp';
+import oldScarTreatment from '../assets/images/old-scar-treatment.webp';
+import skinBiopsy from '../assets/images/skin-biopsy.webp';
+import earPiercing from '../assets/images/ear-piercing.webp';
+import eyebrowMicroblading from '../assets/images/eyebrow-microblading.webp';
+import cosmeticGynecology from '../assets/images/cosmetic-gynecology.webp';
+
 export const serviceCategories = [
   {
     id: 'peels',
@@ -18,7 +63,7 @@ export const serviceCategories = [
         duration: '30 minutes',
         sessions: '3–6 sessions',
         idealFor: ['Acne', 'Oily skin', 'Acne marks'],
-        image: null,
+        image: acnePeel,
       },
       {
         slug: 'glow-peel',
@@ -30,7 +75,7 @@ export const serviceCategories = [
         duration: '20 minutes',
         sessions: '4–6 sessions',
         idealFor: ['Dull skin', 'Uneven tone', 'Pre-event glow'],
-        image: null,
+        image: glowPeel,
       },
       {
         slug: 'party-peel',
@@ -42,7 +87,7 @@ export const serviceCategories = [
         duration: '15 minutes',
         sessions: '1–3 sessions',
         idealFor: ['Pre-event prep', 'All skin types', 'Quick glow'],
-        image: null,
+        image: partyPeel,
       },
       {
         slug: 'yellow-peel',
@@ -54,7 +99,7 @@ export const serviceCategories = [
         duration: '30 minutes',
         sessions: '3–4 sessions',
         idealFor: ['Pigmentation', 'Sun damage', 'Fine lines'],
-        image: null,
+        image: yellowPeel,
       },
       {
         slug: 'antiaging-peel',
@@ -66,7 +111,7 @@ export const serviceCategories = [
         duration: '30 minutes',
         sessions: '4–6 sessions',
         idealFor: ['Aging skin', 'Wrinkles', 'Mature skin'],
-        image: null,
+        image: antiagingPeel,
       },
       {
         slug: 'dermaplaning',
@@ -78,7 +123,7 @@ export const serviceCategories = [
         duration: '30 minutes',
         sessions: 'Monthly maintenance',
         idealFor: ['Dull skin', 'Peach fuzz', 'Uneven texture'],
-        image: null,
+        image: dermaplaning,
       },
       {
         slug: 'phenol-peel',
@@ -90,7 +135,7 @@ export const serviceCategories = [
         duration: '45-60 minutes',
         sessions: '1 session',
         idealFor: ['Deep wrinkles', 'Severe sun damage', 'Deep scars'],
-        image: null,
+        image: phenolPeel,
       },
       {
         slug: 'scalp-peel',
@@ -102,7 +147,7 @@ export const serviceCategories = [
         duration: '30 minutes',
         sessions: '3–5 sessions',
         idealFor: ['Dandruff', 'Oily scalp', 'Hair thinning'],
-        image: null,
+        image: scalpPeel,
       },
       {
         slug: 'body-peel',
@@ -114,7 +159,7 @@ export const serviceCategories = [
         duration: '30-45 minutes',
         sessions: '4–6 sessions',
         idealFor: ['Body acne', 'Rough skin', 'Dark patches'],
-        image: null,
+        image: bodyPeel,
       },
     ]
   },
@@ -132,7 +177,7 @@ export const serviceCategories = [
         duration: '45 minutes',
         sessions: 'Monthly',
         idealFor: ['All skin types', 'Congested skin', 'Regular maintenance'],
-        image: null,
+        image: cleanup,
       },
       {
         slug: 'hydrafacial',
@@ -144,7 +189,7 @@ export const serviceCategories = [
         duration: '45 minutes',
         sessions: 'Monthly',
         idealFor: ['Dehydrated skin', 'Fine lines', 'Dull complexion'],
-        image: null,
+        image: hydrafacial,
       },
       {
         slug: 'medifacial',
@@ -156,7 +201,7 @@ export const serviceCategories = [
         duration: '60 minutes',
         sessions: '4–6 sessions',
         idealFor: ['Acne', 'Pigmentation', 'Anti-aging'],
-        image: null,
+        image: medifacial,
       },
       {
         slug: 'oxygeno-facial',
@@ -168,7 +213,7 @@ export const serviceCategories = [
         duration: '45 minutes',
         sessions: '4–8 sessions',
         idealFor: ['Tired skin', 'Dehydration', 'Pre-event glow'],
-        image: null,
+        image: oxygenoFacial,
       },
       {
         slug: 'vampire-prp-facial',
@@ -180,7 +225,7 @@ export const serviceCategories = [
         duration: '60 minutes',
         sessions: '3–4 sessions',
         idealFor: ['Acne scars', 'Fine lines', 'Skin rejuvenation'],
-        image: null,
+        image: vampirePrpFacial,
       },
       {
         slug: 'fire-ice-facials',
@@ -192,7 +237,7 @@ export const serviceCategories = [
         duration: '45 minutes',
         sessions: '3–6 sessions',
         idealFor: ['Dull skin', 'Uneven texture', 'Pre-event glow'],
-        image: null,
+        image: fireIceFacials,
       },
     ]
   },
@@ -210,7 +255,7 @@ export const serviceCategories = [
         duration: '4-8 hours',
         sessions: '1 session',
         idealFor: ['Male pattern baldness', 'Receding hairline', 'Hair thinning'],
-        image: null,
+        image: hairTransplant,
       },
       {
         slug: 'prp-injection-hair',
@@ -222,7 +267,7 @@ export const serviceCategories = [
         duration: '45 minutes',
         sessions: '4–6 sessions',
         idealFor: ['Hair fall', 'Thinning hair', 'Alopecia'],
-        image: null,
+        image: prpInjectionHair,
       },
       {
         slug: 'gfc-injection',
@@ -234,7 +279,7 @@ export const serviceCategories = [
         duration: '45 minutes',
         sessions: '3–4 sessions',
         idealFor: ['Severe hair fall', 'Androgenetic alopecia', 'Hair thinning'],
-        image: null,
+        image: gfcInjection,
       },
       {
         slug: 'hair-botox',
@@ -246,7 +291,7 @@ export const serviceCategories = [
         duration: '90 minutes',
         sessions: 'Every 3-4 months',
         idealFor: ['Damaged hair', 'Frizzy hair', 'Dull hair'],
-        image: null,
+        image: hairBotox,
       },
       {
         slug: 'micropigmentation-scalp',
@@ -258,7 +303,7 @@ export const serviceCategories = [
         duration: '2-4 hours',
         sessions: '2–3 sessions',
         idealFor: ['Bald spots', 'Thinning hair', 'Scar camouflage'],
-        image: null,
+        image: micropigmentationScalp,
       },
       {
         slug: 'meso-hair',
@@ -270,7 +315,7 @@ export const serviceCategories = [
         duration: '30 minutes',
         sessions: '6–8 sessions',
         idealFor: ['Hair fall', 'Weak hair', 'Nutrient deficiency'],
-        image: null,
+        image: mesoHair,
       },
     ]
   },
@@ -288,7 +333,7 @@ export const serviceCategories = [
         duration: '20-30 minutes',
         sessions: '4–8 sessions',
         idealFor: ['Pigmentation', 'Tattoo removal', 'Melasma'],
-        image: null,
+        image: qSwitchLaser,
       },
       {
         slug: 'laser-hair-reduction',
@@ -300,7 +345,7 @@ export const serviceCategories = [
         duration: '15-60 minutes',
         sessions: '6–8 sessions',
         idealFor: ['Unwanted hair', 'Ingrown hairs', 'All body areas'],
-        image: null,
+        image: laserHairReduction,
       },
       {
         slug: 'rf-cautery',
@@ -312,7 +357,7 @@ export const serviceCategories = [
         duration: '15-30 minutes',
         sessions: '1 session',
         idealFor: ['Skin tags', 'Moles', 'Warts'],
-        image: null,
+        image: rfCautery,
       },
       {
         slug: 'dermaroller',
@@ -324,7 +369,7 @@ export const serviceCategories = [
         duration: '30-45 minutes',
         sessions: '4–6 sessions',
         idealFor: ['Acne scars', 'Fine lines', 'Large pores'],
-        image: null,
+        image: dermaroller,
       },
       {
         slug: 'fractional-co2-laser',
@@ -336,7 +381,7 @@ export const serviceCategories = [
         duration: '30-45 minutes',
         sessions: '2–4 sessions',
         idealFor: ['Deep scars', 'Wrinkles', 'Skin resurfacing'],
-        image: null,
+        image: fractionalCo2Laser,
       },
       {
         slug: 'hifu',
@@ -348,7 +393,7 @@ export const serviceCategories = [
         duration: '45-60 minutes',
         sessions: '1–2 sessions yearly',
         idealFor: ['Sagging skin', 'Jawline definition', 'Skin laxity'],
-        image: null,
+        image: hifu,
       },
       {
         slug: 'lipolysis',
@@ -360,7 +405,7 @@ export const serviceCategories = [
         duration: '30-60 minutes',
         sessions: '2–4 sessions',
         idealFor: ['Double chin', 'Love handles', 'Stubborn fat'],
-        image: null,
+        image: lipolysis,
       },
     ]
   },
@@ -378,7 +423,7 @@ export const serviceCategories = [
         duration: '30-45 minutes',
         sessions: '8–12 sessions',
         idealFor: ['Skin brightening', 'Detox', 'Dull complexion'],
-        image: null,
+        image: ivGlutathione,
       },
       {
         slug: 'botox',
@@ -390,7 +435,7 @@ export const serviceCategories = [
         duration: '15-20 minutes',
         sessions: 'Every 4-6 months',
         idealFor: ['Forehead lines', 'Crow\'s feet', 'Frown lines'],
-        image: null,
+        image: botox,
       },
       {
         slug: 'mesobotox',
@@ -402,7 +447,7 @@ export const serviceCategories = [
         duration: '20-30 minutes',
         sessions: 'Every 3-4 months',
         idealFor: ['Large pores', 'Oily skin', 'Skin refinement'],
-        image: null,
+        image: mesobotox,
       },
       {
         slug: 'fillers',
@@ -414,7 +459,7 @@ export const serviceCategories = [
         duration: '30-45 minutes',
         sessions: 'Every 12-18 months',
         idealFor: ['Volume loss', 'Lip enhancement', 'Deep folds'],
-        image: null,
+        image: fillers,
       },
       {
         slug: 'profhilo',
@@ -426,7 +471,7 @@ export const serviceCategories = [
         duration: '15-20 minutes',
         sessions: '2 sessions (4 weeks apart)',
         idealFor: ['Skin laxity', 'Dehydrated skin', 'Fine lines'],
-        image: null,
+        image: profhilo,
       },
       {
         slug: 'prp-injectable',
@@ -438,7 +483,7 @@ export const serviceCategories = [
         duration: '45 minutes',
         sessions: '3–4 sessions',
         idealFor: ['Skin rejuvenation', 'Under-eye circles', 'Fine lines'],
-        image: null,
+        image: prpInjectable,
       },
       {
         slug: 'skin-boosters',
@@ -450,7 +495,7 @@ export const serviceCategories = [
         duration: '30 minutes',
         sessions: '3 sessions (2-4 weeks apart)',
         idealFor: ['Dehydrated skin', 'Dull complexion', 'Fine lines'],
-        image: null,
+        image: skinBoosters,
       },
       {
         slug: 'pdo-thread-lift',
@@ -462,7 +507,7 @@ export const serviceCategories = [
         duration: '45-60 minutes',
         sessions: '1 session',
         idealFor: ['Sagging jowls', 'Nasolabial folds', 'Neck laxity'],
-        image: null,
+        image: pdoThreadLift,
       },
     ]
   },
@@ -480,7 +525,7 @@ export const serviceCategories = [
         duration: '30-45 minutes',
         sessions: '4–6 sessions',
         idealFor: ['Acne scars', 'Stretch marks', 'Skin rejuvenation'],
-        image: null,
+        image: dermapenMicroneedling,
       },
       {
         slug: 'cosmetic-gynecology',
@@ -492,7 +537,7 @@ export const serviceCategories = [
         duration: '30-45 minutes',
         sessions: '3–4 sessions',
         idealFor: ['Vaginal laxity', 'Intimate area concerns', 'Post-pregnancy care'],
-        image: null,
+          image: cosmeticGynecology,
       },
       {
         slug: 'nail-surgery',
@@ -504,7 +549,7 @@ export const serviceCategories = [
         duration: '30-60 minutes',
         sessions: '1 session',
         idealFor: ['Ingrown toenails', 'Nail infections', 'Nail bed tumors'],
-        image: null,
+        image: nailSurgery,
       },
       {
         slug: 'dermatosurgery',
@@ -516,7 +561,7 @@ export const serviceCategories = [
         duration: '30-90 minutes',
         sessions: '1 session',
         idealFor: ['Cysts', 'Lipomas', 'Skin lesions'],
-        image: null,
+        image: dermatosurgery,
       },
       {
         slug: 'old-scar-treatment',
@@ -528,7 +573,7 @@ export const serviceCategories = [
         duration: '30-60 minutes',
         sessions: '4–8 sessions',
         idealFor: ['Old surgical scars', 'Burn scars', 'Injury scars'],
-        image: null,
+        image: oldScarTreatment,
       },
       {
         slug: 'skin-biopsy',
@@ -540,7 +585,7 @@ export const serviceCategories = [
         duration: '15-20 minutes',
         sessions: '1 session',
         idealFor: ['Suspicious lesions', 'Chronic rashes', 'Diagnostic evaluation'],
-        image: null,
+        image: skinBiopsy,
       },
       {
         slug: 'ear-piercing',
@@ -552,7 +597,7 @@ export const serviceCategories = [
         duration: '10 minutes',
         sessions: '1 session',
         idealFor: ['Safe piercing', 'Children', 'All ages'],
-        image: null,
+        image: earPiercing,
       },
       {
         slug: 'eyebrow-microblading',
@@ -564,7 +609,7 @@ export const serviceCategories = [
         duration: '90-120 minutes',
         sessions: '1 session + 1 touch-up',
         idealFor: ['Sparse brows', 'Over-plucked brows', 'Asymmetric brows'],
-        image: null,
+        image: eyebrowMicroblading,
       },
     ]
   },
