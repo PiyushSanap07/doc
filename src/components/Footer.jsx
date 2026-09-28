@@ -1,15 +1,15 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { MapPin, Mail, Navigation, ExternalLink, Phone } from 'lucide-react';
 import { doctorData } from '../data/portfolioData';
 import Logo from './Logo';
 
 const footerNavLinks = [
-  { name: 'Home', href: '#home' },
-  { name: 'About Doctor', href: '#about' },
-  { name: 'Doctor Gallery', href: '#expertise' },
-  { name: 'Qualifications', href: '#qualifications' },
-  { name: 'Experience', href: '#experience' },
-  { name: 'Visit Clinic', href: '#contact' },
+  { name: 'Home', href: '#home', type: 'anchor' },
+  { name: 'About Doctor', href: '#about', type: 'anchor' },
+  { name: 'Services', href: '/services', type: 'route' },
+  { name: 'Doctor Gallery', href: '#expertise', type: 'anchor' },
+  { name: 'Visit Clinic', href: '#contact', type: 'anchor' },
 ];
 
 const InstagramIcon = ({ className = "w-5 h-5" }) => (
@@ -50,12 +50,12 @@ const Footer = () => {
               href={doctorData.socials.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="group bg-white p-3.5 rounded-2xl border-2 border-navy/20 shadow-[4px_4px_0px_#321427] hover:shadow-[6px_6px_0px_#8C486E] hover:border-primary transition-all duration-300 flex items-center gap-3"
+              className="group bg-white p-3 sm:p-3.5 rounded-2xl border-2 border-navy/20 shadow-[4px_4px_0px_#321427] hover:shadow-[6px_6px_0px_#8C486E] hover:border-primary transition-all duration-300 flex items-center gap-2.5 sm:gap-3"
             >
               <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white flex items-center justify-center shrink-0 shadow-xs group-hover:scale-110 transition-transform">
                 <InstagramIcon className="w-4 h-4" />
               </div>
-              <div className="overflow-hidden text-left">
+              <div className="overflow-hidden text-left min-w-0">
                 <span className="block text-[10px] font-black tracking-wider text-muted uppercase">Instagram</span>
                 <span className="block text-xs font-extrabold text-navy group-hover:text-primary transition-colors truncate">
                   @dr.nehashinde_dermacare
@@ -69,12 +69,12 @@ const Footer = () => {
               href={doctorData.socials.youtube}
               target="_blank"
               rel="noopener noreferrer"
-              className="group bg-white p-3.5 rounded-2xl border-2 border-navy/20 shadow-[4px_4px_0px_#321427] hover:shadow-[6px_6px_0px_#C98664] hover:border-accent transition-all duration-300 flex items-center gap-3"
+              className="group bg-white p-3 sm:p-3.5 rounded-2xl border-2 border-navy/20 shadow-[4px_4px_0px_#321427] hover:shadow-[6px_6px_0px_#C98664] hover:border-accent transition-all duration-300 flex items-center gap-2.5 sm:gap-3"
             >
               <div className="w-10 h-10 rounded-xl bg-red-600 text-white flex items-center justify-center shrink-0 shadow-xs group-hover:scale-110 transition-transform">
                 <YoutubeIcon className="w-4 h-4" />
               </div>
-              <div className="overflow-hidden text-left">
+              <div className="overflow-hidden text-left min-w-0">
                 <span className="block text-[10px] font-black tracking-wider text-muted uppercase">YouTube Channel</span>
                 <span className="block text-xs font-extrabold text-navy group-hover:text-accent transition-colors truncate">
                   Watch Videos
@@ -88,12 +88,12 @@ const Footer = () => {
               href={doctorData.clinic.googleMapUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="group bg-white p-3.5 rounded-2xl border-2 border-navy/20 shadow-[4px_4px_0px_#321427] hover:shadow-[6px_6px_0px_#8C486E] hover:border-primary transition-all duration-300 flex items-center gap-3"
+              className="group bg-white p-3 sm:p-3.5 rounded-2xl border-2 border-navy/20 shadow-[4px_4px_0px_#321427] hover:shadow-[6px_6px_0px_#8C486E] hover:border-primary transition-all duration-300 flex items-center gap-2.5 sm:gap-3"
             >
               <div className="w-10 h-10 rounded-xl bg-primary text-white flex items-center justify-center shrink-0 shadow-xs group-hover:scale-110 transition-transform">
                 <Navigation className="w-4 h-4" />
               </div>
-              <div className="overflow-hidden text-left">
+              <div className="overflow-hidden text-left min-w-0">
                 <span className="block text-[10px] font-black tracking-wider text-muted uppercase">Get Directions</span>
                 <span className="block text-xs font-extrabold text-navy group-hover:text-primary transition-colors truncate">
                   Nashik Clinic Location
@@ -105,12 +105,12 @@ const Footer = () => {
             {/* 4. EMAIL HIGHLIGHT CARD */}
             <a
               href={`mailto:${doctorData.email}`}
-              className="group bg-white p-3.5 rounded-2xl border-2 border-navy/20 shadow-[4px_4px_0px_#321427] hover:shadow-[6px_6px_0px_#C98664] hover:border-accent transition-all duration-300 flex items-center gap-3"
+              className="group bg-white p-3 sm:p-3.5 rounded-2xl border-2 border-navy/20 shadow-[4px_4px_0px_#321427] hover:shadow-[6px_6px_0px_#C98664] hover:border-accent transition-all duration-300 flex items-center gap-2.5 sm:gap-3"
             >
               <div className="w-10 h-10 rounded-xl bg-navy text-white flex items-center justify-center shrink-0 shadow-xs group-hover:scale-110 transition-transform">
                 <Mail className="w-4 h-4" />
               </div>
-              <div className="overflow-hidden text-left">
+              <div className="overflow-hidden text-left min-w-0">
                 <span className="block text-[10px] font-black tracking-wider text-muted uppercase">Email Us</span>
                 <span className="block text-xs font-extrabold text-navy group-hover:text-accent transition-colors truncate">
                   {doctorData.email}
@@ -165,14 +165,25 @@ const Footer = () => {
             </h4>
             <nav className="grid grid-cols-2 gap-y-2 gap-x-4 text-xs font-bold text-navy">
               {footerNavLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="hover:text-primary transition-colors flex items-center gap-1.5"
-                >
-                  <span className="text-primary">•</span>
-                  <span>{link.name}</span>
-                </a>
+                link.type === 'route' ? (
+                  <Link
+                    key={link.name}
+                    to={link.href}
+                    className="hover:text-primary transition-colors flex items-center gap-1.5"
+                  >
+                    <span className="text-primary">•</span>
+                    <span>{link.name}</span>
+                  </Link>
+                ) : (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    className="hover:text-primary transition-colors flex items-center gap-1.5"
+                  >
+                    <span className="text-primary">•</span>
+                    <span>{link.name}</span>
+                  </a>
+                )
               ))}
             </nav>
           </div>

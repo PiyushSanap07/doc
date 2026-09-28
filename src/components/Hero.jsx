@@ -42,7 +42,7 @@ const Hero = ({ onBookClick }) => {
 
             {/* Name & Title */}
             <div className="space-y-2">
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-[3.2rem] font-extrabold text-navy tracking-tight leading-[1.08] whitespace-nowrap">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-[3.2rem] font-extrabold text-navy tracking-tight leading-[1.08] break-words sm:whitespace-nowrap">
                 {doctorData.name}
               </h1>
 
@@ -64,7 +64,7 @@ const Hero = ({ onBookClick }) => {
             </div>
 
             {/* Credential Strip */}
-            <div className="pt-5 grid grid-cols-3 gap-3 sm:gap-4 border-t border-slate-100">
+            <div className="pt-5 grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3 lg:gap-4 border-t border-slate-100">
               {[
                 {
                   Icon: GraduationCap,
@@ -84,13 +84,13 @@ const Hero = ({ onBookClick }) => {
               ].map((cred) => (
                 <div
                   key={cred.title}
-                  className="flex items-center gap-2.5 bg-white p-3 rounded-xl border-2 border-navy/20 shadow-[2px_2px_0px_#F0D5E2] hover:shadow-[3px_3px_0px_#8C486E] hover:border-primary/40 transition-all"
+                  className="flex items-center gap-2.5 bg-white p-2.5 sm:p-3 rounded-xl border-2 border-navy/20 shadow-[2px_2px_0px_#F0D5E2] hover:shadow-[3px_3px_0px_#8C486E] hover:border-primary/40 transition-all"
                 >
                   <div className="w-9 h-9 rounded-lg bg-mint flex items-center justify-center text-primary shrink-0">
                     <cred.Icon className="w-5 h-5" />
                   </div>
 
-                  <div>
+                  <div className="min-w-0">
                     <span className="block text-sm font-bold text-navy leading-tight">
                       {cred.title}
                     </span>
@@ -137,8 +137,8 @@ const Hero = ({ onBookClick }) => {
               <div
                 className="
                   relative z-10
-                  w-[240px] sm:w-[290px] md:w-[340px] lg:w-[380px] xl:w-[410px]
-                  h-[320px] sm:h-[380px] md:h-[430px] lg:h-[475px] xl:h-[510px]
+                  w-[240px] xs:w-[270px] sm:w-[290px] md:w-[340px] lg:w-[380px] xl:w-[410px]
+                  h-[320px] xs:h-[360px] sm:h-[380px] md:h-[430px] lg:h-[475px] xl:h-[510px]
                   bg-primary organic-arch
                   overflow-hidden
                   shadow-2xl
@@ -147,13 +147,13 @@ const Hero = ({ onBookClick }) => {
               >
                 <img
                   src="/images/doctor-hero.png"
-                  alt="Dr. Neha Ande-Shinde - Dermatologist & Aesthetic Physician"
+                  alt="Dr. Neha Shinde - Dermatologist & Aesthetic Physician"
                   className="w-full h-full object-cover object-top transition-transform duration-700 hover:scale-105"
                 />
               </div>
 
-              {/* Floating Badge: Healthy Skin / Happy You */}
-              <div className="absolute top-10 -right-4 sm:-right-8 z-20">
+              {/* Floating Badge: Healthy Skin / Happy You - Positioned at bottom-right on mobile to keep doctor's face completely clear */}
+              <div className="absolute bottom-5 -right-1 xs:-right-2 sm:bottom-auto sm:top-10 sm:-right-8 z-20 scale-85 xs:scale-95 sm:scale-100 origin-bottom-right sm:origin-top-right">
                 <FloatingBadge
                   icon={Heart}
                   title="Healthy Skin"
@@ -161,10 +161,10 @@ const Hero = ({ onBookClick }) => {
                 />
               </div>
 
-              {/* Floating Smile Icon */}
-              <div className="absolute top-1/2 -left-5 sm:-left-10 z-20 transform -translate-y-1/2">
-                <div className="bg-white p-3 rounded-xl shadow-floating border border-mint-border text-primary">
-                  <Smile className="w-6 h-6" />
+              {/* Floating Smile Icon - Positioned at top-left curve on mobile, vertically centered on desktop */}
+              <div className="absolute top-8 -left-2 sm:top-1/2 sm:-left-10 z-20 sm:-translate-y-1/2 scale-85 xs:scale-90 sm:scale-100 origin-left">
+                <div className="bg-white p-2 sm:p-3 rounded-xl shadow-floating border border-mint-border text-primary">
+                  <Smile className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
               </div>
 

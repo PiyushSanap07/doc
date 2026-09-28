@@ -20,7 +20,7 @@ const Qualifications = () => {
           transition={{ type: "spring", stiffness: 90, damping: 14 }}
         >
           <SectionLabel>QUALIFICATIONS & TIMELINE</SectionLabel>
-          <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-navy leading-tight whitespace-nowrap">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-navy leading-tight">
             Medical Education & Certification Timeline
           </h2>
         </motion.div>
@@ -51,7 +51,7 @@ const Qualifications = () => {
                   </div>
 
                   {/* Qualification Detail Card */}
-                  <div className="w-full bg-white p-5 rounded-2xl border-2 border-navy/20 shadow-[4px_4px_0px_#F0D5E2] group-hover:shadow-[5px_5px_0px_#8C486E] group-hover:border-primary/50 transition-all duration-300 flex flex-col justify-between h-full">
+                  <div className="w-full bg-white p-4 sm:p-5 rounded-2xl border-2 border-navy/20 shadow-[4px_4px_0px_#F0D5E2] group-hover:shadow-[5px_5px_0px_#8C486E] group-hover:border-primary/50 transition-all duration-300 flex flex-col justify-between h-full">
                     <div>
                       <div className="flex items-center justify-between gap-2 mb-2">
                         <span className="text-[10px] font-black tracking-widest text-primary uppercase bg-mint px-2.5 py-0.5 rounded-md inline-block">

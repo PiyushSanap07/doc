@@ -43,7 +43,7 @@ const AppointmentModal = ({ isOpen, onClose }) => {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
           transition={{ type: "spring", duration: 0.5 }}
-          className="relative bg-white rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-2xl z-10 border border-mint-border overflow-hidden"
+          className="relative bg-white rounded-3xl p-5 sm:p-8 max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-2xl z-10 border border-mint-border"
         >
           {/* Header */}
           <div className="flex items-center justify-between pb-4 border-b border-mint-border mb-6">
@@ -120,7 +120,7 @@ const AppointmentModal = ({ isOpen, onClose }) => {
                 </select>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 xs:grid-cols-2 gap-3.5 sm:gap-4">
                 <div>
                   <label className="block text-xs font-semibold text-navy uppercase tracking-wider mb-1">
                     Preferred Date
