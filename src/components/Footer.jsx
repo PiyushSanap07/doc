@@ -7,6 +7,7 @@ const footerNavLinks = [
   { name: 'About us', href: '#about', type: 'anchor' },
   { name: 'Services', href: '/services', type: 'route' },
   { name: 'Gallery', href: '/gallery', type: 'route' },
+  { name: 'Blog', href: '/blog', type: 'route' },
   { name: 'Contact us', href: '/contact', type: 'route' },
 ];
 

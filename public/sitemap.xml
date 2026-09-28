@@ -40,6 +40,50 @@
     <priority>0.7</priority>
   </url>
 
+  <!-- Blog -->
+  <url>
+    <loc>https://drnehashinde.com/blog</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://drnehashinde.com/blog/why-acne-happens-and-what-actually-clears-it</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://drnehashinde.com/blog/melasma-why-it-comes-back-and-how-to-keep-it-away</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://drnehashinde.com/blog/hair-fall-in-women-causes-and-doctor-backed-fixes</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://drnehashinde.com/blog/botox-fillers-or-skin-boosters-which-one-do-you-need</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://drnehashinde.com/blog/dermatologist-morning-to-night-routine-for-humid-climate</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://drnehashinde.com/blog/laser-hair-reduction-how-many-sessions-really</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <!-- Chemical Peels Services -->
   <url>
     <loc>https://drnehashinde.com/services/acne-peel</loc>

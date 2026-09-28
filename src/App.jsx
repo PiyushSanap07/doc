@@ -15,6 +15,8 @@ import Services from './components/Services';
 import ServiceDetail from './components/ServiceDetail';
 import Gallery from './components/Gallery';
 import GalleryDetail from './components/GalleryDetail';
+import Blog from './components/Blog';
+import BlogDetail from './components/BlogDetail';
 import FloatingCTA from './components/FloatingCTA';
 import Contact from './components/Contact';
 
@@ -76,6 +78,8 @@ function App() {
         <Route path="/services/:slug" element={<ServiceDetail />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/gallery/:slug" element={<GalleryDetail />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:slug" element={<BlogDetail />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
 
