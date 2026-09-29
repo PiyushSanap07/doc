@@ -29,7 +29,7 @@ const marqueeList = [...galleryPhotos, ...galleryPhotos];
 
 const Expertise = () => {
   return (
-    <section id="expertise" className="py-8 sm:py-14 bg-white border-t border-gray-100">
+    <section id="expertise" className="pt-8 sm:pt-10 pb-8 sm:pb-14 bg-white">
 
       {/* Header */}
       <motion.div

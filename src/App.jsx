@@ -19,6 +19,8 @@ import Blog from './components/Blog';
 import BlogDetail from './components/BlogDetail';
 import FloatingCTA from './components/FloatingCTA';
 import Contact from './components/Contact';
+import AboutPage from './components/AboutPage';
+import StatsStrip from './components/StatsStrip';
 
 // Home page content extracted as its own component
 function HomePage({ onBookClick }) {
@@ -34,6 +36,7 @@ function HomePage({ onBookClick }) {
       <main>
         <Hero onBookClick={onBookClick} />
         <About />
+        <StatsStrip />
         <Expertise />
         <Qualifications />
         <Experience />
@@ -81,6 +84,7 @@ function App() {
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogDetail />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/about" element={<AboutPage />} />
       </Routes>
 
       {/* Floating Call, WhatsApp & Social Buttons - Persistent Across Every Page */}

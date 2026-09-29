@@ -4,7 +4,7 @@ import { MapPin, Phone, Mail, ExternalLink } from 'lucide-react';
 import { doctorData } from '../data/portfolioData';
 
 const footerNavLinks = [
-  { name: 'About us', href: '#about', type: 'anchor' },
+  { name: 'About us', href: '/about', type: 'route' },
   { name: 'Services', href: '/services', type: 'route' },
   { name: 'Gallery', href: '/gallery', type: 'route' },
   { name: 'Blog', href: '/blog', type: 'route' },

@@ -1,10 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Award, BookOpen, Mic, Users, Star, Quote } from 'lucide-react';
-import { doctorData } from '../data/portfolioData';
+import { Star, Quote } from 'lucide-react';
 import SectionLabel from './SectionLabel';
-
-const statIcons = [Award, BookOpen, Mic, Users];
 
 // Real-world verified patient reviews for Dr. Neha Shinde's dermatology care
 const testimonials = [
@@ -60,7 +57,7 @@ const Experience = () => {
       <div className="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12">
 
         {/* Section Header */}
-        <div className="mb-5 sm:mb-8 flex flex-col md:flex-row md:items-end justify-between gap-3">
+        <div className="mb-6 sm:mb-8 flex flex-col md:flex-row md:items-end justify-between gap-3 sm:gap-4">
           <div>
             <SectionLabel>EXPERIENCE &amp; PATIENT TRUST</SectionLabel>
             <h2 className="text-xl xs:text-2xl sm:text-4xl font-extrabold text-black leading-tight mt-0.5">
@@ -71,53 +68,26 @@ const Experience = () => {
             </h2>
           </div>
 
-          <div className="flex items-center gap-2 text-[11px] sm:text-xs font-bold text-black self-start md:self-auto bg-[#FAF0F5] px-3 py-1.5 rounded-lg border border-primary/10">
+          <div className="flex items-center gap-2 text-[11px] sm:text-xs font-bold text-black self-start md:self-auto bg-[#FAF0F5] px-3.5 py-2 rounded-xl border border-primary/15 shadow-2xs">
             <div className="flex text-amber-500">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="w-3.5 h-3.5 fill-amber-400 stroke-amber-400" />
               ))}
             </div>
-            <span>4.9/5 Rating (5000+ Happy Patients)</span>
+            <span>4.9/5 Rating (500+ Happy Patients)</span>
           </div>
-        </div>
-
-        {/* Stats Row - Compact Height */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8">
-          {doctorData.stats.map((stat, idx) => {
-            const IconComp = statIcons[idx % statIcons.length];
-            return (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, amount: 0.2 }}
-                transition={{ duration: 0.35, delay: idx * 0.05 }}
-                className="bg-white p-3.5 sm:p-5 rounded-2xl border border-gray-200/80 shadow-2xs hover:shadow-md transition-all relative overflow-hidden group"
-              >
-                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-[#8C486E]/10 to-[#C98664]/10 text-primary flex items-center justify-center mb-2.5 group-hover:scale-105 transition-transform">
-                  <IconComp className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-primary" />
-                </div>
-                <span className="text-2xl sm:text-3xl font-extrabold bg-gradient-to-r from-[#8C486E] to-[#C98664] bg-clip-text text-transparent leading-none block">
-                  {stat.value}
-                </span>
-                <span className="text-xs sm:text-sm font-semibold text-black mt-1.5 block">
-                  {stat.label}
-                </span>
-              </motion.div>
-            );
-          })}
         </div>
 
         {/* Testimonials Marquee Heading */}
-        <div className="flex items-center justify-between mb-3 pt-1">
+        <div className="flex items-center justify-between mb-3.5 pt-1">
           <div className="flex items-center gap-2">
             <Quote className="w-4 h-4 text-primary" />
             <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-black">
-              Patient Testimonials &amp; Stories
+              Verified Patient Experiences &amp; Stories
             </h3>
           </div>
-          <span className="text-[11px] text-gray-400 font-semibold hidden sm:inline">
-            Continuous Live Feedback
+          <span className="text-xs text-gray-400 font-semibold hidden sm:inline">
+            Real feedback from clinical consultations
           </span>
         </div>
 

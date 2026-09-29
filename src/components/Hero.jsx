@@ -1,96 +1,90 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Phone, Users } from 'lucide-react';
-import { doctorData } from '../data/portfolioData';
 import doctorHeroImg from '../assets/images/doctor.png';
+import doctorImg2    from '../assets/images/doc2.png';
+import doctorImg3    from '../assets/images/doc3.png';
 
-const Hero = ({ onBookClick }) => {
+/* ─── Slide Images ────────────────────────────────────────── */
+const SLIDES = [doctorHeroImg, doctorImg3, doctorImg2];
+const INTERVAL = 3500; // ms per slide
+
+const Hero = () => {
+  const [activeIdx, setActiveIdx] = useState(0);
+
+  /* Auto-advance every INTERVAL ms, loops continuously */
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveIdx((prev) => (prev + 1) % SLIDES.length);
+    }, INTERVAL);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section
       id="home"
       className="relative bg-gradient-to-br from-[#FDF6F9] via-[#FAF0F5] to-[#F5E6EE] overflow-hidden pt-20 sm:pt-22 lg:pt-16 pb-0"
     >
       <div className="max-w-[1360px] mx-auto px-4 sm:px-8 lg:px-12 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 lg:gap-8 items-end">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 lg:gap-8 items-center">
 
-          {/* LEFT: Text Content - 7 cols */}
+          {/* LEFT: Text Content — generously sized to fill hero space */}
           <motion.div
-            className="lg:col-span-7 space-y-3.5 sm:space-y-4 pt-1 sm:pt-2 pb-2 sm:pb-6 lg:py-12 z-10"
+            className="lg:col-span-7 space-y-4 sm:space-y-6 lg:space-y-7 pt-2 sm:pt-4 pb-4 sm:pb-8 lg:py-10 z-10"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, ease: 'easeOut' }}
           >
             {/* Small Label */}
-            <p className="text-xs sm:text-sm font-bold tracking-wide text-primary">
+            <p className="text-xs sm:text-sm md:text-base font-bold tracking-wider text-primary uppercase">
               Welcome to Dr. Neha Shinde's Clinic
             </p>
 
-            {/* Main Headline */}
-            <h1 className="text-[1.85rem] xs:text-3xl sm:text-4xl lg:text-[3.2rem] xl:text-[3.5rem] font-extrabold text-black leading-[1.18] sm:leading-[1.15] tracking-tight">
-              The care that nurtures your{' '}
-              <span className="text-primary">skin, hair</span>{' '}
-              &amp; confidence
+            {/* Main Headline - Skincare Quote in Italic Calligraphy */}
+            <h1 className="font-['Cormorant_Garamond',_'Playfair_Display',_Georgia,_serif] italic font-semibold text-[1.75rem] xs:text-[2.2rem] sm:text-[2.85rem] lg:text-[3.5rem] xl:text-[3.85rem] text-[#1F1418] leading-[1.2] sm:leading-[1.13] tracking-tight max-w-3xl">
+              “Your skin is an investment that speaks for you every day. Nurture it with science, patience, and personalized care.”
             </h1>
 
-            {/* Tagline */}
-            <p className="text-sm sm:text-base lg:text-lg text-black font-normal leading-relaxed max-w-xl">
-              {doctorData.tagline}
-            </p>
-
-            {/* CTA & Phone Row */}
-            <div className="flex flex-col xs:flex-row items-stretch xs:items-center gap-3 sm:gap-6 pt-1 sm:pt-2">
-              <button
-                onClick={onBookClick}
-                className="w-full xs:w-auto text-center px-6 sm:px-7 py-3.5 sm:py-3 bg-primary text-white text-sm font-bold rounded-lg sm:rounded-md hover:bg-primary-dark transition-all shadow-sm active:scale-98 min-h-[48px] flex items-center justify-center cursor-pointer"
-              >
-                Book Appointment
-              </button>
-
-              <div className="flex items-center justify-center xs:justify-start gap-2.5 xs:block text-sm py-1 xs:py-0">
-                <p className="text-gray-500 uppercase text-[10px] font-bold tracking-widest xs:mb-0.5">
-                  FOR APPOINTMENT:
-                </p>
-                <a
-                  href={`tel:${doctorData.clinic.phone.replace(/[^0-9+]/g, '')}`}
-                  className="flex items-center gap-2 font-bold text-black hover:text-primary transition-colors text-sm sm:text-base min-h-[44px] xs:min-h-0"
-                >
-                  <Phone className="w-4 h-4 text-primary shrink-0" />
-                  {doctorData.clinic.phone}
-                </a>
-              </div>
+            {/* Author Attribution */}
+            <div className="flex items-center gap-3 pt-1">
+              <span className="inline-block w-8 xs:w-10 sm:w-14 h-[2.5px] bg-primary"></span>
+              <p className="text-lg xs:text-xl sm:text-2xl lg:text-3xl font-black text-black tracking-wide">
+                Dr. Neha Shinde
+              </p>
             </div>
           </motion.div>
 
-          {/* RIGHT: Doctor Transparent Sticker Only */}
+          {/* RIGHT: Doctor Image Slideshow — rests flush at bottom baseline */}
           <motion.div
-            className="lg:col-span-5 relative flex justify-center lg:justify-end items-end self-end mt-1 sm:mt-2 lg:mt-0"
+            className="lg:col-span-5 relative flex justify-center lg:justify-center items-end self-end mt-1 sm:mt-2 lg:mt-0"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, ease: 'easeOut', delay: 0.1 }}
           >
-            {/* Floating Patient Stat Badge */}
-            <div className="absolute top-2 left-2 sm:-left-4 z-20 bg-white/95 backdrop-blur-xs rounded-xl px-2.5 py-1 sm:px-4 sm:py-2.5 shadow-md border border-gray-100 flex items-center gap-1.5 sm:gap-3">
-              <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                <Users className="w-3 h-3 sm:w-4 sm:h-4" />
-              </div>
-              <div className="leading-tight">
-                <p className="text-[8px] sm:text-[10px] text-gray-500 font-semibold uppercase tracking-wider">Treated</p>
-                <p className="text-[11px] sm:text-sm font-extrabold text-black">5000+ Patients</p>
-              </div>
-            </div>
-
-            {/* Pure isolated doctor sticker */}
-            <div className="w-full max-w-[240px] xs:max-w-[280px] sm:max-w-[360px] lg:max-w-[430px]">
-              <img
-                src={doctorHeroImg}
-                alt="Dr. Neha Shinde — Dermatologist & Aesthetic Physician"
-                width="430"
-                height="500"
-                loading="eager"
-                fetchPriority="high"
-                decoding="async"
-                className="w-full h-auto object-contain block select-none pointer-events-none"
-              />
+            {/* Slideshow Container — original sizing preserved */}
+            <div className="relative w-full max-w-[260px] xs:max-w-[300px] sm:max-w-[380px] lg:max-w-[450px]">
+              {SLIDES.map((src, i) => (
+                <img
+                  key={i}
+                  src={src}
+                  alt="Dr. Neha Shinde — Dermatologist & Aesthetic Physician"
+                  width="450"
+                  height="530"
+                  loading="eager"
+                  fetchPriority={i === 0 ? 'high' : 'low'}
+                  decoding="async"
+                  className="w-full h-auto object-contain block select-none pointer-events-none"
+                  style={{
+                    position: i === 0 ? 'relative' : 'absolute',
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    opacity: i === activeIdx ? 1 : 0,
+                    zIndex: i === activeIdx ? 2 : 1,
+                    transition: 'opacity 0.8s ease-in-out',
+                    willChange: 'opacity',
+                  }}
+                />
+              ))}
             </div>
           </motion.div>
 

@@ -6,12 +6,12 @@ import { doctorData } from '../data/portfolioData';
 import Logo from './Logo';
 
 const navLinks = [
-  { name: 'Home', href: '#home', type: 'anchor' },
-  { name: 'About', href: '#about', type: 'anchor' },
+  { name: 'Home',     href: '#home',     type: 'anchor' },
+  { name: 'About',    href: '/about',    type: 'route' },
   { name: 'Services', href: '/services', type: 'route' },
-  { name: 'Gallery', href: '/gallery', type: 'route' },
-  { name: 'Blog', href: '/blog', type: 'route' },
-  { name: 'Contact', href: '/contact', type: 'route' },
+  { name: 'Gallery',  href: '/gallery',  type: 'route' },
+  { name: 'Blog',     href: '/blog',     type: 'route' },
+  { name: 'Contact',  href: '/contact',  type: 'route' },
 ];
 
 const Navbar = ({ onBookClick }) => {
@@ -34,7 +34,8 @@ const Navbar = ({ onBookClick }) => {
         }
       }
     };
-    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isHomePage]);
 
@@ -59,10 +60,16 @@ const Navbar = ({ onBookClick }) => {
     };
   }, [mobileMenuOpen]);
 
+  const isCamouflaged = !isScrolled && !mobileMenuOpen;
+
   return (
     <header
       ref={headerRef}
-      className={`fixed top-0 left-0 right-0 z-40 bg-white transition-shadow duration-300 ${isScrolled ? 'shadow-sm' : ''}`}
+      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+        isCamouflaged
+          ? 'bg-transparent shadow-none border-b border-transparent'
+          : 'bg-white/95 backdrop-blur-md shadow-xs border-b border-[#EDE0E8]/70'
+      }`}
     >
       <div className="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12">
         <div className="flex items-center justify-between h-16">
@@ -122,13 +129,21 @@ const Navbar = ({ onBookClick }) => {
             <a
               href={`tel:${doctorData.clinic.phone.replace(/[^0-9+]/g, '')}`}
               aria-label="Call clinic"
-              className="w-9 h-9 rounded-md bg-[#FAF0F5] text-primary flex items-center justify-center active:scale-95 transition-transform"
+              className={`w-9 h-9 rounded-md flex items-center justify-center active:scale-95 transition-all ${
+                isCamouflaged
+                  ? 'bg-white/70 backdrop-blur-xs text-primary border border-[#EDE0E8]/70 shadow-2xs'
+                  : 'bg-[#FAF0F5] text-primary'
+              }`}
             >
               <Phone className="w-4 h-4" />
             </a>
             <button
               onClick={() => setMobileMenuOpen(prev => !prev)}
-              className="w-9 h-9 rounded-md border border-gray-200 text-black flex items-center justify-center active:scale-95 transition-transform"
+              className={`w-9 h-9 rounded-md border flex items-center justify-center active:scale-95 transition-all ${
+                isCamouflaged
+                  ? 'border-[#EDE0E8]/80 bg-white/70 backdrop-blur-xs text-black shadow-2xs'
+                  : 'border-gray-200 text-black bg-white'
+              }`}
               aria-label="Toggle menu"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}

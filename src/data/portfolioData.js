@@ -30,7 +30,7 @@ export const doctorData = {
     },
     {
       id: "exp",
-      title: "5+ Years",
+      title: "10+ Years",
       subtitle: "Experience",
       icon: "Briefcase"
     }
@@ -110,10 +110,10 @@ export const doctorData = {
   ],
 
   stats: [
-    { value: "5+", label: "Years of Experience", icon: "Award" },
+    { value: "10+", label: "Years of Experience", icon: "Award" },
     { value: "20+", label: "Publications", icon: "BookOpen" },
     { value: "10+", label: "Conferences", icon: "Mic" },
-    { value: "5000+", label: "Patients Treated", icon: "Users" }
+    { value: "500+", label: "Happy Patients", icon: "Users" }
   ],
 
   achievements: [
