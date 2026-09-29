@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   ArrowLeft,
@@ -12,13 +12,12 @@ import {
   FileQuestion,
   Tag as TagIcon,
 } from 'lucide-react';
-import { getPostBySlug, getRelatedPosts, formatDate } from '../data/blogData';
+import { getPostBySlug, getRelatedPosts, getAllPosts, formatDate } from '../data/blogData';
 import { doctorData } from '../data/portfolioData';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import ScrollProgress from './ScrollProgress';
 import SectionLabel from './SectionLabel';
-import BlogCard from './BlogCard';
 
 // Renders a single content block from the post's `content` array
 const ContentBlock = ({ block }) => {
@@ -44,6 +43,25 @@ const ContentBlock = ({ block }) => {
     );
   }
 
+  if (block.type === 'image') {
+    return (
+      <figure className="my-7 overflow-hidden rounded-xl border border-gray-200/80 bg-[#FAF0F5]">
+        <img
+          src={block.src}
+          alt={block.alt}
+          loading="lazy"
+          decoding="async"
+          className="block w-full max-h-[28rem] object-cover"
+        />
+        {block.caption && (
+          <figcaption className="px-4 py-3 text-xs sm:text-sm leading-relaxed text-gray-600">
+            {block.caption}
+          </figcaption>
+        )}
+      </figure>
+    );
+  }
+
   if (block.type === 'callout') {
     return (
       <div className="my-6 p-4 sm:p-5 rounded-xl bg-[#FAF0F5] border-l-4 border-primary">
@@ -66,8 +84,17 @@ const ContentBlock = ({ block }) => {
 };
 
 const BlogDetail = () => {
+  const navigate = useNavigate();
   const { slug } = useParams();
   const post = getPostBySlug(slug);
+
+  const handleBack = () => {
+    if (window.history.state && window.history.state.idx > 0) {
+      navigate(-1);
+    } else {
+      navigate('/blog');
+    }
+  };
 
   const handleBookClick = () => { window.location.href = 'tel:+917498314453'; };
 
@@ -85,6 +112,92 @@ const BlogDetail = () => {
       return () => { document.head.removeChild(link); };
     }
   }, [slug]);
+
+  useEffect(() => {
+    if (!post) return undefined;
+
+    const canonicalUrl = `https://drnehashinde.com/blog/${post.slug}`;
+    const imageUrl = new URL(post.image, window.location.origin).href;
+    const description = post.metaDescription || post.excerpt;
+    const restore = [];
+    const previousTitle = document.title;
+
+    document.title = post.metaTitle || `${post.title} | Dr. Neha Shinde`;
+    restore.push(() => { document.title = previousTitle; });
+
+    const setMeta = (attribute, key, content) => {
+      let element = document.head.querySelector(`meta[${attribute}="${key}"]`);
+      const created = !element;
+      if (!element) {
+        element = document.createElement('meta');
+        element.setAttribute(attribute, key);
+        document.head.appendChild(element);
+      }
+      const previousContent = element.getAttribute('content');
+      element.setAttribute('content', content);
+      restore.push(() => {
+        if (created) element.remove();
+        else if (previousContent !== null) element.setAttribute('content', previousContent);
+      });
+    };
+
+    let canonical = document.head.querySelector('link[rel="canonical"]');
+    const createdCanonical = !canonical;
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.rel = 'canonical';
+      document.head.appendChild(canonical);
+    }
+    const previousCanonical = canonical.href;
+    canonical.href = canonicalUrl;
+    restore.push(() => {
+      if (createdCanonical) canonical.remove();
+      else canonical.href = previousCanonical;
+    });
+
+    setMeta('name', 'description', description);
+    setMeta('name', 'author', doctorData.name);
+    setMeta('property', 'og:type', 'article');
+    setMeta('property', 'og:url', canonicalUrl);
+    setMeta('property', 'og:title', post.metaTitle || post.title);
+    setMeta('property', 'og:description', description);
+    setMeta('property', 'og:image', imageUrl);
+    setMeta('property', 'article:published_time', post.date);
+    setMeta('property', 'article:section', post.category);
+    setMeta('name', 'twitter:card', 'summary_large_image');
+    setMeta('name', 'twitter:title', post.metaTitle || post.title);
+    setMeta('name', 'twitter:description', description);
+    setMeta('name', 'twitter:image', imageUrl);
+
+    const structuredData = document.createElement('script');
+    structuredData.type = 'application/ld+json';
+    structuredData.textContent = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: post.title,
+      description,
+      image: imageUrl,
+      datePublished: `${post.date}T00:00:00+05:30`,
+      author: {
+        '@type': 'Person',
+        name: doctorData.name,
+        jobTitle: doctorData.role,
+      },
+      publisher: {
+        '@type': 'Organization',
+        name: `${doctorData.name} Skin Clinic`,
+        url: 'https://drnehashinde.com',
+      },
+      mainEntityOfPage: canonicalUrl,
+      articleSection: post.category,
+      keywords: post.tags?.join(', '),
+      inLanguage: 'en-IN',
+    });
+    document.head.appendChild(structuredData);
+    restore.push(() => structuredData.remove());
+
+    return () => restore.reverse().forEach((restoreEntry) => restoreEntry());
+  }, [post]);
 
   // 404 fallback
   if (!post) {
@@ -114,6 +227,10 @@ const BlogDetail = () => {
   }
 
   const relatedPosts = getRelatedPosts(post.slug, 3);
+  const sidebarPosts = [
+    ...relatedPosts,
+    ...getAllPosts().filter((item) => item.slug !== post.slug && !relatedPosts.some((related) => related.slug === item.slug)),
+  ].slice(0, 4);
 
   return (
     <div className="min-h-screen bg-white text-black font-sans antialiased flex flex-col">
@@ -123,15 +240,16 @@ const BlogDetail = () => {
       <main className="pt-20 sm:pt-24 pb-16 flex-1">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12">
 
-          {/* Breadcrumb */}
-          <div className="pt-4 mb-4">
-            <Link
-              to="/blog"
-              className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-black hover:text-primary transition-colors group"
+          {/* Back Navigation (Only Arrow) */}
+          <div className="pt-1 pb-3 sm:pb-4 flex items-center">
+            <button
+              type="button"
+              onClick={handleBack}
+              aria-label="Back to Blog"
+              className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white border border-[#EDE0E8] flex items-center justify-center text-navy hover:text-primary hover:border-primary/50 hover:bg-mint transition-all shadow-xs cursor-pointer group"
             >
-              <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" />
-              Back to Blog
-            </Link>
+              <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5 text-primary group-hover:-translate-x-0.5 transition-transform" />
+            </button>
           </div>
 
           {/* Article Header */}
@@ -139,42 +257,35 @@ const BlogDetail = () => {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35 }}
-            className="max-w-3xl mb-6 sm:mb-8"
+            className="mb-6 sm:mb-8 max-w-4xl"
           >
-            <SectionLabel className="!mb-1">{post.category}</SectionLabel>
-            <h1 className="text-2xl xs:text-3xl sm:text-4xl lg:text-[2.75rem] font-extrabold text-black tracking-tight leading-tight">
+            <div className="inline-block text-[10px] sm:text-[11px] font-extrabold uppercase tracking-widest text-primary bg-[#FAF0F5] px-3 py-1 rounded-full mb-3">
+              {post.category}
+            </div>
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-navy tracking-tight leading-[1.2] mb-3">
               {post.title}
             </h1>
-
-            <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs sm:text-sm text-gray-600 font-semibold">
-              <span className="inline-flex items-center gap-1.5">
-                <CalendarDays className="w-4 h-4 text-primary" />
-                {formatDate(post.date)}
+            <p className="text-xs sm:text-base text-gray-600 leading-relaxed mb-4 max-w-2xl">
+              {post.excerpt}
+            </p>
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs sm:text-sm text-gray-500 font-medium pt-3 border-t border-gray-100">
+              <span className="flex items-center gap-2">
+                <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center">
+                  <span className="text-[9px] font-black text-primary">Dr</span>
+                </div>
+                <span className="font-bold text-navy">{doctorData.name}</span>
+                <span className="text-gray-400">· {doctorData.role}</span>
               </span>
-              <span className="inline-flex items-center gap-1.5">
-                <Clock className="w-4 h-4 text-primary" />
+              <span className="flex items-center gap-1.5 text-gray-400">
+                <CalendarDays className="w-3.5 h-3.5 text-primary" />
+                <time dateTime={post.date}>{formatDate(post.date)}</time>
+              </span>
+              <span className="flex items-center gap-1.5 text-gray-400">
+                <Clock className="w-3.5 h-3.5 text-primary" />
                 {post.readTime}
               </span>
-              <span className="text-primary">{doctorData.name}</span>
-              <span className="text-gray-400">•</span>
-              <span>{doctorData.role}</span>
             </div>
           </motion.header>
-
-          {/* Cover Image */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.4 }}
-            className="rounded-2xl overflow-hidden border border-gray-200/80 mb-8 sm:mb-10 bg-mint"
-          >
-            <img
-              src={post.image}
-              alt={post.title}
-              fetchPriority="high"
-              className="w-full h-56 sm:h-80 lg:h-[26rem] object-cover"
-            />
-          </motion.div>
 
           {/* Body + Sidebar */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
@@ -186,10 +297,16 @@ const BlogDetail = () => {
               transition={{ duration: 0.35, delay: 0.05 }}
               className="lg:col-span-8"
             >
-              <p className="text-base sm:text-lg text-black font-medium leading-relaxed pb-5 border-b border-gray-100 mb-2">
-                {post.excerpt}
-              </p>
-
+              {/* Featured Image: Elegantly sized, not overwhelming */}
+              <div className="overflow-hidden rounded-2xl border border-[#EDE0E8] shadow-xs mb-8 bg-mint">
+                <img
+                  src={post.image}
+                  alt={post.imageAlt || post.title}
+                  fetchPriority="high"
+                  decoding="async"
+                  className="w-full h-52 sm:h-64 md:h-72 object-cover"
+                />
+              </div>
               {post.content.map((block, i) => (
                 <ContentBlock key={i} block={block} />
               ))}
@@ -222,9 +339,37 @@ const BlogDetail = () => {
             {/* Sidebar */}
             <aside className="lg:col-span-4 lg:sticky lg:top-24 flex flex-col gap-4">
 
+              <section className="border border-[#EDE0E8] bg-white rounded-xl p-4 sm:p-5" aria-labelledby="related-heading">
+                <div className="flex items-center justify-between gap-3 border-b border-gray-100 pb-3 mb-2">
+                  <h2 id="related-heading" className="text-base sm:text-lg font-extrabold text-black">Related reads</h2>
+                  <Link to="/blog" className="inline-flex items-center gap-1 text-xs font-bold text-primary hover:underline">
+                    View all <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+                <ul className="divide-y divide-gray-100">
+                  {sidebarPosts.map((item) => (
+                    <li key={item.slug}>
+                      <Link to={`/blog/${item.slug}`} className="group flex items-center gap-3 py-3">
+                        <img
+                          src={item.image}
+                          alt=""
+                          loading="lazy"
+                          decoding="async"
+                          className="w-16 h-[3.25rem] rounded-md object-cover shrink-0 group-hover:opacity-90 transition-opacity"
+                        />
+                        <span className="min-w-0">
+                          <span className="inline-block text-[10px] font-bold uppercase tracking-wider text-primary bg-mint px-2 py-0.5 rounded-full mb-1">{item.category}</span>
+                          <span className="block text-sm leading-snug font-semibold text-gray-800 group-hover:text-primary transition-colors line-clamp-2">{item.title}</span>
+                        </span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+
               {/* Key Takeaways */}
               {post.keyTakeaways?.length > 0 && (
-                <div className="p-5 rounded-2xl border-2 border-primary/20 bg-white shadow-2xs relative overflow-hidden">
+                <div className="p-5 rounded-xl border border-primary/20 bg-white shadow-sm relative overflow-hidden">
                   <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#8C486E] to-[#C98664]" />
                   <h2 className="flex items-center gap-2 text-sm font-extrabold text-black mb-3.5">
                     <Lightbulb className="w-4.5 h-4.5 text-primary" />
@@ -242,7 +387,7 @@ const BlogDetail = () => {
               )}
 
               {/* Consultation CTA */}
-              <div className="p-5 rounded-2xl bg-[#FAF0F5] border border-primary/15">
+              <div className="p-5 rounded-xl bg-[#F4EDF1] border border-primary/15">
                 <h2 className="text-sm font-extrabold text-black mb-1.5">
                   Still dealing with this?
                 </h2>
@@ -259,36 +404,6 @@ const BlogDetail = () => {
               </div>
             </aside>
           </div>
-
-          {/* Related Posts */}
-          {relatedPosts.length > 0 && (
-            <motion.section
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4 }}
-              className="mt-16 pt-8 border-t border-gray-100"
-            >
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="text-xl sm:text-2xl font-extrabold text-black tracking-tight flex items-center gap-2">
-                  <span className="w-1.5 h-5 bg-primary rounded-full" />
-                  More in {post.category}
-                </h2>
-                <Link
-                  to="/blog"
-                  className="hidden sm:inline-flex items-center gap-1.5 text-sm font-bold text-primary hover:underline"
-                >
-                  All articles
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                {relatedPosts.map((p, i) => (
-                  <BlogCard key={p.slug} post={p} index={i} />
-                ))}
-              </div>
-            </motion.section>
-          )}
 
         </div>
       </main>

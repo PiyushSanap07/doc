@@ -12,18 +12,100 @@ import prpInjectionHair from '../assets/images/prp-injection-hair.webp';
 import botox from '../assets/images/botox.webp';
 import hydrafacial from '../assets/images/hydrafacial.webp';
 import laserHairReduction from '../assets/images/laser-hair-reduction.webp';
+import cleanup from '../assets/images/cleanup.webp';
 
 export const blogCategories = [
-  { id: 'all', title: 'All Posts', description: 'Every article on skin, hair and aesthetic care.' },
-  { id: 'acne', title: 'Acne & Scars', description: 'Breakouts, congestion, post-acne marks and scar revision.' },
-  { id: 'pigmentation', title: 'Pigmentation', description: 'Melasma, sun damage, uneven tone and post-inflammatory marks.' },
-  { id: 'hair', title: 'Hair & Scalp', description: 'Hair fall, thinning, dandruff and scalp health.' },
-  { id: 'anti-aging', title: 'Anti-Aging', description: 'Wrinkles, volume loss, skin laxity and preventive ageing.' },
-  { id: 'skincare', title: 'Skincare', description: 'Routines, ingredients, sun protection and barrier repair.' },
-  { id: 'laser', title: 'Laser Treatments', description: 'Laser hair reduction, resurfacing and pigmentation lasers.' },
+  { id: 'all',         title: 'All Topics',           icon: 'BookOpen',    count: 0,  description: 'Every article on skin health, aesthetics and clinical care.' },
+  { id: 'skincare',    title: 'Skincare Routine',      icon: 'Leaf',        count: 12, description: 'Routines, barrier repair, morning/evening rituals and doctor advice.' },
+  { id: 'acne',        title: 'Acne & Breakouts',      icon: 'Droplets',    count: 8,  description: 'Active acne, blackheads, hormonal cystic breakouts and scar fading.' },
+  { id: 'anti-aging',  title: 'Anti-Aging',            icon: 'Sparkles',    count: 6,  description: 'Collagen renewal, fine lines, skin firmness and preventive care.' },
+  { id: 'pigmentation',title: 'Hyperpigmentation',     icon: 'Sun',         count: 5,  description: 'Melasma, sun spots, tan removal and uneven tone.' },
+  { id: 'hair',        title: 'Hair & Scalp',          icon: 'Star',        count: 5,  description: 'Hair fall, dandruff, PRP therapy, hair density and scalp health.' },
+  { id: 'laser',       title: 'Laser Treatments',      icon: 'TrendingUp',  count: 4,  description: 'Laser hair reduction, resurfacing and pigmentation lasers.' },
+  { id: 'lifestyle',   title: 'Lifestyle & Wellness',  icon: 'Heart',       count: 4,  description: 'Diet, hydration, sleep, stress impact and daily skin habits.' },
 ];
 
 export const blogPosts = [
+  {
+    slug: 'skincare-tips-for-healthy-skin',
+    title: 'Skincare Tips for Healthy Skin: A Simple Daily Routine',
+    excerpt:
+      'A consistent skincare routine does not need a shelf full of products. Learn the everyday basics for cleansing, moisturising and sun protection, plus signs that it is time to see a dermatologist.',
+    categoryId: 'skincare',
+    category: 'Skincare',
+    image: cleanup,
+    date: '2026-09-28',
+    readTime: '7 min read',
+    featured: false,
+    tags: ['Healthy skin', 'Skincare routine', 'Sunscreen', 'Skin barrier', 'Dermatologist in Nashik'],
+    content: [
+      {
+        type: 'paragraph',
+        text: 'Healthy-looking skin usually comes from steady, gentle care rather than frequent product changes. Start with a few basics, choose products for your skin type and give a new routine time to show how your skin responds. Skin concerns such as persistent acne, itching or changing pigmentation may need a personalised diagnosis rather than another over-the-counter product.',
+      },
+      { type: 'heading', text: 'A simple morning skincare routine' },
+      {
+        type: 'list',
+        items: [
+          'Cleanse gently with lukewarm water and a mild cleanser if your skin feels oily or sweaty. Avoid scrubbing and very hot water.',
+          'Apply a moisturiser that feels comfortable for your skin type. Oily skin can still benefit from a light, non-comedogenic moisturiser.',
+          'Finish with a broad-spectrum sunscreen of SPF 30 or higher on exposed skin. Reapply when you are outdoors for extended periods, after sweating or swimming, and according to the product directions.',
+        ],
+      },
+      {
+        type: 'image',
+        src: hydrafacial,
+        alt: 'Skin care treatment being performed in a dermatology clinic',
+        caption: 'In-clinic skin treatments can complement a routine when recommended for a specific concern.',
+      },
+      { type: 'heading', text: 'Keep your evening routine gentle' },
+      {
+        type: 'paragraph',
+        text: 'In the evening, remove sunscreen and makeup with a gentle cleanser. Apply a moisturiser while the skin is slightly damp. If you use an active ingredient such as a retinoid or exfoliating acid, introduce one product at a time and follow professional guidance, especially if you have sensitive skin or are pregnant or planning pregnancy.',
+      },
+      { type: 'heading', text: 'Choose products for your skin, not trends' },
+      {
+        type: 'list',
+        items: [
+          'Dry or sensitive skin often does better with fragrance-free, barrier-supportive products.',
+          'Oily or acne-prone skin may prefer lightweight, non-comedogenic formulations.',
+          'Combination skin can use a simple routine and adjust moisturiser by area if needed.',
+          'Patch-test a new product on a small area and stop using it if it causes persistent burning, swelling or a rash.',
+        ],
+      },
+      {
+        type: 'callout',
+        title: 'A useful rule for new products',
+        text: 'Introduce one new product at a time. Changing several products together makes it difficult to identify what helped or caused irritation.',
+      },
+      { type: 'heading', text: 'Common habits that can irritate skin' },
+      {
+        type: 'list',
+        items: [
+          'Over-cleansing, rough scrubs and picking at spots can worsen irritation and increase the chance of marks.',
+          'Layering several strong active ingredients may damage the skin barrier instead of improving it.',
+          'Skipping sunscreen can allow UV exposure to worsen sun damage and some pigmentation concerns.',
+          'Using a product because it worked for someone else may not suit your skin or medical history.',
+        ],
+      },
+      { type: 'heading', text: 'When to consult a dermatologist' },
+      {
+        type: 'paragraph',
+        text: 'Consider a dermatology consultation if a rash or acne is persistent, painful or leaving marks; if pigmentation is changing or spreading; if a mole changes in size, shape or colour; or if hair loss is sudden or continuing. A clinician can assess possible causes and discuss suitable options based on your skin and health history.',
+      },
+      {
+        type: 'callout',
+        title: 'Personalised care matters',
+        text: 'This article is for general education and cannot diagnose a skin condition. A dermatologist can tailor advice to your symptoms, skin type, medicines and medical history.',
+      },
+    ],
+    keyTakeaways: [
+      'Keep the basics consistent: gentle cleansing, moisturising and daily sun protection.',
+      'Choose products for your skin type and introduce new actives gradually.',
+      'Avoid scrubbing, picking and stacking multiple strong products.',
+      'Persistent, painful or changing skin concerns deserve professional assessment.',
+    ],
+  },
   {
     slug: 'why-acne-happens-and-what-actually-clears-it',
     title: 'Why Acne Happens and What Actually Clears It',
