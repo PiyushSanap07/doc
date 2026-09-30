@@ -90,7 +90,7 @@ const Footer = () => {
             <div className="relative aspect-[16/10] min-h-[170px] w-full overflow-hidden rounded-sm border border-gray-300 bg-gray-100 shadow-sm sm:aspect-auto sm:h-[200px]">
               <iframe
                 title="Clinic Location Map"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3748.2857830975207!2d73.77205427601853!3d20.002437081358555!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bddeb12d22d07d9%3A0x31d7e9c2b0f3a78!2sHarit%20Building%2C%20Nashik%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3748.2857830975207!2d73.77205427601853!3d20.002437081358555!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bddeb12d22d07d9%3A0x31d7e9c2b0f3a78!2sHarit%20Building%2C%20Meri%20-%20Rasbihari%20Link%20Rd%2C%20near%20Balimandir-Rasbihari%20School%2C%20next%20to%20Pramod%20Mahajan%20Garden%2C%20Chakradhar%20Nagar%2C%20Saraswati%20Nagar%2C%20Balram%20Nagar%2C%20Nashik%2C%20Maharashtra%20422003!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}

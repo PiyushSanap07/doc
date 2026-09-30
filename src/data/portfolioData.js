@@ -12,7 +12,7 @@ export const doctorData = {
     instagram: "https://www.instagram.com/dr.nehashinde_dermacare/",
     youtube: "https://www.youtube.com/@DrNehaShinde",
     email: "mailto:drnehashinde@gmail.com",
-    directions: "https://maps.google.com/?q=Harit+Building+Meri+Rasbihari+Link+Rd+Nashik+Maharashtra+422003"
+    directions: "https://maps.app.goo.gl/fKmdf8DESo8YBM7K8"
   },
 
   credentials: [
@@ -139,6 +139,6 @@ export const doctorData = {
     hours: "Mon – Sat: As per appointments",
     phone: "+91 74983 14453",
     email: "drnehashinde@gmail.com",
-    googleMapUrl: "https://maps.google.com/?q=Harit+Building+Meri+Rasbihari+Link+Rd+Nashik+Maharashtra+422003"
+    googleMapUrl: "https://maps.app.goo.gl/fKmdf8DESo8YBM7K8"
   }
 };
