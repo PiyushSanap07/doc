@@ -12,7 +12,7 @@ export const doctorData = {
     instagram: "https://www.instagram.com/dr.nehashinde_dermacare/",
     youtube: "https://www.youtube.com/@DrNehaShinde",
     email: "mailto:drnehashinde@gmail.com",
-    directions: "https://maps.google.com/?q=Harit+Building+Meri+Rasbihari+Link+Rd+Nashik+Maharashtra+422003"
+    directions: "https://maps.app.goo.gl/fKmdf8DESo8YBM7K8"
   },
 
   credentials: [
@@ -30,7 +30,7 @@ export const doctorData = {
     },
     {
       id: "exp",
-      title: "5+ Years",
+      title: "10+ Years",
       subtitle: "Experience",
       icon: "Briefcase"
     }
@@ -110,10 +110,10 @@ export const doctorData = {
   ],
 
   stats: [
-    { value: "5+", label: "Years of Experience", icon: "Award" },
+    { value: "10+", label: "Years of Experience", icon: "Award" },
     { value: "20+", label: "Publications", icon: "BookOpen" },
     { value: "10+", label: "Conferences", icon: "Mic" },
-    { value: "5000+", label: "Patients Treated", icon: "Users" }
+    { value: "500+", label: "Happy Patients", icon: "Users" }
   ],
 
   achievements: [
@@ -139,6 +139,6 @@ export const doctorData = {
     hours: "Mon – Sat: As per appointments",
     phone: "+91 74983 14453",
     email: "drnehashinde@gmail.com",
-    googleMapUrl: "https://maps.google.com/?q=Harit+Building+Meri+Rasbihari+Link+Rd+Nashik+Maharashtra+422003"
+    googleMapUrl: "https://maps.app.goo.gl/fKmdf8DESo8YBM7K8"
   }
 };

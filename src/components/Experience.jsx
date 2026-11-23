@@ -1,7 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Star, Quote } from 'lucide-react';
+<<<<<<< HEAD
 import { doctorData } from '../data/portfolioData';
+=======
+>>>>>>> deaf20efb733590d4af6e3b8ae2fa52b4dfbb4ee
 import SectionLabel from './SectionLabel';
 
 // Real-world verified patient reviews for Dr. Neha Shinde's dermatology care
@@ -58,6 +61,7 @@ const Experience = () => {
       <div className="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12">
 
         {/* Section Header */}
+<<<<<<< HEAD
         <motion.div
           className="flex flex-col md:flex-row md:items-end justify-between gap-6"
           initial={{ opacity: 0, y: 20 }}
@@ -66,6 +70,10 @@ const Experience = () => {
           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
         >
           <div className="max-w-xl">
+=======
+        <div className="mb-6 sm:mb-8 flex flex-col md:flex-row md:items-end justify-between gap-3 sm:gap-4">
+          <div>
+>>>>>>> deaf20efb733590d4af6e3b8ae2fa52b4dfbb4ee
             <SectionLabel>EXPERIENCE &amp; PATIENT TRUST</SectionLabel>
             <h2 className="mt-5 font-display text-[1.75rem] xs:text-[2rem] sm:text-4xl lg:text-[2.75rem] font-medium leading-[1.18] tracking-[-0.01em] text-ink">
               Trusted experience.{' '}
@@ -73,15 +81,24 @@ const Experience = () => {
             </h2>
           </div>
 
+<<<<<<< HEAD
           <div className="flex items-center gap-3 self-start md:self-auto border border-line bg-white px-5 py-3 shrink-0">
             <div className="flex text-gold">
+=======
+          <div className="flex items-center gap-2 text-[11px] sm:text-xs font-bold text-black self-start md:self-auto bg-[#FAF0F5] px-3.5 py-2 rounded-xl border border-primary/15 shadow-2xs">
+            <div className="flex text-amber-500">
+>>>>>>> deaf20efb733590d4af6e3b8ae2fa52b4dfbb4ee
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="h-3.5 w-3.5 fill-gold stroke-gold" />
               ))}
             </div>
+<<<<<<< HEAD
             <span className="text-[11px] sm:text-xs font-medium text-ink whitespace-nowrap">
               4.9/5 &nbsp;·&nbsp; 5000+ Happy Patients
             </span>
+=======
+            <span>4.9/5 Rating (500+ Happy Patients)</span>
+>>>>>>> deaf20efb733590d4af6e3b8ae2fa52b4dfbb4ee
           </div>
         </motion.div>
 
@@ -106,6 +123,7 @@ const Experience = () => {
           ))}
         </div>
 
+<<<<<<< HEAD
         {/* Testimonials */}
         <div className="mt-10 sm:mt-12 flex items-center gap-3.5">
           <Quote className="h-4 w-4 text-gold shrink-0" />
@@ -114,6 +132,21 @@ const Experience = () => {
           </h3>
           <span aria-hidden className="hidden sm:block h-px flex-1 bg-line" />
         </div>
+=======
+        {/* Testimonials Marquee Heading */}
+        <div className="flex items-center justify-between mb-3.5 pt-1">
+          <div className="flex items-center gap-2">
+            <Quote className="w-4 h-4 text-primary" />
+            <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-black">
+              Verified Patient Experiences &amp; Stories
+            </h3>
+          </div>
+          <span className="text-xs text-gray-400 font-semibold hidden sm:inline">
+            Real feedback from clinical consultations
+          </span>
+        </div>
+
+>>>>>>> deaf20efb733590d4af6e3b8ae2fa52b4dfbb4ee
       </div>
 
       {/* Infinite marquee */}
