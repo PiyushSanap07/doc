@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+﻿import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Menu, X, Phone } from 'lucide-react';
@@ -6,12 +6,12 @@ import { doctorData } from '../data/portfolioData';
 import Logo from './Logo';
 
 const navLinks = [
-  { name: 'Home',     href: '#home',     type: 'anchor' },
-  { name: 'About',    href: '/about',    type: 'route' },
+  { name: 'Home', href: '#home', type: 'anchor' },
+  { name: 'About', href: '#about', type: 'anchor' },
   { name: 'Services', href: '/services', type: 'route' },
-  { name: 'Gallery',  href: '/gallery',  type: 'route' },
-  { name: 'Blog',     href: '/blog',     type: 'route' },
-  { name: 'Contact',  href: '/contact',  type: 'route' },
+  { name: 'Gallery', href: '/gallery', type: 'route' },
+  { name: 'Blog', href: '/blog', type: 'route' },
+  { name: 'Contact', href: '/contact', type: 'route' },
 ];
 
 const Navbar = ({ onBookClick }) => {
@@ -34,8 +34,7 @@ const Navbar = ({ onBookClick }) => {
         }
       }
     };
-    handleScroll();
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isHomePage]);
 
@@ -60,20 +59,10 @@ const Navbar = ({ onBookClick }) => {
     };
   }, [mobileMenuOpen]);
 
-  const isCamouflaged = !isScrolled && !mobileMenuOpen;
-
   return (
     <header
       ref={headerRef}
-<<<<<<< HEAD
       className={`fixed top-0 left-0 right-0 z-40 bg-cream/85 backdrop-blur-md transition-colors duration-300 ${isScrolled ? 'border-b border-line' : 'border-b border-transparent'}`}
-=======
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-        isCamouflaged
-          ? 'bg-transparent shadow-none border-b border-transparent'
-          : 'bg-white/95 backdrop-blur-md shadow-xs border-b border-[#EDE0E8]/70'
-      }`}
->>>>>>> deaf20efb733590d4af6e3b8ae2fa52b4dfbb4ee
     >
       <div className="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12">
         <div className="flex items-center justify-between h-16">
@@ -133,29 +122,13 @@ const Navbar = ({ onBookClick }) => {
             <a
               href={`tel:${doctorData.clinic.phone.replace(/[^0-9+]/g, '')}`}
               aria-label="Call clinic"
-<<<<<<< HEAD
               className="w-9 h-9 rounded-full bg-cream-deep text-primary flex items-center justify-center active:scale-95 transition-transform"
-=======
-              className={`w-9 h-9 rounded-md flex items-center justify-center active:scale-95 transition-all ${
-                isCamouflaged
-                  ? 'bg-white/70 backdrop-blur-xs text-primary border border-[#EDE0E8]/70 shadow-2xs'
-                  : 'bg-[#FAF0F5] text-primary'
-              }`}
->>>>>>> deaf20efb733590d4af6e3b8ae2fa52b4dfbb4ee
             >
               <Phone className="w-4 h-4" />
             </a>
             <button
               onClick={() => setMobileMenuOpen(prev => !prev)}
-<<<<<<< HEAD
               className="w-9 h-9 rounded-full border border-line text-ink flex items-center justify-center active:scale-95 transition-transform"
-=======
-              className={`w-9 h-9 rounded-md border flex items-center justify-center active:scale-95 transition-all ${
-                isCamouflaged
-                  ? 'border-[#EDE0E8]/80 bg-white/70 backdrop-blur-xs text-black shadow-2xs'
-                  : 'border-gray-200 text-black bg-white'
-              }`}
->>>>>>> deaf20efb733590d4af6e3b8ae2fa52b4dfbb4ee
               aria-label="Toggle menu"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -189,7 +162,7 @@ const Navbar = ({ onBookClick }) => {
                       className={`py-3 px-1 text-base font-bold border-b border-line flex items-center justify-between active:bg-cream-deep transition-colors ${isActive ? 'text-primary' : 'text-ink'}`}
                     >
                       <span>{link.name}</span>
-                      <span className="text-xs text-muted-light font-normal">→</span>
+                      <span className="text-xs text-muted-light font-normal">ΓåÆ</span>
                     </Link>
                   );
                 }
@@ -203,7 +176,7 @@ const Navbar = ({ onBookClick }) => {
                     className={`py-3 px-1 text-base font-bold border-b border-line flex items-center justify-between active:bg-cream-deep transition-colors ${isActive ? 'text-primary' : 'text-ink'}`}
                   >
                     <span>{link.name}</span>
-                    <span className="text-xs text-muted-light font-normal">→</span>
+                    <span className="text-xs text-muted-light font-normal">ΓåÆ</span>
                   </a>
                 );
               })}

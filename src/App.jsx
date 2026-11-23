@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -20,8 +20,7 @@ import Blog from './components/Blog';
 import BlogDetail from './components/BlogDetail';
 import FloatingCTA from './components/FloatingCTA';
 import Contact from './components/Contact';
-import AboutPage from './components/AboutPage';
-import StatsStrip from './components/StatsStrip';
+import { OPEN_APPOINTMENT_EVENT } from './lib/appointmentModal';
 
 // Home page content extracted as its own component
 function HomePage({ onBookClick }) {
@@ -37,7 +36,6 @@ function HomePage({ onBookClick }) {
       <main>
         <Hero onBookClick={onBookClick} />
         <About />
-        <StatsStrip />
         <Expertise />
         <Treatments onBookClick={onBookClick} />
         <Qualifications />
@@ -60,12 +58,18 @@ function App() {
   });
 
   const handleOpenModal = () => {
-    window.location.href = "tel:+917498314453";
+    setIsModalOpen(true);
   };
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
+
+  // Lets any page open the booking modal without prop drilling
+  useEffect(() => {
+    window.addEventListener(OPEN_APPOINTMENT_EVENT, handleOpenModal);
+    return () => window.removeEventListener(OPEN_APPOINTMENT_EVENT, handleOpenModal);
+  }, []);
 
   const handleLoaderFinish = () => {
     sessionStorage.setItem('has_loaded_once', 'true');
@@ -86,7 +90,6 @@ function App() {
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogDetail />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/about" element={<AboutPage />} />
       </Routes>
 
       {/* Floating Call, WhatsApp & Social Buttons - Persistent Across Every Page */}

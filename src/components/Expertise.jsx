@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Camera } from 'lucide-react';
@@ -28,11 +28,7 @@ const marqueeList = [...galleryPhotos, ...galleryPhotos];
 
 const Expertise = () => {
   return (
-<<<<<<< HEAD
     <section id="expertise" className="relative bg-cream py-10 sm:py-14 lg:py-16 overflow-hidden">
-=======
-    <section id="expertise" className="pt-8 sm:pt-10 pb-8 sm:pb-14 bg-white">
->>>>>>> deaf20efb733590d4af6e3b8ae2fa52b4dfbb4ee
 
       {/* Header */}
       <motion.div
@@ -81,7 +77,7 @@ const Expertise = () => {
             >
               <img
                 src={item.image}
-                alt={`${item.title} — Dr. Neha Shinde Skin Clinic`}
+                alt={`${item.title} ΓÇö Dr. Neha Shinde Skin Clinic`}
                 loading={index < 4 ? "eager" : "lazy"}
                 decoding="async"
                 width="256"

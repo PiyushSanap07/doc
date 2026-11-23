@@ -132,7 +132,7 @@ export const blogPosts = [
         items: [
           'Excess sebum — oil production rises with hormones, and the pore is already narrow to begin with.',
           'Dead skin cells — they clump inside the pore and form a plug.',
-          'Cutibacterium acnes — a bacteria that feeds on sebum and triggers inflammation.',
+          'Cutibacterium acnes — a bacterium that feeds on sebum and triggers inflammation.',
         ],
       },
       {
@@ -145,7 +145,7 @@ export const blogPosts = [
       },
       {
         type: 'paragraph',
-        text: 'Squeezing, scrubs, alcohol-based toners and physical scrubs all push inflammation deeper and rupture the follicle wall. That rupture is what turns a temporary spot into a dark post-inflammatory mark or a permanent scar. The more you treat acne aggressively at home, the longer the marks take to fade.',
+        text: 'Squeezing, scrubs and alcohol-based toners can push inflammation deeper and rupture the follicle wall. That rupture is what turns a temporary spot into a dark post-inflammatory mark or a permanent scar. The more you treat acne aggressively at home, the longer the marks take to fade.',
       },
       {
         type: 'callout',
@@ -306,7 +306,7 @@ export const blogPosts = [
         items: [
           'Botulinum toxin relaxes the muscle that creates a line. It softens expression lines — crow\'s feet, frown lines, forehead lines — and prevents them deepening. It does not add volume.',
           'Fillers restore or add volume that has been lost: cheeks, lips, under-eyes, nasolabial folds. Too much in the wrong place is how people end up looking different rather than refreshed.',
-          'Skin boosters are hydrating injectables placed under the skin to improve glow, texture and elasticity over a course of sessions. Results build gradually and are subtle by design.',
+          'Skin boosters are hydrating injectables placed into the skin to improve glow, texture and elasticity over a course of sessions. Results build gradually and are subtle by design.',
         ],
       },
       {
@@ -409,7 +409,7 @@ export const blogPosts = [
     date: '2026-06-12',
     readTime: '5 min read',
     featured: false,
-    tags: ['Laser hair removal', 'Hair reduction', 'Alexandrian', 'Underarms'],
+    tags: ['Laser hair removal', 'Hair reduction', 'Alexandrite', 'Underarms'],
     content: [
       {
         type: 'paragraph',

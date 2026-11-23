@@ -21,7 +21,7 @@ const Clinic = () => {
           >
             <div className="relative">
               <div aria-hidden className="hidden sm:block absolute -inset-3 border border-gold/25 pointer-events-none" />
-              <div className="organic-arch relative w-full h-[280px] xs:h-[320px] sm:h-[420px] lg:h-[520px] overflow-hidden bg-cream border border-line">
+              <div className="relative w-full aspect-[3000/1633] overflow-hidden bg-cream border border-line">
                 <img
                   src={clinicImg}
                   alt="Dr Neha Shinde Skin Clinic"

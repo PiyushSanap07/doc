@@ -1,10 +1,10 @@
-import React from 'react';
+﻿import React from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail, ExternalLink } from 'lucide-react';
+import { MapPin, Phone, Mail } from 'lucide-react';
 import { doctorData } from '../data/portfolioData';
 
 const footerNavLinks = [
-  { name: 'About us', href: '/about', type: 'route' },
+  { name: 'About us', href: '#about', type: 'anchor' },
   { name: 'Services', href: '/services', type: 'route' },
   { name: 'Gallery', href: '/gallery', type: 'route' },
   { name: 'Blog', href: '/blog', type: 'route' },
@@ -20,7 +20,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 lg:gap-10 pb-8 sm:pb-10">
 
           {/* Col 1: Clinic / Doctor Brand & Contact details */}
-          <div className="md:col-span-5 lg:col-span-4 space-y-3.5 sm:space-y-4">
+          <div className="md:col-span-6 lg:col-span-6 space-y-3.5 sm:space-y-4">
             <div>
               <h3 className="font-serif text-xl sm:text-2xl font-bold text-black tracking-normal">
                 {doctorData.name}
@@ -53,7 +53,7 @@ const Footer = () => {
           </div>
 
           {/* Col 2: Quick Links */}
-          <div className="md:col-span-3 lg:col-span-3 space-y-3.5 sm:space-y-4 md:pl-4">
+          <div className="md:col-span-6 lg:col-span-6 space-y-3.5 sm:space-y-4 md:pl-4">
             <div>
               <h3 className="font-serif text-xl sm:text-2xl font-bold text-black tracking-normal">
                 Quick Links
@@ -85,63 +85,11 @@ const Footer = () => {
             </nav>
           </div>
 
-          {/* Col 3: Map Box */}
-          <div className="md:col-span-4 lg:col-span-5 space-y-2">
-            <div className="relative aspect-[16/10] min-h-[170px] w-full overflow-hidden rounded-sm border border-gray-300 bg-gray-100 shadow-sm sm:aspect-auto sm:h-[200px]">
-              <iframe
-                title="Clinic Location Map"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3748.2857830975207!2d73.77205427601853!3d20.002437081358555!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bddeb12d22d07d9%3A0x31d7e9c2b0f3a78!2sHarit%20Building%2C%20Meri%20-%20Rasbihari%20Link%20Rd%2C%20near%20Balimandir-Rasbihari%20School%2C%20next%20to%20Pramod%20Mahajan%20Garden%2C%20Chakradhar%20Nagar%2C%20Saraswati%20Nagar%2C%20Balram%20Nagar%2C%20Nashik%2C%20Maharashtra%20422003!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen=""
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-            </div>
-            <a
-              href={doctorData.clinic.googleMapUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs text-primary font-bold hover:underline pt-0.5"
-            >
-              Open in Google Maps <ExternalLink className="w-3.5 h-3.5" />
-            </a>
-          </div>
-
-        </div>
-
-        {/* Social Links */}
-        <div className="pt-4 border-t border-gray-200/60 flex items-center justify-center gap-4">
-          <a
-            href={doctorData.socials.youtube}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="YouTube Channel"
-            className="w-8 h-8 rounded-full bg-red-50 text-[#FF0000] flex items-center justify-center hover:bg-[#FF0000] hover:text-white transition-all shadow-xs"
-          >
-            <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
-              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-            </svg>
-          </a>
-          <a
-            href={doctorData.socials.instagram}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Instagram Profile"
-            className="w-8 h-8 rounded-full bg-pink-50 text-[#E1306C] flex items-center justify-center hover:bg-[#E1306C] hover:text-white transition-all shadow-xs"
-          >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
-              <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-              <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-            </svg>
-          </a>
         </div>
 
         {/* Bottom copyright note */}
         <div className="pt-3 text-center text-sm sm:text-base text-black font-bold tracking-normal space-y-1 font-['Outfit',sans-serif]">
-          <p>© 2026 {doctorData.name} • All Rights Reserved</p>
+          <p>┬⌐ 2026 {doctorData.name} ΓÇó All Rights Reserved</p>
           <p className="font-semibold text-black">
             Developed by{' '}
             <a

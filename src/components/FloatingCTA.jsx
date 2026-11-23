@@ -1,6 +1,7 @@
 import React from 'react';
 import { Phone } from 'lucide-react';
 import { doctorData } from '../data/portfolioData';
+import { whatsappLink } from '../lib/whatsapp';
 
 const InstagramIcon = ({ className = "w-5 h-5" }) => (
   <svg
@@ -35,8 +36,9 @@ const WhatsappIcon = ({ className = "w-6 h-6" }) => (
 );
 
 const FloatingCTA = () => {
-  const phoneClean = doctorData.clinic.phone.replace(/[^0-9]/g, '');
-  const whatsappUrl = `https://wa.me/${phoneClean}?text=Hello%20Dr.%20Neha%20Shinde,%20I%20would%20like%20to%20inquire%20about%20a%20consultation.`;
+  const whatsappUrl = whatsappLink(
+    `Hello ${doctorData.name}, I would like to book a consultation at ${doctorData.clinic.name}.`
+  );
   const callUrl = `tel:${doctorData.clinic.phone.replace(/[^0-9+]/g, '')}`;
   const instagramUrl = doctorData.socials.instagram;
   const youtubeUrl = doctorData.socials.youtube;

@@ -1,25 +1,18 @@
-export const doctorData = {
+﻿export const doctorData = {
   name: "Dr. Neha Shinde",
   role: "Dermatologist & Aesthetic Physician",
-  eyebrow: "SKIN • HAIR • AESTHETICS • WELLNESS",
-  tagline: "Healthy skin isn’t just about appearance, it’s about confidence, comfort and well-being. I’m here to help you achieve all three.",
+  eyebrow: "SKIN ΓÇó HAIR ΓÇó AESTHETICS ΓÇó WELLNESS",
+  tagline: "Healthy skin isnΓÇÖt just about appearance, itΓÇÖs about confidence, comfort and well-being. IΓÇÖm here to help you achieve all three.",
   aboutTagline: "Medicine with knowledge. Care with purpose.",
   aboutText: "I am Dr. Neha Shinde, a Dermatologist and Aesthetic Physician in Nashik with a passion for helping people feel confident in their skin. My approach is based on evidence-based medicine, personalized treatment plans and compassionate care.",
   
   email: "drnehashinde@gmail.com",
 
-  socials: {
-    instagram: "https://www.instagram.com/dr.nehashinde_dermacare/",
-    youtube: "https://www.youtube.com/@DrNehaShinde",
-    email: "mailto:drnehashinde@gmail.com",
-    directions: "https://maps.app.goo.gl/fKmdf8DESo8YBM7K8"
-  },
-
   credentials: [
     {
       id: "mbbs",
       title: "MBBS",
-      subtitle: "B.P. Koirala Institute",
+      subtitle: "[ADD MBBS INSTITUTION]",
       icon: "GraduationCap"
     },
     {
@@ -30,7 +23,7 @@ export const doctorData = {
     },
     {
       id: "exp",
-      title: "10+ Years",
+      title: "5+ Years",
       subtitle: "Experience",
       icon: "Briefcase"
     }
@@ -64,7 +57,7 @@ export const doctorData = {
     {
       id: 5,
       title: "Anti-Aging",
-      description: "Collagen boosting treatments, fine lines reduction, and youth restoration.",
+      description: "Collagen boosting treatments, fine lines reduction, and skin tightening.",
       iconName: "Clock"
     },
     {
@@ -78,20 +71,20 @@ export const doctorData = {
   qualifications: [
     {
       degree: "MBBS",
-      institution: "B.P. Koirala Institute",
-      period: "2012 – 2017",
+      institution: "[ADD MBBS INSTITUTION]",
+      period: "2012 ΓÇô 2017",
       icon: "GraduationCap"
     },
     {
       degree: "MD (Dermatology)",
-      institution: "Post Graduate Institute",
-      period: "2018 – 2021",
+      institution: "[ADD MD INSTITUTION]",
+      period: "2018 ΓÇô 2021",
       icon: "Stethoscope"
     },
     {
       degree: "Fellowship",
       institution: "Aesthetic Dermatology",
-      period: "2021 – 2022",
+      period: "2021 ΓÇô 2022",
       icon: "Award"
     },
     {
@@ -110,35 +103,35 @@ export const doctorData = {
   ],
 
   stats: [
-    { value: "10+", label: "Years of Experience", icon: "Award" },
-    { value: "20+", label: "Publications", icon: "BookOpen" },
-    { value: "10+", label: "Conferences", icon: "Mic" },
-    { value: "500+", label: "Happy Patients", icon: "Users" }
+    { value: "5+", label: "Years of Experience", icon: "Award" },
+    { value: "MBBS", label: "Medical Graduate", icon: "GraduationCap" },
+    { value: "MD", label: "Dermatology", icon: "Stethoscope" },
+    { value: "NMC", label: "Registered Practitioner", icon: "BadgeCheck" }
   ],
 
   achievements: [
     {
-      title: "Professional Memberships",
-      description: "Active member of Indian Association of Dermatologists (IADVL) & ACSI."
+      title: "Clinical Approach",
+      description: "Evidence-based diagnosis with treatment plans tailored to each patient."
     },
     {
-      title: "Conference Participation",
-      description: "Guest speaker and workshop trainer at national aesthetic medicine summits."
+      title: "Continuing Education",
+      description: "Regular participation in dermatology workshops and conferences."
     },
     {
-      title: "Research & Innovation",
-      description: "Author of peer-reviewed articles on acne scarring protocols and laser safety."
+      title: "Patient Safety",
+      description: "Consultation-led care with clear discussion of options, risks and aftercare."
     }
   ],
 
   clinic: {
     name: "Dr Neha Shinde Skin Clinic",
-    subtitle: "Best Dermatologist & Aesthetic Physician in Nashik",
+    subtitle: "Dermatologist & Aesthetic Physician in Nashik",
     address: "'Harit' Building, Meri - Rasbihari Link Rd, near Balimandir-Rasbihari School, next to Pramod Mahajan Garden, Chakradhar Nagar, Saraswati Nagar, Balram Nagar, Nashik, Maharashtra 422003",
     city: "Nashik, Maharashtra",
-    hours: "Mon – Sat: As per appointments",
+    hours: "Mon ΓÇô Sat: As per appointments",
     phone: "+91 74983 14453",
     email: "drnehashinde@gmail.com",
-    googleMapUrl: "https://maps.app.goo.gl/fKmdf8DESo8YBM7K8"
+    googleMapUrl: "https://maps.google.com/?q=Harit+Building+Meri+Rasbihari+Link+Rd+Nashik+Maharashtra+422003"
   }
 };

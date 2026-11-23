@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PrimaryButton = ({ children, onClick, icon: Icon, href, className = "" }) => {
+const PrimaryButton = ({ children, onClick, icon: Icon, href, type = "button", className = "" }) => {
   const content = (
     <>
       {Icon && <Icon className="w-4 h-4 mr-2" />}
@@ -14,7 +14,7 @@ const PrimaryButton = ({ children, onClick, icon: Icon, href, className = "" }) 
     return <a href={href} className={baseClasses}>{content}</a>;
   }
 
-  return <button onClick={onClick} className={baseClasses}>{content}</button>;
+  return <button type={type} onClick={onClick} className={baseClasses}>{content}</button>;
 };
 
 export default PrimaryButton;

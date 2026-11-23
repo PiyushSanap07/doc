@@ -15,6 +15,7 @@ import { getCategoryBySlug, galleryCategories } from '../data/galleryData';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import ScrollProgress from './ScrollProgress';
+import { openAppointmentModal } from '../lib/appointmentModal';
 import GalleryPhotoCard from './GalleryPhotoCard';
 import SectionLabel from './SectionLabel';
 
@@ -30,9 +31,7 @@ const GalleryDetail = () => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
 
-  const handleBookClick = () => {
-    window.location.href = "tel:+917498314453";
-  };
+  const handleBookClick = () => openAppointmentModal();
 
   useEffect(() => {
     window.scrollTo(0, 0);

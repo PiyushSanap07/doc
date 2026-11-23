@@ -1,25 +1,48 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Calendar, Clock, User, Phone, CheckCircle2, HeartHandshake } from 'lucide-react';
+import { X, Calendar, Clock, User, Phone, CheckCircle2 } from 'lucide-react';
 import PrimaryButton from './PrimaryButton';
+import { buildAppointmentMessage, openWhatsApp, whatsappLink, todayISO } from '../lib/whatsapp';
+
+const initialForm = {
+  name: '',
+  phone: '',
+  service: 'Acne & Acne Scars',
+  date: '',
+  time: '10:00 AM – 1:00 PM'
+};
 
 const AppointmentModal = ({ isOpen, onClose }) => {
   const [submitted, setSubmitted] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    service: 'Acne & Acne Scars',
-    date: '',
-    time: '10:00 AM – 1:00 PM'
-  });
+  const [formData, setFormData] = useState(initialForm);
+  const [phoneError, setPhoneError] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const digits = formData.phone.replace(/\D/g, '');
+    if (digits.length < 10 || digits.length > 15) {
+      setPhoneError('Enter a valid phone number (10 digits).');
+      return;
+    }
+    setPhoneError('');
+
+    openWhatsApp(buildAppointmentMessage(formData));
     setSubmitted(true);
   };
 
   const handleReset = () => {
     setSubmitted(false);
+    setFormData(initialForm);
+    setPhoneError('');
+    onClose();
+  };
+
+  const closeModal = () => {
+    if (submitted) {
+      handleReset();
+      return;
+    }
     onClose();
   };
 
@@ -33,7 +56,7 @@ const AppointmentModal = ({ isOpen, onClose }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          onClick={onClose}
+          onClick={closeModal}
           className="fixed inset-0 bg-navy/40 backdrop-blur-sm"
         />
 
@@ -57,7 +80,7 @@ const AppointmentModal = ({ isOpen, onClose }) => {
               </div>
             </div>
             <button
-              onClick={onClose}
+              onClick={closeModal}
               className="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 flex items-center justify-center transition-colors"
               aria-label="Close appointment modal"
             >
@@ -92,13 +115,23 @@ const AppointmentModal = ({ isOpen, onClose }) => {
                   <Phone className="w-4 h-4 text-muted absolute left-3.5 top-3.5" />
                   <input
                     type="tel"
+                    inputMode="tel"
                     required
                     value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    onChange={(e) => {
+                      setFormData({ ...formData, phone: e.target.value });
+                      if (phoneError) setPhoneError('');
+                    }}
                     placeholder="+91 98765 43210"
-                    className="w-full pl-10 pr-4 py-2.5 bg-mint-light rounded-xl border border-mint-border text-sm text-navy focus:outline-none focus:ring-2 focus:ring-primary focus:bg-white transition-all"
+                    aria-invalid={Boolean(phoneError)}
+                    className={`w-full pl-10 pr-4 py-2.5 rounded-xl border text-sm text-navy focus:outline-none focus:ring-2 focus:ring-primary focus:bg-white transition-all ${
+                      phoneError
+                        ? 'border-red-400 bg-red-50/50'
+                        : 'bg-mint-light border-mint-border'
+                    }`}
                   />
                 </div>
+                {phoneError && <p className="mt-1.5 text-xs text-red-500">{phoneError}</p>}
               </div>
 
               <div>
@@ -128,6 +161,7 @@ const AppointmentModal = ({ isOpen, onClose }) => {
                   <input
                     type="date"
                     required
+                    min={todayISO()}
                     value={formData.date}
                     onChange={(e) => setFormData({ ...formData, date: e.target.value })}
                     className="w-full px-3 py-2.5 bg-mint-light rounded-xl border border-mint-border text-sm text-navy focus:outline-none focus:ring-2 focus:ring-primary focus:bg-white transition-all"
@@ -153,9 +187,12 @@ const AppointmentModal = ({ isOpen, onClose }) => {
               </div>
 
               <div className="pt-4">
-                <PrimaryButton className="w-full py-4 text-base">
-                  Confirm Appointment
+                <PrimaryButton type="submit" className="w-full py-4 text-base">
+                  Send Request on WhatsApp
                 </PrimaryButton>
+                <p className="mt-3 text-center text-xs text-muted">
+                  Your details open in WhatsApp — just tap send to notify the clinic.
+                </p>
               </div>
             </form>
           ) : (
@@ -167,11 +204,46 @@ const AppointmentModal = ({ isOpen, onClose }) => {
               <div className="w-16 h-16 rounded-full bg-mint text-primary mx-auto flex items-center justify-center">
                 <CheckCircle2 className="w-10 h-10" />
               </div>
-              <h4 className="text-xl font-bold text-navy">Appointment Requested!</h4>
+              <h4 className="text-xl font-bold text-navy">Almost done, {formData.name}!</h4>
               <p className="text-sm text-muted max-w-xs mx-auto">
-                Thank you, <span className="font-semibold text-navy">{formData.name}</span>. Our team at Skin & Aesthetic Clinic will call you shortly to confirm your slot.
+                We&apos;ve prepared your request. Tap send in WhatsApp and our team will
+                call you shortly to confirm your slot.
               </p>
-              <div className="pt-2">
+
+              <div className="rounded-xl bg-mint-light border border-mint-border p-4 text-left">
+                <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-muted">
+                  Request summary
+                </p>
+                <dl className="mt-2 space-y-1.5 text-sm text-navy">
+                  <div className="flex justify-between gap-4">
+                    <dt className="text-muted">Concern</dt>
+                    <dd className="font-semibold text-right">{formData.service}</dd>
+                  </div>
+                  <div className="flex justify-between gap-4">
+                    <dt className="text-muted">Date</dt>
+                    <dd className="font-semibold text-right">{formData.date}</dd>
+                  </div>
+                  <div className="flex justify-between gap-4">
+                    <dt className="text-muted">Time</dt>
+                    <dd className="font-semibold text-right">{formData.time}</dd>
+                  </div>
+                </dl>
+              </div>
+
+              <p className="text-xs text-muted">
+                WhatsApp didn&apos;t open?{' '}
+                <a
+                  href={whatsappLink(buildAppointmentMessage(formData))}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-primary underline underline-offset-2"
+                >
+                  Tap here
+                </a>{' '}
+                or call us directly.
+              </p>
+
+              <div className="pt-1 flex flex-col sm:flex-row gap-2.5 justify-center">
                 <button
                   onClick={handleReset}
                   className="bg-primary text-white font-semibold text-sm px-6 py-2.5 rounded-full hover:bg-primary-dark transition-colors"

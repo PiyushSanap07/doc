@@ -6,10 +6,11 @@ import { serviceCategories } from '../data/servicesData';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import ScrollProgress from './ScrollProgress';
+import { openAppointmentModal } from '../lib/appointmentModal';
 import SectionLabel from './SectionLabel';
 
 const Services = () => {
-  const handleBookClick = () => { window.location.href = 'tel:+917498314453'; };
+  const handleBookClick = () => openAppointmentModal();
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
