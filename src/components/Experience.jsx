@@ -1,10 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Award, BookOpen, Mic, Users, Star, Quote } from 'lucide-react';
+import { Star, Quote } from 'lucide-react';
 import { doctorData } from '../data/portfolioData';
 import SectionLabel from './SectionLabel';
-
-const statIcons = [Award, BookOpen, Mic, Users];
 
 // Real-world verified patient reviews for Dr. Neha Shinde's dermatology care
 const testimonials = [
@@ -56,116 +54,106 @@ const infiniteTestimonials = [...testimonials, ...testimonials];
 
 const Experience = () => {
   return (
-    <section id="experience" className="py-8 sm:py-14 bg-white border-t border-gray-100 overflow-hidden">
+    <section id="experience" className="relative bg-cream py-10 sm:py-14 lg:py-16 overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12">
 
         {/* Section Header */}
-        <div className="mb-5 sm:mb-8 flex flex-col md:flex-row md:items-end justify-between gap-3">
-          <div>
+        <motion.div
+          className="flex flex-col md:flex-row md:items-end justify-between gap-6"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <div className="max-w-xl">
             <SectionLabel>EXPERIENCE &amp; PATIENT TRUST</SectionLabel>
-            <h2 className="text-xl xs:text-2xl sm:text-4xl font-extrabold text-black leading-tight mt-0.5">
-              Trusted Experience.{' '}
-              <span className="bg-gradient-to-r from-[#8C486E] via-[#A86389] to-[#C98664] bg-clip-text text-transparent">
-                Proven Results.
-              </span>
+            <h2 className="mt-5 font-display text-[1.75rem] xs:text-[2rem] sm:text-4xl lg:text-[2.75rem] font-medium leading-[1.18] tracking-[-0.01em] text-ink">
+              Trusted experience.{' '}
+              <em className="font-normal italic text-primary">Proven results.</em>
             </h2>
           </div>
 
-          <div className="flex items-center gap-2 text-[11px] sm:text-xs font-bold text-black self-start md:self-auto bg-[#FAF0F5] px-3 py-1.5 rounded-lg border border-primary/10">
-            <div className="flex text-amber-500">
+          <div className="flex items-center gap-3 self-start md:self-auto border border-line bg-white px-5 py-3 shrink-0">
+            <div className="flex text-gold">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-3.5 h-3.5 fill-amber-400 stroke-amber-400" />
+                <Star key={i} className="h-3.5 w-3.5 fill-gold stroke-gold" />
               ))}
             </div>
-            <span>4.9/5 Rating (5000+ Happy Patients)</span>
+            <span className="text-[11px] sm:text-xs font-medium text-ink whitespace-nowrap">
+              4.9/5 &nbsp;·&nbsp; 5000+ Happy Patients
+            </span>
           </div>
+        </motion.div>
+
+        {/* Stats — editorial hairline columns */}
+        <div className="mt-8 sm:mt-10 grid grid-cols-2 lg:grid-cols-4 gap-y-10 sm:gap-y-0">
+          {doctorData.stats.map((stat, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.5, delay: idx * 0.07, ease: [0.22, 1, 0.36, 1] }}
+              className={`px-0 sm:px-6 lg:px-8 ${idx > 0 ? "sm:border-l sm:border-line" : "sm:pl-0"} py-2`}
+            >
+              <p className="font-display text-4xl sm:text-5xl font-medium leading-none text-primary">
+                {stat.value}
+              </p>
+              <p className="mt-3 text-[10px] sm:text-xs font-medium uppercase tracking-[0.16em] text-muted-light">
+                {stat.label}
+              </p>
+            </motion.div>
+          ))}
         </div>
 
-        {/* Stats Row - Compact Height */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8">
-          {doctorData.stats.map((stat, idx) => {
-            const IconComp = statIcons[idx % statIcons.length];
-            return (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, amount: 0.2 }}
-                transition={{ duration: 0.35, delay: idx * 0.05 }}
-                className="bg-white p-3.5 sm:p-5 rounded-2xl border border-gray-200/80 shadow-2xs hover:shadow-md transition-all relative overflow-hidden group"
-              >
-                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-[#8C486E]/10 to-[#C98664]/10 text-primary flex items-center justify-center mb-2.5 group-hover:scale-105 transition-transform">
-                  <IconComp className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-primary" />
-                </div>
-                <span className="text-2xl sm:text-3xl font-extrabold bg-gradient-to-r from-[#8C486E] to-[#C98664] bg-clip-text text-transparent leading-none block">
-                  {stat.value}
-                </span>
-                <span className="text-xs sm:text-sm font-semibold text-black mt-1.5 block">
-                  {stat.label}
-                </span>
-              </motion.div>
-            );
-          })}
+        {/* Testimonials */}
+        <div className="mt-10 sm:mt-12 flex items-center gap-3.5">
+          <Quote className="h-4 w-4 text-gold shrink-0" />
+          <h3 className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.24em] text-ink">
+            Patient Testimonials &amp; Stories
+          </h3>
+          <span aria-hidden className="hidden sm:block h-px flex-1 bg-line" />
         </div>
-
-        {/* Testimonials Marquee Heading */}
-        <div className="flex items-center justify-between mb-3 pt-1">
-          <div className="flex items-center gap-2">
-            <Quote className="w-4 h-4 text-primary" />
-            <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-black">
-              Patient Testimonials &amp; Stories
-            </h3>
-          </div>
-          <span className="text-[11px] text-gray-400 font-semibold hidden sm:inline">
-            Continuous Live Feedback
-          </span>
-        </div>
-
       </div>
 
-      {/* Infinite Slider moving in OPPOSITE direction (left-to-right: '-50%' to '0%') */}
-      <div className="relative w-full py-1 overflow-hidden">
-        {/* Soft edge fades */}
-        <div className="absolute left-0 top-0 bottom-0 w-8 sm:w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-8 sm:w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+      {/* Infinite marquee */}
+      <div className="relative w-full mt-8 py-2 overflow-hidden">
+        <div aria-hidden className="absolute left-0 top-0 bottom-0 w-10 sm:w-32 bg-gradient-to-r from-cream to-transparent z-10 pointer-events-none" />
+        <div aria-hidden className="absolute right-0 top-0 bottom-0 w-10 sm:w-32 bg-gradient-to-l from-cream to-transparent z-10 pointer-events-none" />
 
         <motion.div
-          className="flex gap-4 sm:gap-5 items-stretch w-max"
+          className="flex gap-4 sm:gap-6 items-stretch w-max"
           animate={{ x: ['-50%', '0%'] }}
-          transition={{ repeat: Infinity, repeatType: 'loop', duration: 40, ease: 'linear' }}
+          transition={{ repeat: Infinity, repeatType: 'loop', duration: 50, ease: 'linear' }}
         >
           {infiniteTestimonials.map((t, index) => (
-            <div
+            <figure
               key={`${t.id}-${index}`}
-              className="w-[280px] xs:w-[320px] sm:w-[360px] shrink-0 bg-white p-4 sm:p-5 rounded-2xl border border-gray-200/80 shadow-2xs flex flex-col justify-between"
+              className="w-[290px] xs:w-[330px] sm:w-[380px] shrink-0 lux-card px-6 py-7 flex flex-col justify-between"
             >
               <div>
-                {/* Rating Stars & Treatment Tag */}
-                <div className="flex items-center justify-between gap-2 mb-2.5">
-                  <div className="flex text-amber-400">
+                <div className="flex items-start justify-between gap-3 mb-4">
+                  <div className="flex text-gold shrink-0">
                     {[...Array(t.rating)].map((_, i) => (
-                      <Star key={i} className="w-3.5 h-3.5 fill-amber-400 stroke-amber-400" />
+                      <Star key={i} className="h-3 w-3 fill-gold stroke-gold" />
                     ))}
                   </div>
-                  <span className="text-[10px] font-bold text-primary bg-[#FAF0F5] px-2 py-0.5 rounded">
+                  <span className="text-[9px] font-semibold uppercase tracking-[0.18em] text-primary text-right">
                     {t.treatment}
                   </span>
                 </div>
-
-                {/* Review Text */}
-                <p className="text-xs sm:text-sm text-black font-normal leading-relaxed italic">
-                  "{t.comment}"
-                </p>
+                <blockquote className="font-display text-sm sm:text-base leading-[1.75] text-ink italic">
+                  &ldquo;{t.comment}&rdquo;
+                </blockquote>
               </div>
 
-              {/* Author */}
-              <div className="pt-3 mt-3 border-t border-gray-100 flex items-center justify-between">
-                <p className="text-xs font-bold text-black">{t.name}</p>
-                <span className="text-[10px] font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">
-                  ✓ Verified Patient
+              <figcaption className="mt-6 pt-4 border-t border-line flex items-center justify-between gap-3">
+                <span className="font-display text-sm text-ink">{t.name}</span>
+                <span className="text-[9px] font-semibold uppercase tracking-[0.18em] text-gold whitespace-nowrap">
+                  Verified Patient
                 </span>
-              </div>
-            </div>
+              </figcaption>
+            </figure>
           ))}
         </motion.div>
       </div>

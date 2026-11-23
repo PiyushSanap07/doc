@@ -14,6 +14,16 @@
   --color-accent: #C98664;
   --color-accent-light: #E8B89E;
 
+  /* Premium clinic palette */
+  --color-cream: #FDFAF7;
+  --color-cream-deep: #F6EEE7;
+  --color-ink: #1C1219;
+  --color-gold: #B08D57;
+  --color-gold-light: #D9C6A4;
+  --color-line: #E7DBE2;
+
+  --font-display: 'Playfair Display', 'Plus Jakarta Sans', Georgia, serif;
+
   --font-sans: 'Plus Jakarta Sans', 'Inter', sans-serif;
 
   --breakpoint-xs: 24rem;
@@ -136,3 +146,22 @@
 .perspective-1000 {
   perspective: 1000px;
 }
+
+/* ===== PREMIUM CLINIC HELPERS ===== */
+.lux-card {
+  background-color: #FFFFFF;
+  border: 1px solid #E7DBE2;
+  transition: border-color 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.lux-card:hover {
+  border-color: rgba(176, 141, 87, 0.45);
+  box-shadow: 0 24px 50px -30px rgba(28, 18, 25, 0.35);
+}
+
+/* Hairline top rule used above stats and section intros */
+.lux-rule {
+  height: 1px;
+  background: linear-gradient(to right, rgba(176, 141, 87, 0.55), rgba(231, 219, 226, 0));
+}
+

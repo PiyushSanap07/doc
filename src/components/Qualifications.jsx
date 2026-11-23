@@ -8,49 +8,79 @@ const iconMap = { GraduationCap, Stethoscope, Award, BadgeCheck };
 
 const Qualifications = () => {
   return (
-    <section id="qualifications" className="py-8 sm:py-14 bg-white">
+    <section id="qualifications" className="relative bg-white py-10 sm:py-14 lg:py-16">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12">
 
         {/* Header */}
-        <div className="mb-5 sm:mb-8">
+        <motion.div
+          className="max-w-2xl"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+        >
           <SectionLabel>QUALIFICATIONS &amp; TIMELINE</SectionLabel>
-          <h2 className="text-xl xs:text-2xl sm:text-4xl font-extrabold text-black leading-tight mt-0.5">
-            Medical Education &amp;{' '}
-            <span className="bg-gradient-to-r from-[#8C486E] via-[#A86389] to-[#C98664] bg-clip-text text-transparent">
-              Certification Timeline
-            </span>
+          <h2 className="mt-5 font-display text-[1.75rem] xs:text-[2rem] sm:text-4xl lg:text-[2.75rem] font-medium leading-[1.18] tracking-[-0.01em] text-ink">
+            Medical education &amp;{' '}
+            <em className="font-normal italic text-primary">certification timeline</em>
           </h2>
-        </div>
+        </motion.div>
 
-        {/* Timeline Grid: 1 col on mobile, 2 on tablet, 4 on desktop */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-5">
-          {doctorData.qualifications.map((item, index) => {
-            const IconComp = iconMap[item.icon] || GraduationCap;
-            return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, amount: 0.15 }}
-                transition={{ duration: 0.35, delay: index * 0.05 }}
-                className="bg-white p-4 sm:p-5 rounded-2xl border border-gray-200/80 hover:border-[#8C486E]/40 hover:shadow-md transition-all group relative overflow-hidden"
-              >
-                <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-[#8C486E]/10 to-[#C98664]/10 text-primary flex items-center justify-center mb-3 sm:mb-4 group-hover:scale-105 transition-transform">
-                  <IconComp className="w-4.5 h-4.5 sm:w-5 sm:h-5 text-primary" />
-                </div>
-                <div className="flex items-center justify-between mb-2 sm:mb-2.5">
-                  <span className="text-[10px] sm:text-[11px] font-bold tracking-wider text-primary uppercase bg-[#FAF0F5] px-2 py-0.5 sm:px-2.5 sm:py-0.5 rounded-md">
-                    Step 0{index + 1}
-                  </span>
-                  <span className="text-[11px] sm:text-xs font-semibold text-black">{item.period}</span>
-                </div>
-                <h3 className="text-sm sm:text-base font-bold text-black leading-snug">{item.degree}</h3>
-                <p className="text-xs sm:text-sm text-black mt-1 sm:mt-1.5 font-normal leading-relaxed">{item.institution}</p>
-              </motion.div>
-            );
-          })}
-        </div>
+        {/* Editorial timeline: continuous hairline with markers */}
+        <div className="relative mt-8 sm:mt-10">
+          {/* Connecting rule — desktop */}
+          <div
+            aria-hidden
+            className="hidden lg:block absolute left-0 right-0 top-[7px] h-px bg-line"
+          />
 
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 sm:gap-8 lg:gap-10">
+            {doctorData.qualifications.map((item, index) => {
+              const IconComp = iconMap[item.icon] || GraduationCap;
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.5, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                  className="group relative pl-6 lg:pl-0"
+                >
+                  {/* Marker */}
+                  <div className="absolute left-0 top-[5px] lg:static lg:mb-8 flex items-center gap-3">
+                    <span
+                      aria-hidden
+                      className="block h-[15px] w-[15px] shrink-0 rounded-full border border-gold bg-white transition-colors duration-300 group-hover:bg-gold"
+                    />
+                    <span className="lg:hidden text-[10px] font-semibold uppercase tracking-[0.2em] text-gold">
+                      {item.period}
+                    </span>
+                  </div>
+
+                  {/* Card */}
+                  <div>
+                    <span className="hidden lg:inline-block text-[11px] font-semibold uppercase tracking-[0.2em] text-gold">
+                      {item.period}
+                    </span>
+
+                    <div className="hidden lg:flex h-11 w-11 items-center justify-center text-primary transition-colors duration-300 group-hover:text-gold">
+                      <IconComp className="h-5 w-5" strokeWidth={1.25} />
+                    </div>
+
+                    <div className="lg:mt-5">
+                      <h3 className="font-display text-lg sm:text-xl font-medium leading-snug text-ink transition-colors duration-300 group-hover:text-primary">
+                        {item.degree}
+                      </h3>
+                      <p className="mt-2 text-xs sm:text-sm text-muted font-normal leading-[1.8]">
+                        {item.institution}
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </section>
   );

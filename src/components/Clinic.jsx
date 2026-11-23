@@ -7,103 +7,110 @@ import clinicImg from '../assets/images/Clinic.jpeg';
 
 const Clinic = () => {
   return (
-    <section id="contact" className="py-8 sm:py-14 bg-white border-t border-gray-100">
+    <section id="contact" className="relative bg-white py-10 sm:py-14 lg:py-16">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-8 lg:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
-          {/* LEFT: Clinic Image */}
+          {/* Clinic image */}
           <motion.div
             className="lg:col-span-5"
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 0.35 }}
+            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="w-full h-[200px] xs:h-[240px] sm:h-[320px] rounded-2xl overflow-hidden bg-white p-2 border border-gray-200/80 shadow-sm">
-              <img
-                src={clinicImg}
-                alt="Dr Neha Shinde Skin Clinic"
-                loading="lazy"
-                decoding="async"
-                className="w-full h-full object-cover object-center rounded-xl"
-              />
+            <div className="relative">
+              <div aria-hidden className="hidden sm:block absolute -inset-3 border border-gold/25 pointer-events-none" />
+              <div className="organic-arch relative w-full h-[280px] xs:h-[320px] sm:h-[420px] lg:h-[520px] overflow-hidden bg-cream border border-line">
+                <img
+                  src={clinicImg}
+                  alt="Dr Neha Shinde Skin Clinic"
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-cover object-center hover:scale-[1.03] transition-transform duration-700"
+                />
+              </div>
             </div>
           </motion.div>
 
-          {/* RIGHT: Clinic Details */}
+          {/* Details */}
           <motion.div
-            className="lg:col-span-7 space-y-3.5 sm:space-y-5"
-            initial={{ opacity: 0, y: 15 }}
+            className="lg:col-span-7"
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 0.35, delay: 0.1 }}
+            transition={{ duration: 0.55, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div>
-              <SectionLabel>VISIT MY CLINIC</SectionLabel>
-              <h2 className="text-xl xs:text-2xl sm:text-4xl font-extrabold text-black leading-tight mt-0.5">
-                Let's Take Care of Your{' '}
-                <span className="bg-gradient-to-r from-[#8C486E] via-[#A86389] to-[#C98664] bg-clip-text text-transparent">
-                  Skin &amp; Health
-                </span>
-              </h2>
-            </div>
+            <SectionLabel>VISIT MY CLINIC</SectionLabel>
+            <h2 className="mt-5 font-display text-[1.75rem] xs:text-[2rem] sm:text-4xl lg:text-[2.75rem] font-medium leading-[1.18] tracking-[-0.01em] text-ink">
+              Let&rsquo;s take care of your{' '}
+              <em className="font-normal italic text-primary">skin &amp; health</em>
+            </h2>
 
-            {/* Address Card */}
-            <div className="bg-white p-4 sm:p-5 rounded-2xl border border-gray-200/80 shadow-2xs space-y-3.5">
-              <div className="flex items-start gap-3 sm:gap-4">
-                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-[#8C486E]/10 to-[#C98664]/10 text-primary flex items-center justify-center shrink-0">
-                  <MapPin className="w-4.5 h-4.5 sm:w-5 sm:h-5 text-primary" />
-                </div>
+            {/* Detail rows — hairline divided */}
+            <dl className="mt-7 border-t border-line">
+              <div className="flex items-start gap-5 py-6 border-b border-line">
+                <MapPin className="h-4 w-4 text-gold shrink-0 mt-1" strokeWidth={1.5} />
                 <div>
-                  <p className="text-[11px] font-bold text-primary uppercase tracking-wider">Clinic Address</p>
-                  <p className="text-sm sm:text-base font-bold text-black mt-0.5">{doctorData.clinic.name}</p>
-                  <p className="text-xs sm:text-sm text-black leading-relaxed mt-0.5 font-normal">{doctorData.clinic.address}</p>
+                  <dt className="text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-light">
+                    Clinic Address
+                  </dt>
+                  <dd className="mt-2">
+                    <p className="font-display text-base sm:text-lg text-ink">{doctorData.clinic.name}</p>
+                    <p className="mt-1.5 text-xs sm:text-sm text-muted font-normal leading-[1.85]">
+                      {doctorData.clinic.address}
+                    </p>
+                  </dd>
                 </div>
               </div>
 
-              <div className="flex items-center gap-3 sm:gap-4 pt-3 border-t border-gray-100">
-                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-[#8C486E]/10 to-[#C98664]/10 text-primary flex items-center justify-center shrink-0">
-                  <Clock className="w-4.5 h-4.5 sm:w-5 sm:h-5 text-primary" />
-                </div>
-                <div className="flex flex-col sm:flex-row sm:items-center gap-0.5 sm:gap-2 text-xs sm:text-sm">
-                  <span className="font-bold text-black">Consultation Hours:</span>
-                  <span className="text-black font-semibold">{doctorData.clinic.hours}</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Call & Directions */}
-            <div className="bg-white p-3.5 sm:p-4 rounded-2xl border border-gray-200/80 shadow-2xs flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3.5">
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-primary text-white flex items-center justify-center shrink-0">
-                  <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
-                </div>
+              <div className="flex items-start gap-5 py-6 border-b border-line">
+                <Clock className="h-4 w-4 text-gold shrink-0 mt-1" strokeWidth={1.5} />
                 <div>
-                  <p className="text-[10px] text-gray-500 uppercase tracking-wider font-bold">Direct Consultation Phone</p>
-                  <a href={`tel:${doctorData.clinic.phone.replace(/[^0-9+]/g, '')}`} className="text-sm sm:text-base font-extrabold text-black hover:text-primary transition-colors">
-                    {doctorData.clinic.phone}
-                  </a>
+                  <dt className="text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-light">
+                    Consultation Hours
+                  </dt>
+                  <dd className="mt-2 text-sm sm:text-base text-ink">{doctorData.clinic.hours}</dd>
                 </div>
               </div>
-              <div className="flex flex-col xs:flex-row items-stretch gap-2.5 sm:gap-2.5 w-full sm:w-auto">
-                <a
-                  href={`tel:${doctorData.clinic.phone.replace(/[^0-9+]/g, '')}`}
-                  className="text-center px-5 py-3 sm:py-2.5 bg-primary text-white text-xs sm:text-sm font-bold rounded-lg sm:rounded-md hover:bg-primary-dark transition-all shadow-sm active:scale-98 min-h-[44px] flex items-center justify-center"
-                >
-                  Call for Appointment
-                </a>
-                <a
-                  href={doctorData.clinic.googleMapUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-1.5 px-4 py-3 sm:py-2.5 border border-gray-300 rounded-lg sm:rounded-md text-xs sm:text-sm font-bold text-black hover:border-primary hover:text-primary transition-colors active:scale-98 min-h-[44px]"
-                >
-                  Get Directions
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
-              </div>
-            </div>
 
+              <div className="flex items-start gap-5 py-6 border-b border-line">
+                <Phone className="h-4 w-4 text-gold shrink-0 mt-1" strokeWidth={1.5} />
+                <div>
+                  <dt className="text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-light">
+                    Direct Consultation Phone
+                  </dt>
+                  <dd className="mt-2">
+                    <a
+                      href={`tel:${doctorData.clinic.phone.replace(/[^0-9+]/g, '')}`}
+                      className="font-display text-base sm:text-lg text-ink hover:text-primary transition-colors duration-300"
+                    >
+                      {doctorData.clinic.phone}
+                    </a>
+                  </dd>
+                </div>
+              </div>
+            </dl>
+
+            {/* Actions */}
+            <div className="mt-6 flex flex-col xs:flex-row items-stretch gap-3 sm:gap-4">
+              <a
+                href={`tel:${doctorData.clinic.phone.replace(/[^0-9+]/g, '')}`}
+                className="group inline-flex items-center justify-center gap-3 bg-primary px-8 py-4 text-[11px] sm:text-xs font-bold uppercase tracking-[0.18em] text-white transition-colors duration-300 hover:bg-primary-dark active:scale-[0.98] min-h-[52px]"
+              >
+                Call for Appointment
+                <span aria-hidden className="h-px w-6 bg-white/50 transition-all duration-300 group-hover:w-9" />
+              </a>
+              <a
+                href={doctorData.clinic.googleMapUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 border border-primary px-8 py-4 text-[11px] sm:text-xs font-bold uppercase tracking-[0.18em] text-primary transition-colors duration-300 hover:bg-primary hover:text-white min-h-[52px]"
+              >
+                Get Directions
+                <ExternalLink className="h-3.5 w-3.5" />
+              </a>
+            </div>
           </motion.div>
         </div>
       </div>

@@ -6,6 +6,7 @@ import About from './components/About';
 import Expertise from './components/Expertise';
 import Qualifications from './components/Qualifications';
 import Experience from './components/Experience';
+import Treatments from './components/Treatments';
 import Clinic from './components/Clinic';
 import Footer from './components/Footer';
 import AppointmentModal from './components/AppointmentModal';
@@ -35,6 +36,7 @@ function HomePage({ onBookClick }) {
         <Hero onBookClick={onBookClick} />
         <About />
         <Expertise />
+        <Treatments onBookClick={onBookClick} />
         <Qualifications />
         <Experience />
         <Clinic />
