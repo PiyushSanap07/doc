@@ -79,12 +79,12 @@ const Experience = () => {
               ))}
             </div>
             <span className="text-[11px] sm:text-xs font-medium text-ink whitespace-nowrap">
-              Patient Feedback &nbsp;┬╖&nbsp; Private Consultations
+              Patient Feedback &nbsp;·&nbsp; Private Consultations
             </span>
           </div>
         </motion.div>
 
-        {/* Stats ΓÇö editorial hairline columns */}
+        {/* Stats — editorial hairline columns */}
         <div className="mt-8 sm:mt-10 grid grid-cols-2 lg:grid-cols-4 gap-y-10 sm:gap-y-0">
           {doctorData.stats.map((stat, idx) => (
             <motion.div

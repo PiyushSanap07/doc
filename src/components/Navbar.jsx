@@ -14,27 +14,32 @@ const navLinks = [
   { name: 'Contact', href: '/contact', type: 'route' },
 ];
 
+const getActiveSection = () => {
+  if (typeof window === 'undefined' || window.location.pathname !== '/') return 'home';
+  const sections = navLinks.filter(link => link.type === 'anchor').map(link => link.href.substring(1));
+  const scrollPos = window.scrollY + 120;
+  for (let i = sections.length - 1; i >= 0; i--) {
+    const elem = document.getElementById(sections[i]);
+    if (elem && elem.offsetTop <= scrollPos) return sections[i];
+  }
+  return 'home';
+};
+
 const Navbar = ({ onBookClick }) => {
   const headerRef = useRef(null);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
+  const [isScrolled, setIsScrolled] = useState(() => typeof window !== 'undefined' && window.scrollY > 20);
+  const [activeSection, setActiveSection] = useState(getActiveSection);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
   const isHomePage = location.pathname === '/';
 
   useEffect(() => {
+    if (!isHomePage) return;
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
-      if (isHomePage) {
-        const sections = navLinks.filter(l => l.type === 'anchor').map(l => l.href.substring(1));
-        const scrollPos = window.scrollY + 120;
-        for (let i = sections.length - 1; i >= 0; i--) {
-          const elem = document.getElementById(sections[i]);
-          if (elem && elem.offsetTop <= scrollPos) { setActiveSection(sections[i]); break; }
-        }
-      }
+      setActiveSection(getActiveSection());
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isHomePage]);
 
@@ -162,7 +167,7 @@ const Navbar = ({ onBookClick }) => {
                       className={`py-3 px-1 text-base font-bold border-b border-line flex items-center justify-between active:bg-cream-deep transition-colors ${isActive ? 'text-primary' : 'text-ink'}`}
                     >
                       <span>{link.name}</span>
-                      <span className="text-xs text-muted-light font-normal">ΓåÆ</span>
+                      <span className="text-xs text-muted-light font-normal">→</span>
                     </Link>
                   );
                 }
@@ -176,7 +181,7 @@ const Navbar = ({ onBookClick }) => {
                     className={`py-3 px-1 text-base font-bold border-b border-line flex items-center justify-between active:bg-cream-deep transition-colors ${isActive ? 'text-primary' : 'text-ink'}`}
                   >
                     <span>{link.name}</span>
-                    <span className="text-xs text-muted-light font-normal">ΓåÆ</span>
+                    <span className="text-xs text-muted-light font-normal">→</span>
                   </a>
                 );
               })}

@@ -59,6 +59,24 @@ const ContentBlock = ({ block }) => {
     );
   }
 
+  if (block.type === 'image') {
+    return (
+      <figure className="my-6 overflow-hidden rounded-xl border border-line">
+        <img
+          src={block.src}
+          alt={block.alt || ''}
+          loading="lazy"
+          className="w-full h-auto object-cover"
+        />
+        {block.caption && (
+          <figcaption className="bg-cream px-4 py-3 text-xs leading-relaxed text-muted">
+            {block.caption}
+          </figcaption>
+        )}
+      </figure>
+    );
+  }
+
   return (
     <p className="text-sm sm:text-[15px] text-gray-700 leading-[1.8] my-4">
       {block.text}
@@ -157,7 +175,7 @@ const BlogDetail = () => {
                 {post.readTime}
               </span>
               <span className="text-primary">{doctorData.name}</span>
-              <span className="text-gray-400">ΓÇó</span>
+              <span className="text-gray-400">•</span>
               <span>{doctorData.role}</span>
             </div>
           </motion.header>

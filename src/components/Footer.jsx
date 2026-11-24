@@ -4,7 +4,7 @@ import { MapPin, Phone, Mail } from 'lucide-react';
 import { doctorData } from '../data/portfolioData';
 
 const footerNavLinks = [
-  { name: 'About us', href: '#about', type: 'anchor' },
+  { name: 'About us', href: '/#about', type: 'anchor' },
   { name: 'Services', href: '/services', type: 'route' },
   { name: 'Gallery', href: '/gallery', type: 'route' },
   { name: 'Blog', href: '/blog', type: 'route' },
@@ -89,7 +89,7 @@ const Footer = () => {
 
         {/* Bottom copyright note */}
         <div className="pt-3 text-center text-sm sm:text-base text-black font-bold tracking-normal space-y-1 font-['Outfit',sans-serif]">
-          <p>┬⌐ 2026 {doctorData.name} ΓÇó All Rights Reserved</p>
+          <p>© 2026 {doctorData.name} • All Rights Reserved</p>
           <p className="font-semibold text-black">
             Developed by{' '}
             <a

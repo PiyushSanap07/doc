@@ -19,7 +19,7 @@ const Hero = ({ onBookClick }) => {
       <div className="relative max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
 
-          {/* LEFT: Editorial text ΓÇö 7 cols */}
+          {/* LEFT: Editorial text — 7 cols */}
           <motion.div
             className="lg:col-span-7 text-center lg:text-left"
             initial={{ opacity: 0, y: 24 }}
@@ -30,7 +30,7 @@ const Hero = ({ onBookClick }) => {
             <div className="flex items-center gap-3 justify-center lg:justify-start">
               <span aria-hidden className="h-px w-6 sm:w-9 bg-gold/70" />
               <span className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.28em] text-primary">
-                Dermatology &amp; Aesthetics ┬╖ Nashik
+                Dermatology &amp; Aesthetics · Nashik
               </span>
             </div>
 
@@ -48,7 +48,7 @@ const Hero = ({ onBookClick }) => {
 
             {/* Credentials */}
             <p className="mt-7 text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-muted-light">
-              MD Dermatology &nbsp;┬╖&nbsp; Fellowship in Aesthetic Medicine
+              MD Dermatology &nbsp;·&nbsp; Fellowship in Aesthetic Medicine
             </p>
 
             {/* CTA & Phone */}
@@ -76,7 +76,7 @@ const Hero = ({ onBookClick }) => {
             </div>
           </motion.div>
 
-          {/* RIGHT: Doctor portrait in an arch frame ΓÇö 5 cols */}
+          {/* RIGHT: Doctor portrait in an arch frame — 5 cols */}
           <motion.div
             className="lg:col-span-5 relative flex justify-center lg:justify-end"
             initial={{ opacity: 0, y: 24 }}
@@ -92,7 +92,7 @@ const Hero = ({ onBookClick }) => {
             <div className="organic-arch relative w-full max-w-[280px] xs:max-w-[320px] sm:max-w-[420px] overflow-hidden bg-gradient-to-b from-white to-cream-deep border border-line px-6 pt-8 sm:px-8 sm:pt-10">
               <img
                 src={doctorHeroImg}
-                alt="Dr. Neha Shinde ΓÇö Dermatologist & Aesthetic Physician"
+                alt="Dr. Neha Shinde — Dermatologist & Aesthetic Physician"
                 width="430"
                 height="500"
                 loading="eager"

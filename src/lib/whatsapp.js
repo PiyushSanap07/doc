@@ -42,4 +42,8 @@ export const openWhatsApp = (message) => {
   window.open(whatsappLink(message), '_blank', 'noopener,noreferrer');
 };
 
-export const todayISO = () => new Date().toISOString().slice(0, 10);
+export const todayISO = () => {
+  const now = new Date();
+  const offset = now.getTimezoneOffset() * 60_000;
+  return new Date(now.getTime() - offset).toISOString().slice(0, 10);
+};

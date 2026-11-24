@@ -1,12 +1,19 @@
 ﻿export const doctorData = {
   name: "Dr. Neha Shinde",
   role: "Dermatologist & Aesthetic Physician",
-  eyebrow: "SKIN ΓÇó HAIR ΓÇó AESTHETICS ΓÇó WELLNESS",
-  tagline: "Healthy skin isnΓÇÖt just about appearance, itΓÇÖs about confidence, comfort and well-being. IΓÇÖm here to help you achieve all three.",
+  eyebrow: "SKIN • HAIR • AESTHETICS • WELLNESS",
+  tagline: "Healthy skin isn’t just about appearance, it’s about confidence, comfort and well-being. I’m here to help you achieve all three.",
   aboutTagline: "Medicine with knowledge. Care with purpose.",
   aboutText: "I am Dr. Neha Shinde, a Dermatologist and Aesthetic Physician in Nashik with a passion for helping people feel confident in their skin. My approach is based on evidence-based medicine, personalized treatment plans and compassionate care.",
   
   email: "drnehashinde@gmail.com",
+
+  socials: {
+    instagram: "https://www.instagram.com/dr.nehashinde_dermacare/",
+    youtube: "https://www.youtube.com/@DrNehaShinde",
+    email: "mailto:drnehashinde@gmail.com",
+    directions: "https://maps.app.goo.gl/fKmdf8DESo8YBM7K8"
+  },
 
   credentials: [
     {
@@ -72,19 +79,19 @@
     {
       degree: "MBBS",
       institution: "[ADD MBBS INSTITUTION]",
-      period: "2012 ΓÇô 2017",
+      period: "2012 – 2017",
       icon: "GraduationCap"
     },
     {
       degree: "MD (Dermatology)",
       institution: "[ADD MD INSTITUTION]",
-      period: "2018 ΓÇô 2021",
+      period: "2018 – 2021",
       icon: "Stethoscope"
     },
     {
       degree: "Fellowship",
       institution: "Aesthetic Dermatology",
-      period: "2021 ΓÇô 2022",
+      period: "2021 – 2022",
       icon: "Award"
     },
     {
@@ -129,7 +136,7 @@
     subtitle: "Dermatologist & Aesthetic Physician in Nashik",
     address: "'Harit' Building, Meri - Rasbihari Link Rd, near Balimandir-Rasbihari School, next to Pramod Mahajan Garden, Chakradhar Nagar, Saraswati Nagar, Balram Nagar, Nashik, Maharashtra 422003",
     city: "Nashik, Maharashtra",
-    hours: "Mon ΓÇô Sat: As per appointments",
+    hours: "Mon – Sat: As per appointments",
     phone: "+91 74983 14453",
     email: "drnehashinde@gmail.com",
     googleMapUrl: "https://maps.google.com/?q=Harit+Building+Meri+Rasbihari+Link+Rd+Nashik+Maharashtra+422003"

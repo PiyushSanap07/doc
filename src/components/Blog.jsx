@@ -78,7 +78,7 @@ const Blog = () => {
               </span>
             </h1>
             <p className="mt-2 sm:mt-3 text-xs sm:text-base text-black max-w-2xl font-normal leading-relaxed">
-              Practical, evidence-based answers to the skin and hair questions we are asked most often in clinic ΓÇö written by Dr. Neha Shinde.
+              Practical, evidence-based answers to the skin and hair questions we are asked most often in clinic — written by Dr. Neha Shinde.
             </p>
           </motion.div>
 
@@ -126,7 +126,7 @@ const Blog = () => {
                 type="search"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search articles, conditions or treatmentsΓÇª"
+                placeholder="Search articles, conditions or treatments…"
                 aria-label="Search blog articles"
                 className="w-full pl-9 pr-9 py-2.5 text-sm rounded-md border border-gray-200 bg-white text-black placeholder:text-gray-400 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/15 transition-colors"
               />

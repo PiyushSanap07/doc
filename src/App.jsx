@@ -1,5 +1,5 @@
 ﻿import React, { useState, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -50,6 +50,7 @@ function HomePage({ onBookClick }) {
 }
 
 function App() {
+  const location = useLocation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   
   // Only play the loader once per browser session
@@ -71,6 +72,15 @@ function App() {
     return () => window.removeEventListener(OPEN_APPOINTMENT_EVENT, handleOpenModal);
   }, []);
 
+  useEffect(() => {
+    if (!location.hash) return;
+    const target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    if (target) {
+      const top = target.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  }, [location.pathname, location.hash]);
+
   const handleLoaderFinish = () => {
     sessionStorage.setItem('has_loaded_once', 'true');
     setIsLoading(false);
@@ -90,6 +100,7 @@ function App() {
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogDetail />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/about" element={<Navigate to="/#about" replace />} />
       </Routes>
 
       {/* Floating Call, WhatsApp & Social Buttons - Persistent Across Every Page */}

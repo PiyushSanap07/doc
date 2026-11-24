@@ -77,7 +77,7 @@ const Expertise = () => {
             >
               <img
                 src={item.image}
-                alt={`${item.title} ΓÇö Dr. Neha Shinde Skin Clinic`}
+                alt={`${item.title} — Dr. Neha Shinde Skin Clinic`}
                 loading={index < 4 ? "eager" : "lazy"}
                 decoding="async"
                 width="256"

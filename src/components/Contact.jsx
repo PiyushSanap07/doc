@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { MessageCircle, Phone, Mail } from 'lucide-react';
 import { doctorData } from '../data/portfolioData';
 import { WHATSAPP_NUMBER } from '../lib/whatsapp';
@@ -9,6 +9,10 @@ import { openAppointmentModal } from '../lib/appointmentModal';
 
 const Contact = () => {
   const phoneHref = `tel:${doctorData.clinic.phone.replace(/[^0-9+]/g, '')}`;
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="flex min-h-screen flex-col bg-white font-sans text-black antialiased">

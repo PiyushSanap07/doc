@@ -35,7 +35,7 @@ const About = () => {
     <section id="about" className="relative bg-white pt-10 sm:pt-14 lg:pt-16 pb-10 sm:pb-14 lg:pb-16">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12">
 
-        {/* Intro ΓÇö heading left, body right */}
+        {/* Intro — heading left, body right */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
           <motion.div
             className="lg:col-span-6"
@@ -63,7 +63,7 @@ const About = () => {
             </p>
             <p className="text-sm sm:text-base text-muted font-normal leading-[1.85]">
               With an MD in Dermatology and a Fellowship in Aesthetic Medicine, Dr. Shinde combines
-              evidence-based clinical science with a compassionate approach ΓÇö ensuring every patient
+              evidence-based clinical science with a compassionate approach — ensuring every patient
               receives a personalised treatment plan that truly fits their unique skin needs.
             </p>
           </motion.div>
@@ -116,7 +116,7 @@ const About = () => {
               </span>
             </div>
 
-            {/* Stats ΓÇö hairline columns, no boxes */}
+            {/* Stats — hairline columns, no boxes */}
             <div className="grid grid-cols-2 sm:grid-cols-4">
               {ABOUT_STATS.map((stat, i) => (
                 <div

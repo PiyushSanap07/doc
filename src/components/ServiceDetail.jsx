@@ -1,18 +1,26 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { 
-  ArrowLeft, 
-  Clock, 
-  Layers, 
-  Target, 
-  AlertTriangle, 
-  Camera, 
+import {
+  ArrowLeft,
+  ArrowUpRight,
+  Clock,
+  Layers,
+  Target,
+  AlertTriangle,
+  Camera,
   CheckCircle2,
+  ClipboardCheck,
+  HelpCircle,
+  Phone,
   ShieldCheck,
-  Phone
+  Sparkles,
 } from 'lucide-react';
-import { getServiceBySlug } from '../data/servicesData';
+import { getAllServices, getServiceBySlug } from '../data/servicesData';
+import { doctorData } from '../data/portfolioData';
+import { openAppointmentModal } from '../lib/appointmentModal';
+import { buildServiceSeo } from '../lib/serviceSeo';
+import { useSeo } from '../lib/seo';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import ScrollProgress from './ScrollProgress';
@@ -20,7 +28,22 @@ import SectionLabel from './SectionLabel';
 
 const ServiceDetail = () => {
   const { slug } = useParams();
-  const service = getServiceBySlug(slug);
+  const service = useMemo(() => getServiceBySlug(slug), [slug]);
+  const seo = useMemo(() => buildServiceSeo(service), [service]);
+
+  useSeo(seo);
+
+  const relatedServices = useMemo(() => {
+    if (!service) return [];
+    const allServices = getAllServices();
+    const sameCategory = allServices.filter(
+      (item) => item.categoryId === service.categoryId && item.slug !== service.slug
+    );
+    const others = allServices.filter(
+      (item) => item.categoryId !== service.categoryId && item.slug !== service.slug
+    );
+    return [...sameCategory, ...others].slice(0, 3);
+  }, [service]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -45,7 +68,7 @@ const ServiceDetail = () => {
     return (
       <div className="min-h-screen bg-white text-black font-sans antialiased flex flex-col justify-between">
         <ScrollProgress />
-        <Navbar />
+        <Navbar onBookClick={openAppointmentModal} />
         <div className="pt-28 pb-16 text-center max-w-md mx-auto px-4 flex-1">
           <div className="w-14 h-14 rounded-2xl bg-[#FAF0F5] text-primary flex items-center justify-center mx-auto mb-3">
             <AlertTriangle className="w-7 h-7" />
@@ -70,7 +93,7 @@ const ServiceDetail = () => {
   return (
     <div className="min-h-screen bg-white text-black font-sans antialiased flex flex-col">
       <ScrollProgress />
-      <Navbar />
+      <Navbar onBookClick={openAppointmentModal} />
 
       {/* Main Content Area: Focused on clinical facts, no redundant book appointment CTA */}
       <main className="pt-20 sm:pt-22 pb-14 flex-1">
@@ -263,6 +286,175 @@ const ServiceDetail = () => {
             </motion.div>
 
           </div>
+
+          <motion.section
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.4 }}
+            className="mt-8 border border-line bg-cream/60"
+          >
+            <div className="border-b border-line px-5 py-5 sm:px-7">
+              <SectionLabel className="!mb-0">CLINICAL OVERVIEW</SectionLabel>
+              <h2 className="mt-3 font-display text-xl sm:text-2xl text-ink">
+                {service.name} — what you should know
+              </h2>
+              <p className="mt-2 max-w-3xl text-xs sm:text-sm leading-relaxed text-muted">
+                {seo.metaDescription}
+              </p>
+            </div>
+            <div className="grid grid-cols-1 gap-5 px-5 py-6 sm:grid-cols-2 sm:px-7 lg:grid-cols-3">
+              {seo.whyChoose.map((item) => (
+                <div key={item.title} className="flex gap-3">
+                  <span className="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-full bg-white text-primary shadow-sm">
+                    <CheckCircle2 className="h-4 w-4" />
+                  </span>
+                  <div>
+                    <h3 className="text-sm font-bold text-ink">{item.title}</h3>
+                    <p className="mt-1 text-xs leading-relaxed text-muted">
+                      {item.text}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.section>
+
+          <motion.section
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.4, delay: 0.05 }}
+            className="mt-8 border border-line bg-white p-5 sm:p-7"
+          >
+            <SectionLabel>HOW IT WORKS</SectionLabel>
+            <h2 className="mt-3 font-display text-xl sm:text-2xl text-ink">
+              Your treatment journey
+            </h2>
+            <div className="mt-6 grid grid-cols-1 gap-5 md:grid-cols-3">
+              {seo.howItWorks.map((step, index) => {
+                const Icon = [ClipboardCheck, Sparkles, ShieldCheck][index];
+                return (
+                  <div key={step.title} className="relative border-l border-line pl-5">
+                    <span className="absolute -left-4 top-0 grid h-8 w-8 place-items-center rounded-full border border-line bg-white text-primary">
+                      <Icon className="h-4 w-4" />
+                    </span>
+                    <h3 className="text-sm font-bold text-ink">{step.title}</h3>
+                    <p className="mt-2 text-xs leading-relaxed text-muted">
+                      {step.text}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          </motion.section>
+
+          <motion.section
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.4, delay: 0.1 }}
+            className="mt-8 border border-line bg-white p-5 sm:p-7"
+          >
+            <SectionLabel>FREQUENTLY ASKED QUESTIONS</SectionLabel>
+            <h2 className="mt-3 font-display text-xl sm:text-2xl text-ink">
+              Questions about {service.name}
+            </h2>
+            <div className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-2">
+              {seo.faqs.map((faq) => (
+                <details
+                  key={faq.question}
+                  className="group border border-line px-4 py-3 open:border-primary/40"
+                >
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-sm font-bold text-ink [&::-webkit-details-marker]:hidden">
+                    <span>{faq.question}</span>
+                    <HelpCircle className="h-4 w-4 shrink-0 text-primary transition-transform group-open:rotate-180" />
+                  </summary>
+                  <p className="mt-3 text-xs leading-relaxed text-muted">
+                    {faq.answer}
+                  </p>
+                </details>
+              ))}
+            </div>
+          </motion.section>
+
+          <motion.section
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.4, delay: 0.15 }}
+            className="mt-8 border border-line bg-white p-5 sm:p-7"
+          >
+            <div className="flex flex-wrap items-end justify-between gap-3">
+              <div>
+                <SectionLabel>CONTINUE EXPLORING</SectionLabel>
+                <h2 className="mt-3 font-display text-xl sm:text-2xl text-ink">
+                  Related treatments
+                </h2>
+              </div>
+              <Link
+                to="/services"
+                className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.16em] text-primary"
+              >
+                All services
+                <ArrowUpRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+            <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
+              {relatedServices.map((item) => (
+                <Link
+                  key={item.slug}
+                  to={`/services/${item.slug}`}
+                  className="group flex items-center justify-between gap-3 border border-line p-4 transition-colors hover:border-primary/50 hover:bg-cream/50"
+                >
+                  <div className="min-w-0">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-gold">
+                      {item.category}
+                    </p>
+                    <h3 className="mt-1 truncate text-sm font-bold text-ink group-hover:text-primary">
+                      {item.name}
+                    </h3>
+                  </div>
+                  <ArrowUpRight className="h-4 w-4 shrink-0 text-primary transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </Link>
+              ))}
+            </div>
+          </motion.section>
+
+          <motion.section
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.4, delay: 0.2 }}
+            className="mt-8 flex flex-col gap-4 border border-primary/25 bg-[#FAF0F5] px-5 py-6 sm:flex-row sm:items-center sm:justify-between sm:px-7"
+          >
+            <div>
+              <h2 className="font-display text-xl text-ink">
+                Ready to discuss {service.name}?
+              </h2>
+              <p className="mt-1 text-xs leading-relaxed text-muted">
+                Book a consultation to confirm suitability, discuss alternatives
+                and plan your treatment.
+              </p>
+            </div>
+            <div className="flex shrink-0 flex-col gap-2 sm:flex-row">
+              <button
+                type="button"
+                onClick={openAppointmentModal}
+                className="inline-flex min-h-[44px] items-center justify-center gap-2 bg-primary px-5 text-[10px] font-bold uppercase tracking-[0.16em] text-white transition-colors hover:bg-primary-dark"
+              >
+                Book consultation
+                <ArrowUpRight className="h-3.5 w-3.5" />
+              </button>
+              <a
+                href={`tel:${doctorData.clinic.phone.replace(/[^0-9+]/g, '')}`}
+                className="inline-flex min-h-[44px] items-center justify-center gap-2 border border-line bg-white px-5 text-[10px] font-bold uppercase tracking-[0.16em] text-ink transition-colors hover:border-primary hover:text-primary"
+              >
+                <Phone className="h-3.5 w-3.5" />
+                Call clinic
+              </a>
+            </div>
+          </motion.section>
 
         </div>
       </main>
